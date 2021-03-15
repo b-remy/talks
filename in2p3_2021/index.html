@@ -426,6 +426,7 @@
 							</ul>
 						</div>
 					</div>
+
 					</div>
 				</section>
 
@@ -488,6 +489,36 @@
 						\underbrace{\boldsymbol{r}_\theta(\boldsymbol{\kappa}, \nabla_{\boldsymbol{\kappa}} \log p_{th}(\boldsymbol{\kappa}))}_\text{learned residuals}$$
 					</li>
 				</ul>
+
+			</section>
+
+			<section>
+							<h3 class="slide-title">Writing down the convergence map log posterior</h3>
+							$$ \log p( \kappa | e) = \underbrace{\log p(e | \kappa)}_{\simeq -\frac{1}{2} \parallel e - P \kappa \parallel_\Sigma^2} + \log p(\kappa) +cst $$
+<br>
+							<ul>
+								<li> The likelihood term (and its score) are known analytically.
+								</li>
+
+								<!-- <li> There is <b class="alert">no close form expression for the full non-Gaussian prior</b> of the convergence.
+									<br> However:
+									<ul>
+										<li> <b>We do have an analytic prior on its 2pt function</b>, and that prior is accurate on large scales.
+											$$p_{th}(\boldsymbol{\kappa}) = \frac{1}{ \sqrt{ \det 2 \pi \boldsymbol{S}}} \exp \left( -\frac{1}{2} \boldsymbol{\kappa}^\dagger \boldsymbol{S}^{-1} \boldsymbol{\kappa} \right)$$
+											where $\mathbf{S}$ is the theoretical power spectrum of the convergence.
+										</li>
+										<li> <b>We do have access to samples of full prior</b> through simulations.
+										</li>
+									</ul>
+								</li> -->
+								<br>
+								<li ><b class="alert">Learning a Hybrid score</b>: theoretical Gaussian on large scale, data-driven on small scales using N-body simulations.
+									$$\underbrace{\nabla_{\boldsymbol{\kappa}} \log p(\boldsymbol{\kappa})}_\text{full prior} = \underbrace{\nabla_{\boldsymbol{\kappa}} \log p_{th}(\boldsymbol{\kappa})}_\text{gaussian prior} +
+									\underbrace{\boldsymbol{r}_\theta(\boldsymbol{\kappa}, \nabla_{\boldsymbol{\kappa}} \log p_{th}(\boldsymbol{\kappa}))}_\text{learned residuals}$$
+
+									<img data-src='assets/gauss-res023.png' />
+								</li>
+							</ul>
 			</section>
 
 			<section>
