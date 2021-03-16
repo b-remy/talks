@@ -34,6 +34,8 @@
 					<div class="col">
 						<div align="left" style="margin-left: 20px;">
 							<h2>Benjamin Remy</h2>
+							Work done in collaboration with : <br>
+							<u>Francois Lanusse</u>, Zaccharie Ramzi, Niall Jeffrey, Jia Liu and <u>Jean-Luc Starck</u>
 							<img src="assets/CosmoStatDarkBK.png" class="plain"></img>
 							<br>
 						</div>
@@ -140,10 +142,11 @@
 				</section>
 
 				<section data-background="assets/convergence_map.png">
-					<h2>But what about this?</h2>
+					<h2>But what about learning the prior <br>   with <b class="alert">deep generative models</b>?</h2>
 				</section>
 			</section>
 
+			<!--
 			<section>
 				<h2>Deep Posterior Sampling by Neural Score Estimation</h2>
 
@@ -170,7 +173,7 @@
 				</div>
 				<br>
 			</section>
-
+		-->
 			<section>
 				<h3 class="slide-title"> The evolution of generative models </h3>
 
@@ -350,33 +353,6 @@
 				</section>
 			</section>
 
-			<section>
-				<section>
-					<h3 class="slide-title">Efficient sampling by Annealed HMC</h3>
-
-					<ul>
-						<li> Even with gradients, <b class="alert">sampling in high number of dimensions is difficult!</b><br>
-							$\Longrightarrow$ Use a parallel annealing strategy to effectively sample from full distribution.
-						</li>
-						<br>
-						<li class="fragment fade-up"> We use the fact that our score network $\mathbf{r}_\theta(x, \sigma)$ is learning a noise-convolved distribution $\nabla \log p_\sigma$
-
-							<div>
-								$$\sigma_1 > \sigma_2 > \sigma_3 > \sigma_4 $$
-								<img data-src="assets/annealing.png" />
-							</div>
-
-						</li>
-
-						<li class="fragment fade-up"> Run many HMC chains in parallel, progressively annealing the $\sigma$ to 0, <b class="chain">keep last point in the chain as independent sample</b>.
-						</li>
-					</ul>
-				</section>
-
-				<section>
-						<h3 class="slide-title">Example of one chain during annealing</h3>
-						<img data-src="assets/knee_sampling.gif"/>
-				</section>
 
 				<section>
 					<h3 class="slide-title">Annealed Langevin samples from DSM model in Song & Ermon (2020)</h3>
@@ -386,18 +362,21 @@
 
 			<section>
 				<h2>Probabilistic Mapping of Dark Matter by<br> Neural Score Matching</h2>
-				<a href="https://arxiv.org/abs/2011.08271"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2011.08271-B31B1B.svg" class="plain" style="height:25px;" /></a>
+				<div style="font-size: 20px"><u>Remy</u>, Ramzi, Lanusse et al. 2020 <a href="https://arxiv.org/abs/2011.08271" style='vertical-align:middle; display:inline;'><img
+							src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2011.08271-B31B1B.svg" class="plain" style="height:25px;" /></a>
+				</div>
 				<hr>
 				<div class="container">
+
 					<div class="col">
 						<div align="left" style="margin-left: 20px;">
-							<h3>Work in collaboration with: <br>
+							<!--<h3>Work in collaboration with: <br>
 								Francois Lanusse, Jia Liu, Niall Jeffrey, Jean-Luc Starck
 							</h3>
 
-							<br> <br>
+							<br> <br>-->
 
-							$\Longrightarrow$ Probe full posterior of convergence map, application to the COSMOS field.
+							<h3>$\Longrightarrow$ Probe full posterior of convergence map, application to the COSMOS field.</h3>
 						</div>
 					</div>
 					<div class="col">
@@ -462,6 +441,7 @@
 				</section>
 			</section>
 
+			<!--
 			<section>
 				<h3 class="slide-title">Writing down the convergence map log posterior</h3>
 
@@ -491,6 +471,7 @@
 				</ul>
 
 			</section>
+		-->
 
 			<section>
 							<h3 class="slide-title">Writing down the convergence map log posterior</h3>
@@ -512,7 +493,7 @@
 									</ul>
 								</li> -->
 								<br>
-								<li ><b class="alert">Learning a Hybrid score</b>: theoretical Gaussian on large scale, data-driven on small scales using N-body simulations.
+								<li class="fragment fade-up"><b class="alert">Learning a Hybrid score</b>: theoretical Gaussian on large scale, data-driven on small scales using N-body simulations.
 									$$\underbrace{\nabla_{\boldsymbol{\kappa}} \log p(\boldsymbol{\kappa})}_\text{full prior} = \underbrace{\nabla_{\boldsymbol{\kappa}} \log p_{th}(\boldsymbol{\kappa})}_\text{gaussian prior} +
 									\underbrace{\boldsymbol{r}_\theta(\boldsymbol{\kappa}, \nabla_{\boldsymbol{\kappa}} \log p_{th}(\boldsymbol{\kappa}))}_\text{learned residuals}$$
 
@@ -548,7 +529,7 @@
 			<section>
 				<section>
 					<h3 class="slide-title">Uncertainty quantification in Magnetic Resonance Imaging (MRI)</h3>
-					<div style="float:right; font-size: 20px">Ramzi, Remy, <b>Lanusse</b> et al. 2020 <a href="https://arxiv.org/abs/2011.08698" style='vertical-align:middle; display:inline;'><img
+					<div style="float:right; font-size: 20px">Ramzi, <u>Remy</u>, Lanusse et al. 2020 <a href="https://arxiv.org/abs/2011.08698" style='vertical-align:middle; display:inline;'><img
 								src="https://img.shields.io/badge/stat.ML-arXiv%3A2011.08698-B31B1B.svg" class="plain" style="height:25px;" /></a>
 					</div>
 					<br>
@@ -612,6 +593,33 @@
 				<br>
 			</section>
 
+			<section>
+				<section>
+					<h3 class="slide-title">Efficient sampling by Annealed HMC</h3>
+
+					<ul>
+						<li> Even with gradients, <b class="alert">sampling in high number of dimensions is difficult!</b><br>
+							$\Longrightarrow$ Use a parallel annealing strategy to effectively sample from full distribution.
+						</li>
+						<br>
+						<li class="fragment fade-up"> We use the fact that our score network $\mathbf{r}_\theta(x, \sigma)$ is learning a noise-convolved distribution $\nabla \log p_\sigma$
+
+							<div>
+								$$\sigma_1 > \sigma_2 > \sigma_3 > \sigma_4 $$
+								<img data-src="assets/annealing.png" />
+							</div>
+
+						</li>
+
+						<li class="fragment fade-up"> Run many HMC chains in parallel, progressively annealing the $\sigma$ to 0, <b class="chain">keep last point in the chain as independent sample</b>.
+						</li>
+					</ul>
+				</section>
+
+				<section>
+						<h3 class="slide-title">Example of one chain during annealing</h3>
+						<img data-src="assets/knee_sampling.gif"/>
+				</section>
 
 		</div>
 	</div>
