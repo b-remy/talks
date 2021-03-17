@@ -107,7 +107,7 @@
 						With these concepts in hand, we can estimate for instance the Maximum A Posteriori solution:
 						<br>
 						$$\hat{x} = \arg\max\limits_x \ \log p(y \ | \ x) + \log p(x)$$
-						For instance, if $n$ is Gaussian, $\hat x = \arg\max\limits_x \ \frac{1}{2} \parallel y - \mathbf{A} x \parallel_{\mathbf{\Sigma}}^2 + \log p(x)$
+						For instance, if $n$ is Gaussian, $\hat x = \arg\max\limits_x \ - \frac{1}{2} \parallel y - \mathbf{A} x \parallel_{\mathbf{\Sigma}}^2 + \log p(x)$
 					</div>
 					<br>
 					<div class="fragment fade-up">
