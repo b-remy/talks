@@ -1,3 +1,6 @@
 [submodule "in2p3_2021/reveal.js"]
 	path = in2p3_2021/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "ITA2021/reveal.js"]
+	path = ITA2021/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
