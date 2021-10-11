@@ -25,7 +25,7 @@
 						<h1>Probabilistic Mapping of Dark Matter with Neural Score Matching</h1>
 					</div>
 				</div>
-				<hr>
+				<!-- <hr> -->
 				<div>
 					<a href="https://arxiv.org/abs/2011.08271"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2011.08271-B31B1B.svg" class="plain" style="height:25px;" /></a>
 					<a href="https://arxiv.org/abs/2011.08698"><img src="https://img.shields.io/badge/stat.ML-arXiv%3A2011.08698-B31B1B.svg" class="plain" style="height:25px;" /></a>
@@ -34,8 +34,7 @@
 					<div class="col">
 						<div align="left" style="margin-left: 20px;">
 							<h2>Benjamin Remy</h2>
-							Work done in collaboration with : <br>
-							<u>Francois Lanusse</u>, Zaccharie Ramzi, Niall Jeffrey, Jia Liu and <u>Jean-Luc Starck</u>
+							With : <u>Francois Lanusse</u>, Zaccharie Ramzi, Niall Jeffrey, Jia Liu, <u>J.-L. Starck</u>
 							<img src="assets/CosmoStatDarkBK.png" class="plain"></img>
 							<br>
 						</div>
@@ -368,15 +367,14 @@
 								<li>Curse of dimensionality</li>
 								<li>Highly correlated chains</li>
 							</ul>
-							<br>
-							$\Longrightarrow$ Use a parallel annealing strategy to effectively sample from full distribution.
+							<!-- <br> -->
+							<li class="fragment fade-up>">$\Longrightarrow$ Use a <b class="alert">parallel annealing strategy</b> to effectively sample from full distribution.</li>
 						</li>
-						<br>
+						<!-- <br> -->
 						<li class="fragment fade-up"> We use the fact that our score network $\mathbf{r}_\theta(x, \sigma)$ is learning a noise-convolved distribution 
-							$\nabla \log p_\sigma$, where $$p_\sigma(x) = \int p_{\mathrm{data}}(x')\mathcal{N}(x|x', \sigma^2)dx'$$
+							$\nabla \log p_\sigma$, where $$p_\sigma(x) = \int p_{\mathrm{data}}(x')\mathcal{N}(x|x', \sigma^2)dx', ~~~~~~~~\sigma_1 > \sigma_2 > \sigma_3 > \sigma_4 $$
 
 							<div>
-								$$\sigma_1 > \sigma_2 > \sigma_3 > \sigma_4 $$
 								<img data-src="assets/annealing.png" />
 							</div>
 
