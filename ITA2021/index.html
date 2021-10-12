@@ -542,8 +542,9 @@
 							<li class="fragment fade-up"> We learn a <b class="alert">hybriod Denoiser</b>: theoretical Gaussian on large scale, data-driven on small scales using N-body simulations.
 							$$\underbrace{\nabla_{\boldsymbol{\kappa}} \log p(\boldsymbol{\kappa})}_\text{full prior} = \underbrace{\nabla_{\boldsymbol{\kappa}} \log p_{th}(\boldsymbol{\kappa})}_\text{gaussian prior} +
 									\underbrace{\boldsymbol{r}_\theta(\boldsymbol{\kappa}, \nabla_{\boldsymbol{\kappa}} \log p_{th}(\boldsymbol{\kappa}))}_\text{learned residuals}$$
-
-									<img data-src='assets/gauss-res023.png' />
+									<center>
+									<img data-src='assets/denoiser-kappa.png' style="height:300px; width:auto"/>
+									</center>
 							<!-- <ul>
 								<li class='fragment'> <b>We do have access to samples of full  <b class="alert">implicit</b> prior</b> through simulations: $X = \{x_0, x_1, \ldots, x_n \}$ with $x_i \sim \mathbb{P}$
 									<img data-src='assets/plot_massive_nu.png' />
