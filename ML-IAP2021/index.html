@@ -98,7 +98,87 @@
 							$$\gamma_1 = \frac{1}{2} (\partial_1^2 - \partial_2^2) \ \Psi \quad;\quad \gamma_2 = \partial_1 \partial_2 \ \Psi \quad;\quad \kappa = \frac{1}{2} (\partial_1^2 + \partial_2^2) \ \Psi$$
 						</div>
 						<div class="fragment current-visible plain fade-up" style="position:absolute;top:0;left:0;width:1000px;">
-							$$\boxed{\gamma = \mathbf{P} \kappa}$$
+							$$\boxed{\gamma = \mathbf{A} \kappa}$$
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3 class="slide-title">Linear inverse problems</h3>
+
+					$\boxed{\gamma = \mathbf{A}\kappa + n}$
+					<br>
+					<br>
+					$\mathbf{A}$ is known and encodes our physical understanding of the problem.
+					<span class="fragment"><br>$\Longrightarrow$ When non-invertible or ill-conditioned, the inverse problem is ill-posed <b class="alert">with no unique solution $x$</b></span>
+					<!-- <div class="container fragment fade-up">
+						<div class="col">
+							<img data-src="assets/pluto_smooth.png" class="plain"></img>
+							Deconvolution
+						</div>
+						<div class="col">
+							<img data-src="assets/pluto_missing.png" class="plain"></img>
+							Inpainting
+						</div>
+						<div class="col">
+							<img data-src="assets/plutoNoise.png" class="plain"></img>
+							Denoising
+						</div>
+					</div> -->
+					<br>
+					<br>
+					<span class="fragment">The Bayesian view of the problem:
+					<br>
+					$$ p(\kappa | \gamma) \propto p(\gamma | \kappa) \ p(\kappa) $$
+					</span>
+					<ul>
+						<li class="fragment fade-up">$p(\gamma | \kappa)$ is the data likelihood, which <b>contains the physics</b><br>
+						</li>
+						<br>
+						<li class="fragment fade-up">$p(\kappa)$ is the prior knowledge on the solution.</li>
+					</ul>
+					<br>
+					<br>
+
+					<div class="container">
+						<div class="col">
+							<div class="fragment fade-up">
+								We can estimate for instance the Maximum A Posteriori solution:
+								<br>
+								$$\hat{\kappa} = \arg\max\limits_\kappa \ \log p(\gamma \ | \ \kappa) + \log p(\kappa)$$
+								$\hat \kappa = \arg\max\limits_\kappa \ - \frac{1}{2} \parallel \gamma - \mathbf{A} x \parallel_{\mathbf{\Sigma}}^2 + \log p(\kappa)$
+							</div>
+						</div>
+						<div class="col">
+							<div class="fragment fade-up">
+								Or <b class="alert">estimate from the full posterior $p(\kappa|\gamma)$</b> with MCMC or Variational Inference methods.
+							</div>
+							<br>
+							<br>
+							<span class="fragment">  <b class="alert">$\boxed{\log p(\kappa)}$</b> ??</span>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 class="slide-title"> Classical examples of signal priors </h3>
+					<div class="container">
+						<div class="col">
+							Sparse
+							<img data-src="assets/wavelet.png" height="400" class="plain"></img><br>
+							$$ \log p(x) = \parallel \mathbf{W} x \parallel_1 $$
+						</div>
+						<div class="col">
+							Gaussian
+							<img data-src="assets/zknj8.jpg" height="400" class="plain"></img>
+							$$ \log p(x) = x^t \mathbf{\Sigma^{-1}} x $$
+						</div>
+						<div class="col">
+							Total Variation
+							<img data-src="assets/shepp-Logan.ppm" class="plain"></img>
+							$$ \log p(x) = \parallel \nabla x \parallel_1 $$
+
 						</div>
 					</div>
 				</section>
@@ -109,6 +189,184 @@
 					</div><br>
 					<img data-src="assets/DESY3map.png" style="height:600px;"></img>
 				</section>
+
+				<section data-background="assets/convergence.png">
+					<h2>But what about learning the prior <br>   with <b class="alert">deep generative models</b>?</h2>
+				</section>
+			</section>
+
+			<section>
+				<h3 class="slide-title">The score is all you need!</h3>
+				<br>
+
+				<div class="container">
+					<div class="col">
+						<ul>
+							<li> Whether you are looking for the MAP or sampling with HMC or MALA, you
+								<b class="alert">only need access to the score</b> of the posterior:
+								$$\frac{\color{orange} d \color{orange}\log \color{orange}p\color{orange}(\color{orange}x \color{orange}|\color{orange} y\color{orange})}{\color{orange}
+								d
+								\color{orange}x}$$
+								<ul>
+									<li>Gradient descent: $x_{t+1} = x_t + \tau \nabla_x \log p(x_t | y) $</li>
+									<li>Langevin algorithm: $x_{t+1} = x_t + \tau \nabla_x \log p(x_t | y) + \sqrt{2\tau} n_t$ </li>
+								</ul>
+							</li>
+							<br>
+						</ul>
+					</div>
+					<div class="col">
+						<img data-src="assets/score_two_moons.png"></img>
+					</div>
+				</div>
+				<br>
+				<br>
+				<ul>
+					<li class="fragment" data-fragment-index="1"> The score of the full posterior is simply:
+						$$\nabla_\kappa \log p(\kappa |\gamma) = \underbrace{\nabla_\kappa \log p(\gamma |\kappa)}_{\mbox{known}} \quad + \quad \underbrace{\nabla_\kappa \log p(\kappa)}_{\mbox{can be learned}}$$
+						$\Longrightarrow$ all we have to do is <b class="alert">model/learn the score of the prior</b>.
+					</li>
+				</ul>
+			</section>
+			
+			<section>
+				<section>
+					<h3 class="slide-title">Neural Score Estimation by Denoising Score Matching</h3>
+
+					<ul>
+						<li><b>Denoising Score Matching</b>: An optimal <b class="alert">Gaussian denoiser learns the score</b> of a given distribution.
+							<ul>
+								<li class="fragment fade-up"> If $x \sim \mathbb{P}$ is corrupted by additional Gaussian noise $u \in \mathcal{N}(0, \sigma^2)$ to yield
+									$$x^\prime = x + u$$
+								</li>
+								<li class="fragment fade-up"> Let's consider a denoiser $r_\theta$ trained under an $\ell_2$ loss:
+									$$\mathcal{L}=\parallel x - r_\theta(x^\prime, \sigma) \parallel_2^2$$
+								</li>
+								<li class="fragment fade-up"> The optimal denoiser $r_{\theta^\star}$ verifies:
+									$$\boxed{\boldsymbol{r}_{\theta^\star}(\boldsymbol{x}', \sigma) = \boldsymbol{x}' + \sigma^2 \color{orange}{\nabla_{\boldsymbol{x}} \log p_{\sigma^2}(\boldsymbol{x}')}}$$
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<div class="fragment fade-up">
+						<!-- <div class="container">
+							<div class="col">$\boldsymbol{x}'$
+							</div>
+							<div class="col">$\boldsymbol{x}$
+							</div>
+							<div class="col">$\boldsymbol{x}'- \boldsymbol{r}^\star(\boldsymbol{x}', \sigma)$
+							</div>
+							<div class="col">$\boldsymbol{r}^\star(\boldsymbol{x}', \sigma)$
+							</div>
+						</div> -->
+						<img data-src="assets/denoiser-kappa.png" style='width:1200px;'></img>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Efficient sampling by Annealed HMC</h3>
+
+					<ul>
+						<li> Even with gradients, <b class="alert">sampling in high number of dimensions is difficult!</b> Because of:<br>
+							<ul>
+								<li>Curse of dimensionality</li>
+								<li>Highly correlated chains</li>
+							</ul>
+							<!-- <br> -->
+							<li class="fragment fade-up>">$\Longrightarrow$ Use a <b class="alert">parallel annealing strategy</b> to effectively sample from full distribution.</li>
+						</li>
+						<!-- <br> -->
+						<li class="fragment fade-up"> We use the fact that our score network $\mathbf{r}_\theta(x, \sigma)$ is learning a noise-convolved distribution 
+							$\nabla \log p_\sigma$, where $$p_\sigma(x) = \int p_{\mathrm{data}}(x')\mathcal{N}(x|x', \sigma^2)dx', ~~~~~~~~\sigma_1 > \sigma_2 > \sigma_3 > \sigma_4 $$
+
+							<div>
+								<img data-src="assets/annealing.png" />
+							</div>
+
+						</li>
+
+						<li class="fragment fade-up"> Run many HMC chains in parallel, progressively annealing the $\sigma$ to 0, <b class="chain">keep last point in the chain as independent sample</b>.
+						</li>
+					</ul>
+				</section>
+			</section>
+
+			<section>
+				<!-- <section>
+					<h3 class="slide-title">Illustration on MassiveNuS simulations</h3>
+					<img data-src='assets/score_sims_results.png' />
+				</section> -->
+
+				<section>
+					<h3 class="slide-title">Illustration on $\kappa$-TNG simulations</h3>
+					<div class="container">
+						<div class="col">
+							<img data-src='assets/ref_ktng.png' style="width:400px; height:400px;" />
+							<br>
+							True convergence map
+						</div>
+						<div class="col">
+							<div class="block-content">
+								<div style="position:relative; width:400px; height:400px; top:10px; left:40px;">
+									<div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:400px;" data-fragment-index="0">
+										<img data-src='assets/ks_ktng.png' style="width:400px; height:400px;" />
+									</div>
+									<div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:400px;" data-fragment-index="1">
+										<img data-src='assets/wiener_ktng.png' style="width:400px; height:400px;" />
+									</div>
+									<div class="plain fragment" style="position:absolute;top:0;left:0;width:400px;" data-fragment-index="2">
+										<img data-src='assets/mean_post_ktng.png' style="width:400px; height:400px;" />
+									</div>
+								</div>
+								<div class="block-content">
+									<div style="position:relative; width:400px; height:20px; top:50px; left:10px;">
+										<div class="fragment current-visible " data-fragment-index="0" style="position:absolute;top:0;left:0;width:400px;">Traditional Kaiser-Squires</div>
+										<div class="fragment current-visible " data-fragment-index="1" style="position:absolute;top:0;left:0;width:400px;">Wiener Filter</div>
+										<div class="fragment" data-fragment-index="2" style="position:absolute;top:0;left:0;width:400px;">Posterior Mean (ours)</div>
+									</div>
+								</div>
+								<br>
+								<br>
+							</div>
+
+						</div>
+						<div class="col fragment">
+							<img data-src='assets/posterior_samples.gif' style="width:400px; height:400px;" />
+							<br>
+							Posterior samples
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Illustration on $\kappa$-TNG simulations</h3>
+					<div>
+						<img data-src='assets/video-annealing.gif'/>
+						<br>
+						Annealing HMC chain
+					</div>
+
+				</section>
+			</section>
+
+			<section>
+				<h3 class="slide-title">Probabilistic Mass-Mapping of the HST COSMOS field</h3>
+				<img data-src="assets/cosmos_massmap.png"></img>
+				<br>
+				<ul>
+					<li> COSMOS shear data from <a href=https://ui.adsabs.harvard.edu/abs/2010A%26A...516A..63S/abstract>Schrabback et al. 2010</a>
+					</li>
+					<br>
+					<li> Prior learned from MassiveNuS at fiducial cosmology (320x320 maps at 0.4 arcsec resolution).
+					</li>
+					<br>
+					<li> Known massive X-ray clusters indicated with crosses, along with their redshifts, right pannel shows cutouts of central
+						cluster from multiple posterior samples.
+					</li>
+				</ul>
+				<br>
+				<br>
 			</section>
 
 			<section>
