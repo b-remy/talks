@@ -1,42 +1,301 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Template Presentation</title>
-		<meta name="description" content="A basic template to start a new talk">
-		<meta name="author" content="YOUR NAME HERE">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="reveal.js/dist/reset.css">
-		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
-		<link rel="stylesheet" href="reveal.js/dist/theme/darkenergy.css">
+	<title>Probabilistic Mapping of Dark Matter</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<meta name="description" content="March 17th 2020">
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="reveal.js/dist/theme/darkenergy.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background-image="assets/lsst_stills_0009_crop.jpg">
+				<div class="container">
+					<div class="title" style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.4);">
+						<h1>Probabilistic Mapping of Dark Matter with Neural Score Matching</h1>
+					</div>
+				</div>
+				<!-- <hr> -->
+				<div>
+					<a href="https://arxiv.org/abs/2011.08271"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2011.08271-B31B1B.svg" class="plain" style="height:25px;" /></a>
+				</div>
+				<div class="container">
+					<div class="col">
+						<div align="left" style="margin-left: 20px;">
+							<h2>Benjamin Remy</h2>
+							With : <u>Francois Lanusse</u>, Niall Jeffrey, Jia Liu, <u>J.-L. Starck</u>, Ken Osato
+							<img src="assets/CosmoStatDarkBK.png" class="plain"></img>
+							<br>
+						</div>
+					</div>
+
+					<div class="col">
+						<br>
+						<br>
+						<br>
+						<img src="assets/logo_cnes.png" class="plain" height="150"></img>
+					</div>
+
+					<div class="col">
+						<br>
+						<br>
+						<img src="assets/universite_paris_saclay.jpg" class="plain" height="150"></img>
+					</div>
+				</div>
+				<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.4);"> slides at <a href="https://b-remy.github.io/talks/ML-IAP2021">b-remy.github.io/talks/ML-IAP2021</a> </div>
+
+			</section>
+			
+			<section>
+				<section data-background-image="assets/gravitational-lensing-diagram.jpg">
+					<h3 class="slide-title"> Gravitational lensing</h3>
+					<div class="fragment fade-up">
+						<img class="plain" data-src="assets/great.jpg" />
+
+					<div class="block ">
+						<div class="block-title">
+							Galaxy shapes as estimators for gravitational shear
+						</div>
+						<div class="block-content">
+							$$ e = \gamma + e_i \qquad \mbox{ with } \qquad e_i \sim \mathcal{N}(0, I)$$
+							<ul>
+								<li> We are trying the measure the <b class="alert"> ellipticity $e$</b> of
+									galaxies as an estimator for the <b class="alert">gravitational shear $\gamma$ </b>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">The Weak Lensing Mass-Mapping as an Inverse Problem</h3>
+					<div class="container">
+						<div class="col">
+							Shear <b class="alert">$\gamma$</b><br>
+							<img data-src="assets/shear_cat1.png" style="width:450px;"></img>
+						</div>
+
+						<div class="col fragment fade-up">
+							Convergence <b class="alert">$\kappa$</b><br>
+							<img data-src="assets/kappa.png" style="width:450px;"></img>
+						</div>
+					</div>
+
+					<div style="position:relative; width:1000px; height:100px; margin:0 auto;">
+						<div class="fragment current-visible plain fade-up" style="position:absolute;top:0;left:0;width:1000px;">
+							$$\gamma_1 = \frac{1}{2} (\partial_1^2 - \partial_2^2) \ \Psi \quad;\quad \gamma_2 = \partial_1 \partial_2 \ \Psi \quad;\quad \kappa = \frac{1}{2} (\partial_1^2 + \partial_2^2) \ \Psi$$
+						</div>
+						<div class="fragment current-visible plain fade-up" style="position:absolute;top:0;left:0;width:1000px;">
+							$$\boxed{\gamma = \mathbf{P} \kappa}$$
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title"> Illustration on the Dark Energy Survey (DES) Y3</h3>
+					<div style="float:right; font-size: 20px">Jeffrey, et al. (2021)
+					</div><br>
+					<img data-src="assets/DESY3map.png" style="height:600px;"></img>
+				</section>
+			</section>
+
+			<section>
+				<h3 class="slide-title"> Takeaways</h3>
+				<br>
+				<br>
+				<ul>
+					<li> Hybrid physical/deep learning modeling:
+						<ul>
+							<li> Deep generative models can be used to provide <b class="alert">data driven priors</b>.
+							</li>
+							<br>
+							<li> <b class="alert">Explicit likelihood</b>, uses of all of our physical knowledge.<br>
+								$\Longrightarrow$ The method can be applied for varying PSF, noise, or even different instruments!
+							</li>
+
+						</ul>
+					</li>
+					<br>
+					<li class="fragment"> Neural Score Estimation is a <b class="alert">scalable approach</b> to learn a prior score.
+					</li>
+					<br>
+					<li class="fragment"> Knowledge of the posterior score is all we need for Bayesian inference aka uncertain quantification.
+					</li>
+					<br>
+					<li class="fragment">We implemented a new class of mass mapping method, providing the full posterior <br>
+    $\Longrightarrow$ recovered a very high quality convergence map of the COSMOS field.
+
+						<!-- We implemented the "ultimate mass-mapping method" <br>
+						$\Longrightarrow$ Recovered the best convergence map of the COSMOS field to date.</li> -->
+				</ul>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<p class="fragment"> Thank you! </p>
+				<br>
+				<br>
+			</section>
+
+			<!-- <section>
+				<section>
+						<h3 class="slide-title">Example of one chain during annealing</h3>
+						<img data-src="assets/knee_sampling.gif"/>
+				</section> -->
+
 		</div>
+	</div>
 
-		<script src="reveal.js/dist/reveal.js"></script>
-		<script src="reveal.js/plugin/notes/notes.js"></script>
-		<script src="reveal.js/plugin/markdown/markdown.js"></script>
-		<script src="reveal.js/plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<style>
+		/* .reveal .slides {
+			border: 5px solid red;
+			min-height: 100%;
+			width: 128mm;
+			height: 96mm;
+		} */
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+		.reveal .block {
+			background-color: #191919;
+			margin-left: 20px;
+			margin-right: 20px;
+			text-align: left;
+			padding-bottom: 0.1em;
+		}
+
+		.reveal .block-title {
+			background-color: #333333;
+			padding: 8px 35px 8px 14px;
+			color: #FFAA7F;
+			font-weight: bold;
+		}
+
+		.reveal .block-content {
+			padding: 8px 35px 8px 14px;
+		}
+
+		.reveal .slide-title {
+			border-left: 5px solid white;
+			text-align: left;
+			margin-left: 20px;
+			padding-left: 20px;
+		}
+
+		.reveal .alert {
+			color: #FFAA7F;
+			font-weight: bold;
+		}
+
+		.reveal .inverted {
+			filter: invert(100%);
+		}
+
+		/*
+	/* .reveal .alert {
+	padding:8px 35px 8px 14px; margin-bottom:18px;
+	text-shadow:0 1px 0 rgba(255,255,255,1);
+	border:5px solid #FFAA7F;
+	-webkit-border-radius: 14px; -moz-border-radius: 14px;
+	border-radius:14px
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	background-size: 38px;
+	padding-left: 30px; /* 55px; if icon
+	}
+	.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+	.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+	/*.reveal .alert li {margin-top: 1em}
+	.reveal .alert-block p+p {margin-top:5px} */
+	</style>
+
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script src="reveal.js/plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			controls: false,
+
+			//center: false,
+			hash: true,
+
+			// Visibility rule for backwards navigation arrows; "faded", "hidden"
+			// or "visible"
+			controlsBackArrows: 'hidden',
+
+			// Display a presentation progress bar
+			progress: true,
+
+			// Display the page number of the current slide
+			slideNumber: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// The "normal" size of the presentation, aspect ratio will be preserved
+			// when the presentation is scaled to fit different resolutions. Can be
+			// specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+
+			// Bounds for smallest/largest possible scale to apply to content
+			minScale: 0.2,
+			maxScale: 1.5,
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+
+			dependencies: [{
+					src: 'reveal.js/plugin/markdown/marked.js'
+				},
+				{
+					src: 'reveal.js/plugin/markdown/markdown.js'
+				},
+				{
+					src: 'reveal.js/plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/math/math.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-d3/reveald3.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/Chart.min.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/csv2chart.js'
+				},
+				{
+					src: 'reveal.js/plugin/highlight/highlight.js',
+					async: true
+				},
+			]
+
+		});
+	</script>
+</body>
+
 </html>
