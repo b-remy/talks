@@ -4,3 +4,6 @@
 [submodule "ITA2021/reveal.js"]
 	path = ITA2021/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "ML-IAP2021/reveal.js"]
+	path = ML-IAP2021/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
