@@ -98,7 +98,7 @@
 							$$\gamma_1 = \frac{1}{2} (\partial_1^2 - \partial_2^2) \ \Psi \quad;\quad \gamma_2 = \partial_1 \partial_2 \ \Psi \quad;\quad \kappa = \frac{1}{2} (\partial_1^2 + \partial_2^2) \ \Psi$$
 						</div>
 						<div class="fragment current-visible plain fade-up" style="position:absolute;top:0;left:0;width:1000px;">
-							$$\boxed{\gamma = \mathbf{A} \kappa}$$
+							$$\boxed{\gamma = \mathbf{P} \kappa}$$
 						</div>
 					</div>
 				</section>
@@ -250,17 +250,26 @@
 					</ul>
 
 					<div class="fragment fade-up">
-						<!-- <div class="container">
+						<div class="container">
+							
+							<div class="col">$\Bigg($
+							</div>
 							<div class="col">$\boldsymbol{x}'$
+								<img data-src="assets/noisy.png"></img>
 							</div>
-							<div class="col">$\boldsymbol{x}$
+						
+							<div class="col">$-$
 							</div>
-							<div class="col">$\boldsymbol{x}'- \boldsymbol{r}^\star(\boldsymbol{x}', \sigma)$
+							<div class="col">$\boldsymbol{r}_{\theta^\star}(\boldsymbol{x}', \sigma)$
+								<img data-src="assets/denoised-map.png"></img>
 							</div>
-							<div class="col">$\boldsymbol{r}^\star(\boldsymbol{x}', \sigma)$
+							<div class="col">$\Bigg)~/~\sigma^2=$
 							</div>
-						</div> -->
-						<img data-src="assets/denoiser-kappa.png" style='width:1200px;'></img>
+							<div class="col">$\color{orange}{\nabla_{\boldsymbol{x}} \log p_{\sigma^2}(\boldsymbol{x}')}$
+								<img data-src="assets/score.png"></img>
+							</div>
+						</div>
+						<!-- <img data-src="assets/denoiser-kappa.png" style='width:1200px;'></img> -->
 					</div>
 				</section>
 
@@ -300,6 +309,15 @@
 
 				<section>
 					<h3 class="slide-title">Illustration on $\kappa$-TNG simulations</h3>
+					<div>
+						$$\nabla_\kappa \log p_\sigma(\kappa |\gamma) = \nabla_\kappa \log p_\sigma(\gamma |\kappa) \quad + \quad  \color{orange}{\nabla_\kappa \log p_\sigma(\kappa)}$$
+						<img data-src='assets/hmc-annealing.gif'/>
+					</div>
+
+				</section>
+
+				<section>
+					<h3 class="slide-title">Illustration on $\kappa$-TNG simulations</h3>
 					<div class="container">
 						<div class="col">
 							<img data-src='assets/ref_ktng.png' style="width:400px; height:400px;" />
@@ -332,21 +350,11 @@
 
 						</div>
 						<div class="col fragment">
-							<img data-src='assets/posterior_samples.gif' style="width:400px; height:400px;" />
+							<img data-src='assets/cropped.gif' style="width:400px; height:400px;" />
 							<br>
 							Posterior samples
 						</div>
 					</div>
-				</section>
-
-				<section>
-					<h3 class="slide-title">Illustration on $\kappa$-TNG simulations</h3>
-					<div>
-						<img data-src='assets/video-annealing.gif'/>
-						<br>
-						Annealing HMC chain
-					</div>
-
 				</section>
 			</section>
 
