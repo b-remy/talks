@@ -7,3 +7,6 @@
 [submodule "ML-IAP2021/reveal.js"]
 	path = ML-IAP2021/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "UDOPIA2021/reveal.js"]
+	path = UDOPIA2021/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
