@@ -4,4 +4,6 @@
 
 InTheArt seminars, October 12th, CEA Paris-Saclay. [Slides](https://b-remy.github.io/talks/ITA2021)
 
-[Machine learning in astronomical surveys conference](https://ml-iap2021.sciencesconf.org/), IAP, Paris, [Slides](https://b-remy.github.io/talks/ML-IAP2021)
+[Machine learning in astronomical surveys conference](https://ml-iap2021.sciencesconf.org/), IAP, Paris, October 2021 [Slides](https://b-remy.github.io/talks/ML-IAP2021)
+
+[Udopia Doctoral Students Day](https://dataia.eu/evenements/1ere-journee-annuelle-des-etudiants-udopia), Central Supélec, Gif-sur-Yvette, December 2021, [Slides](https://b-remy.github.io/talks/UDOPIA2021)
