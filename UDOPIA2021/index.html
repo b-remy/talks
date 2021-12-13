@@ -1,0 +1,397 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Udopia Students Day</title>
+
+	<meta name="description" content="March 17th 2020">
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="reveal.js/dist/theme/darkenergy.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background-image="assets/lsst_stills_0009_crop.jpg">
+				<div class="container">
+					<div class="title" style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.4);">
+						<h1>Udopia Doctoral Students Day: Machine learning for astrophysical inverse problems</h1>
+					</div>
+				</div>
+				<!-- <hr> -->
+				<div>
+					<a href="https://arxiv.org/abs/2011.08271"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2011.08271-B31B1B.svg" class="plain" style="height:25px;" /></a>
+				</div>
+				<div class="container">
+					<div class="col">
+						<div align="left" style="margin-left: 20px;">
+							<h2>Benjamin Remy</h2>
+							Supervisors :<br> Francois Lanusse & J.-L. Starck
+							<img src="assets/CosmoStatDarkBK.png" class="plain"></img>
+							<br>
+						</div>
+					</div>
+
+					<div class="col">
+						<br>
+						<br>
+						<br>
+						<img src="assets/logo_cnes.png" class="plain" height="150"></img>
+					</div>
+
+					<div class="col">
+						<br>
+						<br>
+						<img src="assets/universite_paris_saclay.jpg" class="plain" height="150"></img>
+					</div>
+				</div>
+				<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.4);"> slides at <a href="https://b-remy.github.io/talks/UDOPIA2021">b-remy.github.io/talks/UDOPIA2021</a> </div>
+
+			</section>
+			
+			<section>
+				<section data-background-image="assets/gravitational-lensing-diagram.jpg">
+					<h3 class="slide-title"> Gravitational lensing</h3>
+					<div class="fragment fade-up">
+						<img class="plain" data-src="assets/great.jpg" />
+
+					<div class="block ">
+						<div class="block-title">
+							Galaxy shapes as estimators for gravitational shear
+						</div>
+						<div class="block-content">
+							$$ e = \gamma + e_i \qquad \mbox{ with } \qquad e_i \sim \mathcal{N}(0, I)$$
+							<ul>
+								<li> We are trying the measure the <b class="alert"> ellipticity $e$</b> of
+									galaxies as an estimator for the <b class="alert">gravitational shear $\gamma$ </b>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					</div>
+				</section>
+
+				<section>
+			        <h3 class="slide-title" style="position:absolute;top:0;">A Physicist's approach: let's build a model</h3>
+							<div class="container">
+								<div class="col">
+									<div style="float:right; font-size: 20px"> <b>Lanusse</b> et al. (2020) <a href="https://arxiv.org/abs/2008.03833"><img src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2008.03833-B31B1B.svg" class="plain" style="height:25px;vertical-align:middle;" /></a></div>
+								</div>
+							</div>
+			        <div class="container">
+			          <div class="col">
+			              <img class="plain fragment" data-src="assets/rand_z_square.png" style="height: 150px" data-fragment-index="4"/>
+			          </div>
+			          <div class="col">
+			              <img class="plain fragment" data-src="assets/cosmos_gal.png" style="width: 200px" data-fragment-index="3"/>
+			          </div>
+			          <div class="col">
+			            <img class="plain fragment" data-src="assets/cosmos_gal_psf.png" style="width: 200px" data-fragment-index="2"/>
+			          </div>
+
+			          <div class="col">
+			            <img class="plain fragment" data-src="assets/cosmos_gal_pix.png" style="width: 200px" data-fragment-index="1"/>
+			          </div>
+
+			          <div class="col">
+			            <img class="plain fragment" data-src="assets/cosmos_gal_ground.png" style="width: 200px" data-fragment-index="0"/>
+			          </div>
+			        </div>
+
+			      <div class="container" style="position:relative; width:1000px; height:50px; margin:0 auto;">
+			        <div class='col fragment' data-fragment-index='4'> <font size="10"> $\longrightarrow$ </font> <br> $g_\theta$ </div>
+			        <div class='col fragment' data-fragment-index='3'> <font size="10"> $\longrightarrow$ </font> <br> PSF </div>
+			        <div class='col fragment' data-fragment-index='2'> <font size="10"> $\longrightarrow$ </font> <br> Pixelation</div>
+			        <div class='col fragment' data-fragment-index='1'> <font size="10"> $\longrightarrow$ </font> <br> Noise </div>
+			      </div>
+
+			      <div class="container">
+			          <div class="col">
+			            <div style="position:relative; width:400px; height:300px; margin:0 auto;">
+			            <img data-src="assets/pgm_0.png" class="plain fragment current-visible " style="position:absolute;top:0;left:0;height:300px;" data-fragment-index="0"/>
+			            <img data-src="assets/pgm_1.png" class="plain fragment current-visible " style="position:absolute;top:0;left:0;height:300px;" data-fragment-index="1"/>
+			            <img data-src="assets/pgm_1.png" class="plain fragment current-visible " style="position:absolute;top:0;left:0;height:350px;" data-fragment-index="2"/>
+			            <img data-src="assets/pgm_2.png" class="plain fragment current-visible " style="position:absolute;top:0;left:0;height:350px;" data-fragment-index="3"/>
+			            <img data-src="assets/pgm_3.png" class="plain fragment " style="position:absolute;top:0;left:0;height:300px;" data-fragment-index="4"/>
+			            </div>
+			          </div>
+			          <div class=" col">
+			            <div class="block fragment" data-fragment-index="0">
+			            <div class="block-title">
+			             Probabilistic model
+			            </div>
+			            <div class="block-content">
+			            <div style="position:relative; width:400px; height:100px; margin:0 auto;">
+			              <div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:400px;" data-fragment-index="0"> $$ x \sim ? $$ </div>
+			              <div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:400px;" data-fragment-index="1"> $$ x \sim \mathcal{N}(z, \Sigma) \quad z \sim ? $$<br>latent $z$ is a denoised galaxy image</div>
+			              <div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:400px;" data-fragment-index="2"> $$ x \sim \mathcal{N}( \mathbf{P} z, \Sigma) \quad z \sim ?$$<br>latent $z$ is a super-resolved and denoised galaxy image</div>
+			              <div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:400px;" data-fragment-index="3"> $$ x \sim \mathcal{N}( \mathbf{P} (\Pi \ast z), \Sigma) \quad z \sim ? $$<br>latent $z$ is a deconvolved, super-resolved, and denoised galaxy image </div>
+			              <div class="plain fragment " style="position:absolute;top:0;left:0;width:400px;" data-fragment-index="4"> $$ x \sim \mathcal{N}( \mathbf{P} (\Pi \ast g_\theta(z)), \Sigma) \quad z \sim \mathcal{N}(0, \mathbf{I}) $$ <br>latent $z$ is a Gaussian sample<br> <b class="alert"> $\theta$ are parameters of the model</b> </div>
+			            </div>
+			            <br>
+			            <br>
+			            <br>
+			          </div>
+			          </div>
+			          </div>
+			      </div>
+			      <div class="fragment"> $\Longrightarrow$ <b class="alert"> Decouples the morphology model from the observing conditions</b>.</div>
+			     </section>
+
+			    <section>
+			      <h3 class="slide-title">Bayesian Inference a.k.a. Uncertainty Quantification</h3>
+			      <div class="container">
+			          <div class="col">
+			            <img data-src="assets/pgm.png" class="plain" style="height: 250px;" ></img>
+			          </div>
+			          <div class="col">
+			            The Bayesian view of the problem:
+			                 $$ p(z | x ) \propto p_\theta(x | z, \Sigma, \mathbf{\Pi}) p(z)$$
+			             where:
+			             <br>
+			               <ul>
+			                 <li>$p( z | x )$ is the <b class="alert">posterior</b></li>
+			                 <li>$p( x | z )$ is the data likelihood, <b class="alert">contains the physics</b></li>
+			                 <li>$p( z )$ is the <b>prior</b> </li>
+			               </ul>
+			          </div>
+			      </div>
+
+			      <div class="container">
+			          <div class="col">
+			            <div style="position:relative; width:200px; height:200px; margin:0 auto;">
+			              <img class="plain fragment current-visible" data-src="assets/cosmos_gal_ground.png" style="position:absolute;top:0;left:0;width:200px;" data-fragment-index="0" />
+			              <img class="plain fragment" data-src="assets/cosmos_gal.png" style="position:absolute;top:0;left:0;width:200px;" data-fragment-index="1"/>
+			            </div>
+			            <div class="container" style="position:relative; width:200px; height:50px; margin:0 auto;">
+			              <div class='col fragment current-visible' data-fragment-index='0' style="position:absolute;top:0;left:0;width:200px;"> Data<br> $x_n$</div>
+			              <div class='col fragment' data-fragment-index='1' style="position:absolute;top:0;left:0;width:200px;"> Truth<br> $x_0$ </div>
+			            </div>
+			            <br>
+			          </div>
+
+			          <div class="col fragment" data-fragment-index='0' >
+			            <div style="position:relative; width:200px; height:200px; margin:0 auto;">
+			              <div><video data-autoplay data-loop data-src="assets/rec_samples.mp4" type="video/mp4" style="height: 200px;"/>
+			              </div>
+			            </div>
+			            <div>Posterior samples<br> $g_\theta(z)$</div>
+			          </div>
+
+			          <div class="col">
+			            <div style="position:relative; width:200px; height:200px; margin:0 auto;">
+			              <div><video class="fragment current-visible" data-autoplay data-loop data-src="assets/rec_lsst.mp4" type="video/mp4" style="position:absolute;top:0;left:0;width:200px;" data-fragment-index="0"/></div>
+			              <img class="plain fragment " data-src="assets/rec_median.png" style="position:absolute;top:0;left:0;width:200px;" data-fragment-index="1"/>
+			            </div>
+
+			            <div class="container" style="position:relative; width:200px; height:50px; margin:0 auto;">
+			              <div class='col fragment current-visible' data-fragment-index='0' style="position:absolute;top:0;left:0;width:200px;">  <br> $\mathbf{P} (\Pi \ast g_\theta(z))$</div>
+			              <div class='col fragment' data-fragment-index='1' style="position:absolute;top:0;left:0;width:200px;"> Median </div>
+			            </div>
+			          </div>
+
+			          <div class="col">
+			            <div style="position:relative; width:200px; height:200px; margin:0 auto;">
+			              <div><video class="fragment current-visible" data-autoplay data-loop data-src="assets/res_lsst.mp4" type="video/mp4" style="position:absolute;top:0;left:0;width:200px;" data-fragment-index="0"/></div>
+			              <img class="plain fragment " data-src="assets/rec_std.png" style="position:absolute;top:0;left:0;width:200px;" data-fragment-index="1"/>
+			            </div>
+
+			            <div class="container" style="position:relative; width:200px; height:50px; margin:0 auto;">
+			              <div class='col fragment current-visible' data-fragment-index='0' style="position:absolute;top:0;left:0;width:200px;"> Data residuals <br> $x_n - \mathbf{P} (\Pi \ast g_\theta(z))$</div>
+			              <div class='col fragment' data-fragment-index='1' style="position:absolute;top:0;left:0;width:200px;"> Standard Deviation </div>
+			            </div>
+			          </div>
+			      </div>
+			      <div class="fragment"> $\Longrightarrow$ <b class="alert">Uncertainties are fully captured by the posterior</b>.</div>
+			    </section>
+			  </section>
+
+			  <section>
+				<h3 class="slide-title"><b class="alert">Thesis project:</b><br>Joint estimation of Galaxy Morphologies, PSF, and Cosmics shear</h3>
+				<div class="container">
+					<div class="col">
+					  <img data-src="assets/schneider_pgm.png" class="plain" style="height: 450px;" ></img>
+					  <br>
+					  Schneider et al. 2014
+					</div>
+					<div class="col" style="text-align:left">
+					  <!-- The Bayesian view of the problem:
+						   $$ p(z | x ) \propto p_\theta(x | z, \Sigma, \mathbf{\Pi}) p(z)$$
+					   where:
+					   <br>
+						 <ul>
+						   <li>$p( z | x )$ is the <b class="alert">posterior</b></li>
+						   <li>$p( x | z )$ is the data likelihood, <b class="alert">contains the physics</b></li>
+						   <li>$p( z )$ is the <b>prior</b> </li>
+						 </ul> -->
+						Build a <b class="alert">hierarchical</b> model, combining:
+						<br>
+						<ul>
+							<li><b class="alert">Physical models</b>: instrumental response (optics)</li>
+							<li><b class="alert">Generative models</b>: galaxy morphology modeled with a neural network (e.g. Normalizing Flow, score prior, etc.)</li>
+							<br>
+							$\implies$ <b class="alert">Joint estimation</b> of physical parameters and neural network weights
+						</ul>
+
+						<br><br>
+
+						<b class="alert">Inference methods</b>:
+						<br><br>
+						<ul>
+							<li>Markv Chain Monte Carlo</li>
+							<li>Variational Inference</li>
+						</ul>
+					</div>
+				</div>
+
+		</div>
+	</div>
+
+	<style>
+		/* .reveal .slides {
+			border: 5px solid red;
+			min-height: 100%;
+			width: 128mm;
+			height: 96mm;
+		} */
+
+		.reveal .block {
+			background-color: #191919;
+			margin-left: 20px;
+			margin-right: 20px;
+			text-align: left;
+			padding-bottom: 0.1em;
+		}
+
+		.reveal .block-title {
+			background-color: #333333;
+			padding: 8px 35px 8px 14px;
+			color: #FFAA7F;
+			font-weight: bold;
+		}
+
+		.reveal .block-content {
+			padding: 8px 35px 8px 14px;
+		}
+
+		.reveal .slide-title {
+			border-left: 5px solid white;
+			text-align: left;
+			margin-left: 20px;
+			padding-left: 20px;
+		}
+
+		.reveal .alert {
+			color: #FFAA7F;
+			font-weight: bold;
+		}
+
+		.reveal .inverted {
+			filter: invert(100%);
+		}
+
+		/*
+	/* .reveal .alert {
+	padding:8px 35px 8px 14px; margin-bottom:18px;
+	text-shadow:0 1px 0 rgba(255,255,255,1);
+	border:5px solid #FFAA7F;
+	-webkit-border-radius: 14px; -moz-border-radius: 14px;
+	border-radius:14px
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	background-size: 38px;
+	padding-left: 30px; /* 55px; if icon
+	}
+	.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+	.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+	/*.reveal .alert li {margin-top: 1em}
+	.reveal .alert-block p+p {margin-top:5px} */
+	</style>
+
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script src="reveal.js/plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			controls: false,
+
+			//center: false,
+			hash: true,
+
+			// Visibility rule for backwards navigation arrows; "faded", "hidden"
+			// or "visible"
+			controlsBackArrows: 'hidden',
+
+			// Display a presentation progress bar
+			progress: true,
+
+			// Display the page number of the current slide
+			slideNumber: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// The "normal" size of the presentation, aspect ratio will be preserved
+			// when the presentation is scaled to fit different resolutions. Can be
+			// specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+
+			// Bounds for smallest/largest possible scale to apply to content
+			minScale: 0.2,
+			maxScale: 1.5,
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+
+			dependencies: [{
+					src: 'reveal.js/plugin/markdown/marked.js'
+				},
+				{
+					src: 'reveal.js/plugin/markdown/markdown.js'
+				},
+				{
+					src: 'reveal.js/plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/math/math.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-d3/reveald3.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/Chart.min.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/csv2chart.js'
+				},
+				{
+					src: 'reveal.js/plugin/highlight/highlight.js',
+					async: true
+				},
+			]
+
+		});
+	</script>
+</body>
+
+</html>
