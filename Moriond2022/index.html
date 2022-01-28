@@ -20,7 +20,8 @@
 	<div class="reveal">
 		<div class="slides">
 			<!-- <section data-background-image="assets/lsst_stills_0009_crop.jpg"> -->
-			<section data-background-image="assets/la-thuile.jpeg">
+			<!-- <section data-background-image="assets/la-thuile.jpeg"> -->
+			<section data-background-image="assets/IMG_20220126_135853.jpeg">	
 				<div class="container">
 					<div class="title" style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.8);">
 						<h1>Probabilistic Mass Mapping with Neural Score Estimation</h1>
@@ -64,9 +65,118 @@
 			<!-- CONTEXT -->
 			<!--  -->
 
+			<!-- Data analysis problems interviene everywhere in cosmology especially
+				 because of ill-posed inverse problems where the measurement data are too much 
+				 mixed or non invertible.
+
+				 The key to solve such problems is too assume prior knowledge over the signal
+				 (ex: sparse wavelet coefficients for components separation, 21cm intensity maps
+				    or Gaussian Random field for the matter density field)
+			     
+				However for these problems, we remain limited in the complexity of the prior we
+				can set analitycaly.
+
+				For complex priors we propose in this method to use simulators. In other words,
+				we propose to learn these priors from *complex physical simulations* which serves as our physical model.				
+				
+				And to illustrate this method, I will focus on mass-map reconstruction in this talk.
+			-->
+				
+			<section>
+
+				<section>
+					<h3 class="slide-title"> Data analysis and inverse problems</h3>
+					
+
+					<!-- Ill-posed inverse problems occur in data analyses:
+					<ul>
+						<li>when the measurement data are too much mixed $\longrightarrow$ components separation</li>
+						<li>non invertible: survey mask, noise corruption, ...</li>
+					</ul> -->
+					Many data analysis problems occur in cosmology because of ill-posed inverse problems, e.g.
+					when the measurements are too much mixed, because of survey mask, noise corruption, ...
+					<br><br>
+					
+
+					<div class="container">
+						<div class="col">
+							<!-- <div class="alert" align="left">21 cm foreground removal</div> -->
+							<div class="alert">21 cm foreground removal</div>
+							<img data-src="assets/21cm.png" height="500" class="plain"></img><br>
+						</div>
+						<div class="col">
+							<!-- <div class="alert" align="left">21 cm foreground removal</div> -->
+							<div class="alert">Mass-map reconstruction</div>
+							<br>
+							<img data-src="assets/mass-map-mask.png" height="465" class="plain"></img>
+							+ shape noise
+						</div>
+						<!-- <div class="col">
+							Total Variation
+							<img data-src="assets/shepp-Logan.ppm" class="plain"></img>
+							$$ \log p(x) = \parallel \nabla x \parallel_1 $$
+
+						</div> -->
+					</div>
+
+				</section>
+
+				<section>
+					<h3 class="slide-title"> Classical examples of signal priors </h3>
+					<div class="container">
+						<div class="col">
+							Sparse
+							<img data-src="assets/wavelet.png" height="400" class="plain"></img><br>
+							$$ \log p(x) = \parallel \mathbf{W} x \parallel_1 $$
+						</div>
+						<div class="col">
+							Gaussian
+							<img data-src="assets/zknj8.jpg" height="400" class="plain"></img>
+							<b class="alert">$$ \log p(x) = x^t \mathbf{\Sigma^{-1}} x $$</b>
+						</div>
+						<div class="col">
+							Total Variation
+							<img data-src="assets/shepp-Logan.ppm" class="plain"></img>
+							$$ \log p(x) = \parallel \nabla x \parallel_1 $$
+
+						</div>
+					</div>
+				</section>
+
+				<section data-background="assets/convergence.png">
+					<h2>But what about learning the prior <br>   with <b class="alert">deep generative models</b>?</h2>
+
+					<!-- Maps sampled with these simulations contain also the non-Gaussian statistics
+					    because they take into account non linear gravitational collapse and
+						baryonic feedback.-->
+
+
+					<!-- <div class="fragment fade-up">
+						<div class="container">
+							<div class="col">
+								<h2>$\log p(x) =$</h2>
+							</div>
+
+						<div class="col">
+							<img data-src="assets/nn.png" class="plain"></img>
+						</div>
+
+						<br>
+
+					</div>
+					
+					<br>
+
+					<div class="fragment fade-up">
+						Which generative model? GANs, Normalizing Flow, Variational Auto Encoder, Energy Based Model, ...
+					</div> -->
+					  
+				</section>
+			</section>
+
 			<section>
 				<section>
-					<h3 class="slide-title"> Why do we need mass-maps?</h3>
+					<h3 class="slide-title"> Mass-maps</h3>
 					
 					<div class="container">
 						<div class="col">
@@ -76,7 +186,7 @@
 							<br>
 
 							<ul>
-								<li><b class="alert">Statistics</b>: 2pt functions, 3pt functions, Wavelet peak counts, $\ell_1$-norm, scattering transform, neural summaries, ...</li>
+								<li>2pt functions and <b class="alert">higher order statistics</b> (3pt functions, Wavelet peak counts, $\ell_1$-norm, scattering transform, neural summaries, ...)</li>
 							</ul>
 						</div>
 
@@ -308,52 +418,6 @@
 				</section>
 
 				<section>
-					<h3 class="slide-title"> Classical examples of signal priors </h3>
-					<div class="container">
-						<div class="col">
-							Sparse
-							<img data-src="assets/wavelet.png" height="400" class="plain"></img><br>
-							$$ \log p(x) = \parallel \mathbf{W} x \parallel_1 $$
-						</div>
-						<div class="col">
-							Gaussian
-							<img data-src="assets/zknj8.jpg" height="400" class="plain"></img>
-							<b class="alert">$$ \log p(x) = x^t \mathbf{\Sigma^{-1}} x $$</b>
-						</div>
-						<div class="col">
-							Total Variation
-							<img data-src="assets/shepp-Logan.ppm" class="plain"></img>
-							$$ \log p(x) = \parallel \nabla x \parallel_1 $$
-
-						</div>
-					</div>
-				</section>
-
-				<section data-background="assets/convergence.png">
-					<h2>But what about learning the prior <br>   with <b class="alert">deep generative models</b>?</h2>
-					<!-- <div class="fragment fade-up">
-						<div class="container">
-							<div class="col">
-								<h2>$\log p(x) =$</h2>
-							</div>
-
-						<div class="col">
-							<img data-src="assets/nn.png" class="plain"></img>
-						</div>
-
-						<br>
-
-					</div>
-					
-					<br>
-
-					<div class="fragment fade-up">
-						Which generative model? GANs, Normalizing Flow, Variational Auto Encoder, Energy Based Model, ...
-					</div> -->
-					  
-				</section>
-
-				<section>
 					<h3 class="slide-title">Writing down the convergence map log posterior</h3>
 	
 	
@@ -367,6 +431,10 @@
 								<br> However:
 								<ul>
 									<li class='fragment'> <b>We do have access to samples of full  <b class="alert">implicit</b> prior</b> through simulations: $X = \{x_0, x_1, \ldots, x_n \}$ with $x_i \sim \mathbb{P}$
+										<br>
+										<br>
+										<div style="float:right; font-size: 20px"><b class="alert">$\kappa$TNG (Osato et al. 2021)</b>
+										</div>
 										<img data-src='assets/plot_massive_nu.png' />
 									</li>
 								</ul>
@@ -650,7 +718,8 @@
 						</li>
 						<br>
 						<li class="fragment">We implemented a new class of mass mapping method, providing the full posterior <br>
-		$\Longrightarrow$ recovered the highest quality convergence map of the COSMOS field to date.
+		<!-- $\Longrightarrow$ recovered the highest quality convergence map of the COSMOS field to date. -->
+		$\Longrightarrow$ Find the highest quality convergence map of the COSMOS field online: <a href=https://zenodo.org/record/5825654>https://zenodo.org/record/5825654</a>
 	
 							<!-- We implemented the "ultimate mass-mapping method" <br>
 							$\Longrightarrow$ Recovered the best convergence map of the COSMOS field to date.</li> -->
@@ -659,7 +728,7 @@
 						<a href="https://arxiv.org/abs/2201.05561"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2201.05561-B31B1B.svg" class="plain" style="height:35px;" /></a>
 					</div>
 					<br>
-					<p class="fragment"> Thank you! Questions?</p>
+					<p class="fragment"> Thank you!</p>
 					<br>
 					<br>
 			
