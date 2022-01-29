@@ -93,7 +93,7 @@
 						<li>when the measurement data are too much mixed $\longrightarrow$ components separation</li>
 						<li>non invertible: survey mask, noise corruption, ...</li>
 					</ul> -->
-					Many data analysis problems occur in cosmology because of ill-posed inverse problems, e.g.
+					Many data analysis problems occur in cosmology because of <b class="alert">ill-posed inverse problems</b>, e.g.
 					when the measurements are too much mixed, because of survey mask, noise corruption, ...
 					<br><br>
 					
@@ -106,7 +106,7 @@
 						</div>
 						<div class="col">
 							<!-- <div class="alert" align="left">21 cm foreground removal</div> -->
-							<div class="alert">Mass-map reconstruction</div>
+							<div class="alert">Weak Lensing Mass-map reconstruction</div>
 							<br>
 							<img data-src="assets/mass-map-mask.png" height="465" class="plain"></img>
 							+ shape noise
@@ -194,7 +194,7 @@
 							<div class="fragment">
 								Peel et al. (2021) Abel 520 cluster
 								<br>
-								<img data-src="assets/peeletal.png" style="height:400px;"></img>
+								<img data-src="assets/peel-A520.png" style="height:400px;"></img>
 								<br>
 
 								<ul>
@@ -260,8 +260,8 @@
 					Different priors lead to different mass-maps...
 					<div style="float:right; font-size: 20px">Jeffrey, et al. (2021)
 					</div><br>
-
-					<div class="container">
+					<img data-src="assets/DESY3maps.png" style="height:600px;"></img>
+					<!-- <div class="container">
 						<div class="col-5">
 							<img data-src="assets/DESY3maps.png" style="height:600px;"></img>
 						</div>
@@ -269,7 +269,7 @@
 						<div class="col fragment fade-up">
 							<img data-src="assets/DESY3ps.png" style="height:600px;"></img>
 						</div>
-					</div>
+					</div> -->
 				</section>
 				
 				<!-- <section>
@@ -459,7 +459,7 @@
 					<br>
 
 					<div class="fragment">
-						We need to disign an efficient sampler. $~~~~\kappa_1, \kappa_2, ..., \kappa_N \sim p(\kappa|  \gamma)$
+						We need to design an efficient sampler. $~~~~\kappa_1, \kappa_2, ..., \kappa_N \sim p(\kappa|  \gamma)$
 					</div>
 					<br>
 
@@ -711,12 +711,12 @@
 							</ul>
 						</li>
 						<br>
-						<li class="fragment"> Neural Score Estimation is a <b class="alert">scalable approach</b> to learn a prior score.
+						<!-- <li class="fragment"> Neural Score Estimation is a <b class="alert">scalable approach</b> to learn a prior score.
 						</li>
 						<br>
 						<li class="fragment"> Knowledge of the posterior score is all we need for Bayesian inference aka uncertain quantification.
 						</li>
-						<br>
+						<br> -->
 						<li class="fragment">We implemented a new class of mass mapping method, providing the full posterior <br>
 		<!-- $\Longrightarrow$ recovered the highest quality convergence map of the COSMOS field to date. -->
 		$\Longrightarrow$ Find the highest quality convergence map of the COSMOS field online: <a href=https://zenodo.org/record/5825654>https://zenodo.org/record/5825654</a>
