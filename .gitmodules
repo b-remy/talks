@@ -10,3 +10,6 @@
 [submodule "UDOPIA2021/reveal.js"]
 	path = UDOPIA2021/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "Moriond2022/reveal.js"]
+	path = Moriond2022/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
