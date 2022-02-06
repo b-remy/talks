@@ -13,3 +13,6 @@
 [submodule "Moriond2022/reveal.js"]
 	path = Moriond2022/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "ETHCosmoClub2022/reveal.js"]
+	path = ETHCosmoClub2022/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
