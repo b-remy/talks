@@ -1,6 +1,9 @@
 # Creating a new Presentation:
 
   - Create a new branch, make a copy of `template`, and `cd` there
+    ```
+    $ cp -a template/ new_pres/
+    ```
   - git submodule current version of reveal.js
     ```
     $ git submodule add https://github.com/EiffL/reveal.js.git
