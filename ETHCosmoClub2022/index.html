@@ -34,7 +34,7 @@
 					<div class="col">
 						<div align="left" style="margin-left: 20px;">
 							<h2>Benjamin Remy</h2>
-							With : <u>Francois Lanusse</u>, Zaccharie Ramzi, Niall Jeffrey, Jia Liu, <u>J.-L. Starck</u>
+							With : <u>Francois Lanusse</u>, Niall Jeffrey, Jia Liu, <u>J.-L. Starck</u>, Ken Osato and Tim Schrabback
 							<img src="assets/CosmoStatDarkBK.png" class="plain"></img>
 							<br>
 						</div>
@@ -53,7 +53,7 @@
 						<img src="assets/universite_paris_saclay.jpg" class="plain" height="150"></img>
 					</div>
 				</div>
-				<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.4);"> slides at <a href="https://b-remy.github.io/talks/ETHCosmoClub2022">b-remy.github.io/talks/ETHCosmoClub</a> </div>
+				<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.4);"> slides at <a href="https://b-remy.github.io/talks/ETHCosmoClub2022">b-remy.github.io/talks/ETHCosmoClub2022</a> </div>
 
 			</section>
 
@@ -80,6 +80,40 @@
 							<img data-src="assets/plutoNoise.png" class="plain"></img>
 							Denoising
 						</div>
+					</div>
+				</section>
+
+				<section data-vertical-align-top>
+					$\boxed{y = \mathbf{A}x + n}$
+					<br>
+					<br>
+					The Bayesian view of the problem:
+					<br>
+					<br>
+					$$ p(x | y) \propto p(y | x) \ p(x) $$
+					<br>
+
+					<ul>
+						<li class="fragment fade-up">$p(y | x)$ is the data likelihood, which <b>contains the physics</b><br>
+						</li>
+						<br>
+						<li class="fragment fade-up">$p(x)$ is the prior knowledge on the solution.</li>
+					</ul>
+					<br>
+					<br>
+					<div class="fragment fade-up">
+						With these concepts in hand, we can estimate for instance the Maximum A Posteriori solution:
+						<br>
+						$$\hat{x} = \arg\max\limits_x \ \log p(y \ | \ x) + \log p(x)$$
+						For instance, if $n$ is Gaussian, $\hat x = \arg\max\limits_x \ - \frac{1}{2} \parallel y - \mathbf{A} x \parallel_{\mathbf{\Sigma}}^2 + \log p(x)$
+					</div>
+					<br>
+					<div class="fragment fade-up">
+						Or <b class="alert">estimate from the full posterior p(x|y)</b> with MCMC or Variational Inference methods.
+					</div>
+					<br>
+					<div class="fragment fade-up">
+						<h3>How do you choose the prior ?</h3>
 					</div>
 				</section>
 
@@ -224,6 +258,8 @@
 							</ul>
 						</div>
 						<div class="col">
+							<div style="float:right; font-size: 20px">Song, et al. (2019)
+							</div><br>
 							<img data-src="assets/score_two_moons.png"></img>
 						</div>
 					</div>
@@ -672,11 +708,11 @@
 						$$ \log p( \kappa | e) = \underbrace{\log p(e | \kappa)}_{\simeq -\frac{1}{2} \parallel e - P \kappa \parallel_\Sigma^2} + \log p(\kappa) +cst $$
 	
 						<ul>
-							<li> The likelihood term is <b class="alert">known analytically</b>.
+							<!-- <li> The likelihood term is <b class="alert">known analytically</b>.
 							</li>
 	
 							<li> There is <b class="alert">no close form expression for the full non-Gaussian prior</b> of the convergence.<br>
-								
+								 -->
 	
 								<li class="fragment fade-up"> We learn a <b class="alert">hybriod Denoiser</b>: theoretical Gaussian on large scale, data-driven on small scales using N-body simulations.
 								$$\underbrace{\nabla_{\boldsymbol{\kappa}} \log p(\boldsymbol{\kappa})}_\text{full prior} = \underbrace{\nabla_{\boldsymbol{\kappa}} \log p_{th}(\boldsymbol{\kappa})}_\text{gaussian prior} +
