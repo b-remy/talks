@@ -10,6 +10,6 @@ InTheArt seminars, October 12th, CEA Paris-Saclay. [Slides](https://b-remy.githu
 
 [56th Rencontres de Moriond](https://moriond.in2p3.fr/2022/Cosmology/Program.html), La Thuile, January 2022, [Slides](https://b-remy.github.io/talks/Moriond2022)
 
-ETH Zurich Cosmo Club, remote, Febuary 7th 2022, [Slides](https://b-remy.github.io/talks/ETHCosmoClub2020)
+ETH Zurich Cosmo Club, remote, Febuary 7th 2022, [Slides](https://b-remy.github.io/talks/ETHCosmoClub2022)
 
 [Create a new presentation](https://github.com/b-remy/talks/blob/main/new_talk.md) :pencil2:
