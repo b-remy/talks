@@ -16,6 +16,9 @@
 [submodule "ETHCosmoClub2022/reveal.js"]
 	path = ETHCosmoClub2022/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "Oslo2022/reveal.js"]
+	path = Oslo2022/reveal.js
+  url = https://github.com/EiffL/reveal.js.git
 [submodule "Paris2022/reveal.js"]
 	path = Paris2022/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
