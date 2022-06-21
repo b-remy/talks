@@ -222,12 +222,12 @@
 					  
 				</section>
 
-				<section>
+				<!-- <section>
 					<h3 class="slide-title"> Our contribution</h3>
 					<div align="left">
 						We propose to sample the <b class="alert">full posterior distribution</b> $p(\kappa|\gamma)$
 					</div>
-					<!-- <div style="float:right; font-size: 20px"><b class="alert">HST/ACS COSMOS field</b></div> -->
+					<div style="float:right; font-size: 20px"><b class="alert">HST/ACS COSMOS field</b></div>
 					<div class="container">
 						<div class="col">
 							<div class="block-content">
@@ -271,7 +271,7 @@
 						
 					</ul>
 
-				</section>
+				</section> -->
 				
 			</section>
 
@@ -326,8 +326,8 @@
 							<ul>
 								<li> Whether you are looking for the MAP or sampling with HMC or MALA, you
 									<b class="alert">only need access to the score</b> of the posterior:
-									$$\frac{\color{orange} d \color{orange}\log \color{orange}p\color{orange}(\color{orange}x \color{orange}|\color{orange} y\color{orange})}{\color{orange}
-									d
+									$$\frac{\color{orange} \partial \color{orange}\log \color{orange}p\color{orange}(\color{orange}x \color{orange}|\color{orange} y\color{orange})}{\color{orange}
+									\partial
 									\color{orange}x}$$
 									<ul>
 										<li>Gradient descent: $x_{t+1} = x_t + \tau \nabla_x \log p(x_t | y) $</li>
@@ -391,6 +391,10 @@
 							</div>
 						</div>
 						<!-- <img data-src="assets/denoiser-kappa.png" style='width:1200px;'></img> -->
+					</div>
+
+					<div class="fragment fade-up">
+						$$\nabla_x \log p(x |y) = \nabla_x \log p(y |x)  + \color{orange}{ \nabla_x \log p(x)}$$
 					</div>
 				</section>
 
@@ -618,7 +622,9 @@
 							$\Longrightarrow$ Recovered the best convergence map of the COSMOS field to date.</li> -->
 					</ul>
 					<div class="fragment">
-						<a href="https://arxiv.org/abs/2201.05561"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2201.05561-B31B1B.svg" class="plain" style="height:35px;" /></a>
+						<a href="https://arxiv.org/abs/2201.05561"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2201.05561-B31B1B.svg" class="plain" style="height:35px;" /></a> 
+						<br>
+						<a href="https://github.com/CosmoStat/jax-lensing">github.com/CosmoStat/jax-lensing</a> (JAX & TFP!)
 					</div>
 					<br>
 					<p class="fragment"> Thank you!</p>
