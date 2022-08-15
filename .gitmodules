@@ -22,3 +22,6 @@
 [submodule "Paris2022/reveal.js"]
 	path = Paris2022/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "EDE2022/reveal.js"]
+	path = EDE2022/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
