@@ -25,3 +25,6 @@
 [submodule "EDE2022/reveal.js"]
 	path = EDE2022/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "GPUDAY2023/reveal.js"]
+	path = GPUDAY2023/reveal.js
+	url = https://github.com/EiffL/reveal.js.git

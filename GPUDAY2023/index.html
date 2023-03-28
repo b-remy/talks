@@ -1,0 +1,533 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>GPU Day at Dap 2023</title>
+
+	<meta name="description" content="April 2022">
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="reveal.js/dist/theme/darkenergy.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background-image="assets/lsst_stills_0009_crop.jpg">
+				<div class="container">
+					<div class="title" style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.4);">
+						<h1>Efficient Bayesian inference with JAX on GPU</h1>
+						<h2>Illustration with weak lensing mass mapping</h2>
+					</div>
+				</div>
+				<!-- <hr> -->
+				<!-- <div>
+					<a href="https://arxiv.org/abs/2201.05561"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2201.05561-B31B1B.svg" class="plain" style="height:25px;" /></a>
+					<a href="https://arxiv.org/abs/2011.08698"><img src="https://img.shields.io/badge/stat.ML-arXiv%3A2011.08698-B31B1B.svg" class="plain" style="height:25px;" /></a>
+				</div> -->
+				<div class="container">
+					<div class="col">
+						<div align="left" style="margin-left: 20px;">
+							<h2>Benjamin Remy</h2>
+							<img src="assets/CosmoStatDarkBK.png" class="plain"></img>
+							<br>
+						</div>
+					</div>
+
+					<div class="col">
+						<br>
+						<br>
+						<br>
+						<img src="assets/logo_cnes.png" class="plain" height="150"></img>
+					</div>
+
+					<div class="col">
+						<br>
+						<br>
+						<img src="assets/universite_paris_saclay.jpg" class="plain" height="150"></img>
+					</div>
+				</div>
+				<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.4);"> slides at <a href="https://b-remy.github.io/talks/GPUDAY2023">b-remy.github.io/talks/GPUDAY2023</a> </div>
+
+			</section>
+
+			<section>
+				<section>
+					<h3 class="slide-title">Bayesian inference for uncertainty quantification</h3>
+					<!-- <br>
+					We aim to reconstruct a signal or to recover parameters from corrupted and under representative mesurements
+					<br><br> -->
+					<span class="fragment">
+					<div align="left">
+						<b class="alert">Linear inverse problems</b>
+				  </div>
+					
+					$\boxed{y = \mathbf{A}x + n}$
+				</span>
+					<br>
+					<br>
+				<span class="fragment">
+					$\mathbf{A}$ is known and encodes our physical understanding of the problem.
+				</span>
+					<span class="fragment"><br>$\Longrightarrow$ When non-invertible or ill-conditioned, the inverse problem is ill-posed <b class="alert">with no unique solution $x$</b></span>
+					<div class="container fragment fade-up">
+						<div class="col">
+							<img data-src="assets/pluto_smooth.png" class="plain"></img>
+							Deconvolution
+						</div>
+						<div class="col">
+							<img data-src="assets/pluto_missing.png" class="plain"></img>
+							Inpainting
+						</div>
+						<div class="col">
+							<img data-src="assets/plutoNoise.png" class="plain"></img>
+							Denoising
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">The Weak Lensing Mass-Mapping as an Inverse Problem</h3>
+					<div class="container">
+						<div class="col">
+							Shear <b class="alert">$\gamma$</b><br>
+							<img data-src="assets/shear_cat1.png" style="width:450px;"></img>
+						</div>
+
+						<div class="col fragment fade-up">
+							Convergence <b class="alert">$\kappa$</b><br>
+							<img data-src="assets/kappa.png" style="width:450px;"></img>
+						</div>
+					</div>
+
+					<div style="position:relative; width:1000px; height:100px; margin:0 auto;">
+						<div class="fragment current-visible plain fade-up" style="position:absolute;top:0;left:0;width:1000px;">
+							$$\gamma_1 = \frac{1}{2} (\partial_1^2 - \partial_2^2) \ \Psi \quad;\quad \gamma_2 = \partial_1 \partial_2 \ \Psi \quad;\quad \kappa = \frac{1}{2} (\partial_1^2 + \partial_2^2) \ \Psi$$
+						</div>
+						<div class="fragment current-visible plain fade-up" style="position:absolute;top:0;left:0;width:1000px;">
+							$$\boxed{\gamma = \mathbf{P} \kappa + n}$$
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title"> Illustration on the Dark Energy Survey (DES) Y3</h3>
+					<div style="float:right; font-size: 20px">Jeffrey, et al. (2021)
+					</div><br>
+					<img data-src="assets/DESY3map.png" style="height:600px;"></img>
+				</section>
+
+				<section data-vertical-align-top>
+					<h3 class="slide-title">Bayesian Modeling</h3>
+					<div class="container">
+						<div class="col-5" align="left">
+							$$\boxed{\gamma = \mathbf{P}\kappa + n}$$
+							$\mathbf{P}$ is known and encodes our physical understanding of the problem
+							<span class="fragment fade-up"><br>$\Longrightarrow$ Non-invertible (<em>survey mask</em>, <em>shape noise</em>), the inverse problem is ill-posed <br> <b class="alert">with no unique solution $\kappa$</b></span>
+
+							<div class="fragment">
+								<br>
+								<br>
+								The Bayesian view of the problem:
+								<br>
+								$$ \boxed{p(\kappa | \gamma) \propto p(\gamma | \kappa) \ p(\kappa)} $$
+								
+		
+								<ul>
+									<li class="fragment fade-up">$p(\gamma | \kappa)$ is the data <b class="alert">likelihood</b>, which <b>contains the physics</b><br>
+									</li>
+									<br>
+									<li class="fragment fade-up">$p(\kappa)$ is the <b class="alert">prior</b> knowledge on the solution.</li>
+								</ul>
+								<br>
+								<br>
+							</div>
+						</div>
+						
+						<div class="col">
+							<!-- <div class="container"> -->
+								<div>
+									<!-- Shear <b class="alert">$\gamma$</b><br> -->
+									<img data-src="assets/shear_cat1.png" style="width:200px;"></img> <b class="alert">$\gamma$</b>
+								</div>
+								<div>
+									<!-- Convergence <b class="alert">$\kappa$</b><br> -->
+									<img data-src="assets/kappa.png" style="width:200px;"></img> <b class="alert">$\kappa$</b>
+								</div>
+							<!-- </div> -->
+						</div>
+					</div>
+
+					<div class="fragment">
+						In this perspective we can provide point estimates: <b class="alert">Posterior Mean</b>, <b class="alert">Max</b>, <b class="alert">Median</b>, etc. <br>
+						and  <b class="alert">the full posterior $p(\kappa|\gamma)$</b> with <b class="alert">Markov Chain Monte Carlo</b> or Variational Inference methods
+					</div>
+					
+					<br>
+
+					<div class="fragment fade-up">
+						<h3>How do you to do this efficiently with JAX?</h3>
+					</div>
+
+				</section>
+
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<!-- Write your forward model in NumPy and accelerate computation with JIT -->
+					<h3 class="slide-title">Efficient computation with JAX</h3>
+
+					<div class="container">
+						<div class="col">
+							<img data-src="assets/jax_logo_250px.png"></img>
+							
+						</div>
+						<div class="col" align="left">
+							<a href="https://github.com/google/jax">JAX</a> is a python library<br>
+							<ul>
+								<div class="fragment fade-up"><li>NumPy API</li></div>
+								<!-- <br> -->
+								<div class="fragment fade-up"><li>Automatic differentiation</li></div>
+								<div class="fragment fade-up"><li>Code compilation</li></div>
+								<div class="fragment fade-up"><li>Auto batching</li></div>
+								<div class="fragment fade-up"><li>The same code executes on multiple backends, including CPU,  <b class="alert">GPU</b>, & TPU</li></div>
+								<!-- <br> -->
+							</ul>
+						</div>
+					</div>
+
+					<br>
+
+					<div class="fragment fade-up" align="left">
+						<b class="alert">Example</b>: writting a log-likelihood:
+
+						<!-- <div class="container">
+							<div class="col"> -->
+								
+								<pre class="python"><code data-trim data-noescape>
+
+								import jax.numpy as np
+								import ks93inv
+
+								def log_likelihood(x, meas_shear, sigma, sigma_mask):
+										
+										ke = x[...,0]
+										kb = x[...,1]
+												
+										model_shear = np.stack(ks93inv(ke, kb), axis=-1)
+										
+										return - np.sum((model_shear - meas_shear)**2/(sigma**2 + sigma_mask) )/2.
+									</code></pre>
+								<!-- </div> -->
+								<!-- <div class="col">
+									<pre class="python"><code data-trim data-noescape>
+										import jax.numpy as np
+
+										def ks93inv(kE, kB):
+											# Compute Fourier space grids
+											(nx, ny) = kE.shape
+											k1, k2 = np.meshgrid(np.fft.fftfreq(ny), np.fft.fftfreq(nx))
+									
+											# Compute Fourier transforms of kE and kB
+											kEhat = np.fft.fft2(kE)
+											kBhat = np.fft.fft2(kB)
+									
+											# Apply Fourier space inversion operator
+											p1 = k1 * k1 - k2 * k2
+											p2 = 2 * k1 * k2
+											k2 = k1 * k1 + k2 * k2
+											#k2[0, 0] = 1  # avoid division by 0
+											k2 = jax.ops.index_update(k2, jax.ops.index[0, 0], 1) # avoid division by 0
+											g1hat = (p1 * kEhat - p2 * kBhat) / k2
+											g2hat = (p2 * kEhat + p1 * kBhat) / k2
+									
+											# Transform back to pixel space
+											g1 = np.fft.ifft2(g1hat).real
+											g2 = np.fft.ifft2(g2hat).real
+									
+											return g1, g2
+								
+										</code></pre>
+									</div> -->
+							<!-- </div> -->
+						
+					
+
+						</div>
+				</section>
+
+
+				<section>
+					<h3 class="slide-title">Automatic differentiation with JAX</h3>
+
+					<ul>
+						<li class="fragment"> 
+							<b class="alert">Automatic differentiation</b> allows you to compute analytic (i.e. <b class="alert">exact</b>) derivatives of arbitraty expressions:<br>
+							If I form the expression $y = a * x + b$, it is separated in fundamental ops:
+							$$ y = u + b \qquad u = a * x $$
+							then gradients can be obtained by the chain rule:
+							$$\frac{\partial y}{\partial x} = \frac{\partial y}{\partial u} \frac{ \partial u}{\partial x} = 1 \times a = a$$
+						</li>
+						<!-- <li class="fragment"> This is a fundamental tool in Machine Learning (gradient descent for optimization)
+						</li> -->
+					</ul>
+
+					<br>
+
+					<div class="fragment fade-up" align="left">
+						<b class="alert">Example</b>: differentiating our log-likelihood to get $\color{orange}{\nabla_\kappa \log p(\gamma|\kappa)}$
+
+						<!-- <div class="container">
+							<div class="col"> -->
+								
+								<pre class="python"><code data-trim data-noescape>
+
+								import jax.numpy as np
+								import ks93inv
+
+								def log_likelihood(x, meas_shear, sigma, sigma_mask):
+										
+										ke = x[...,0]
+										kb = x[...,1]
+												
+										model_shear = np.stack(ks93inv(ke, kb), axis=-1)
+										
+										return - np.sum((model_shear - meas_shear)**2/(sigma**2 + sigma_mask) )/2.
+
+								grad_log_likelihood = jax.grad(log_likelihood)
+									</code></pre>
+
+				</section>
+
+				<section>
+					<h3 class="slide-title">Efficient gradient-based MCMC sampling</h3>
+					<br>
+					<div align="left">
+					Recall that we aim to sample $p(\kappa | \gamma) \propto p(\gamma | \kappa) p(\kappa)$
+
+					<br><br>
+					<ul>
+						<li class="fragment"> 
+						Standards algorithm requires to evaluate $p(\gamma | \kappa) p(\kappa)$, e.g. Random Walk Metropolis-Hastings, <a href="https://github.com/dfm/emcee">emcee</a>, etc.
+						</li>
+						<br>
+						<li class="fragment"> 
+							Most effiecient existing samplers are based on the gradients $\color{orange}{\nabla_\kappa \log p(\gamma|\kappa) + \nabla_\kappa \log p(\kappa)}$, e.g. MALA, Hamiltonian Monte Carlo
+							</li>
+					</ul>
+
+					<br><br>
+					<div class="fragment">
+						Take a look at this <a href="https://chi-feng.github.io/mcmc-demo/app.html?algorithm=HamiltonianMC&target=banana">amazing website</a> comparing MCMC samplers
+
+						<br>
+						<div align="center">
+						<img src="assets/HMC_proposal.png" class="plain" height="300"></img>
+						</div>
+					</div>
+				</div>
+
+				</section>
+
+				<section>
+					<h3 class="slide-title">Reconstruction of the <b class="alert">HST/ACS COSMOS field</b></h3>
+					
+					1.637 square degree, 64.2 gal/arcmin$^2$
+					<br>
+					<br>
+					<div class="container">
+						<div class="col">
+							<div class="block-content">
+								<div style="position:relative; height:570px; top:0px; left:0px;">
+									Massey et al. (2007)
+									<img data-src="assets/massey.png" style="height:500px;"></img>
+								</div>
+							</div>
+						</div>
+
+						<div class="col">
+							<div class="block-content">
+								<div style="position:relative; height:570px; top:0px; left:0px;">
+									<div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:600px;" data-fragment-index="0">
+										Remy et al. (2022) <b class="alert">Posterior mean</b>
+										<img data-src='assets/remy.png' style="height:500px;" />
+									</div>
+
+									<div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:600px;" data-fragment-index="1">
+										Remy et al. (2022) <b class="alert">Posterior samples</b>
+										<img data-src='assets/cosmos_samples.gif' style="height:500px;" />
+									</div>
+
+									<div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:600px;" data-fragment-index="2">
+										Remy et al. (2022)
+										<img data-src='assets/COSMOS-std.png' style="height:500px;" />
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</section>
+			</section>
+
+
+			<section>
+				<section>
+					<h3 class="slide-title">Training neural network</h3>
+					<br>
+			</section>
+			
+
+
+		</div>
+	</div>
+
+	<style>
+		/* .reveal .slides {
+			border: 5px solid red;
+			min-height: 100%;
+			width: 128mm;
+			height: 96mm;
+		} */
+
+		.reveal .block {
+			background-color: #191919;
+			margin-left: 20px;
+			margin-right: 20px;
+			text-align: left;
+			padding-bottom: 0.1em;
+		}
+
+		.reveal .block-title {
+			background-color: #333333;
+			padding: 8px 35px 8px 14px;
+			color: #FFAA7F;
+			font-weight: bold;
+		}
+
+		.reveal .block-content {
+			padding: 8px 35px 8px 14px;
+		}
+
+		.reveal .slide-title {
+			border-left: 5px solid white;
+			text-align: left;
+			margin-left: 20px;
+			padding-left: 20px;
+		}
+
+		.reveal .alert {
+			color: #FFAA7F;
+			font-weight: bold;
+		}
+
+		.reveal .inverted {
+			filter: invert(100%);
+		}
+
+		/*
+	/* .reveal .alert {
+	padding:8px 35px 8px 14px; margin-bottom:18px;
+	text-shadow:0 1px 0 rgba(255,255,255,1);
+	border:5px solid #FFAA7F;
+	-webkit-border-radius: 14px; -moz-border-radius: 14px;
+	border-radius:14px
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	background-size: 38px;
+	padding-left: 30px; /* 55px; if icon
+	}
+	.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+	.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+	/*.reveal .alert li {margin-top: 1em}
+	.reveal .alert-block p+p {margin-top:5px} */
+	</style>
+
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script src="reveal.js/plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			controls: false,
+
+			//center: false,
+			hash: true,
+
+			// Visibility rule for backwards navigation arrows; "faded", "hidden"
+			// or "visible"
+			controlsBackArrows: 'hidden',
+
+			// Display a presentation progress bar
+			progress: true,
+
+			// Display the page number of the current slide
+			slideNumber: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// The "normal" size of the presentation, aspect ratio will be preserved
+			// when the presentation is scaled to fit different resolutions. Can be
+			// specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+
+			// Bounds for smallest/largest possible scale to apply to content
+			minScale: 0.2,
+			maxScale: 1.5,
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+
+			dependencies: [{
+					src: 'reveal.js/plugin/markdown/marked.js'
+				},
+				{
+					src: 'reveal.js/plugin/markdown/markdown.js'
+				},
+				{
+					src: 'reveal.js/plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/math/math.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-d3/reveald3.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/Chart.min.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/csv2chart.js'
+				},
+				{
+					src: 'reveal.js/plugin/highlight/highlight.js',
+					async: true
+				},
+			]
+
+		});
+	</script>
+</body>
+
+</html>
+
