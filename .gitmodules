@@ -22,3 +22,6 @@
 [submodule "Paris2022/reveal.js"]
 	path = Paris2022/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "GPUDAP2023/reveal.js"]
+	path = GPUDAP2023/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
