@@ -381,8 +381,44 @@
 
 			<section>
 				<section>
-					<h3 class="slide-title">Training neural network</h3>
-					<br>
+					<h3 class="slide-title">Training Neural Networks</h3>
+	
+					<div class="container">
+						<div class="col">
+							<br>
+							<img data-src="assets/unet.png" data-fragment-index="1" /><br>
+							<br> A standard UNet
+						</div>
+	
+						<div class="col">
+							<ul>
+								<li> We use a very standard residual UNet, and we adopt a mean square error loss to train a denoiser:
+									<!-- $$ \mathcal{L}_{DSM} = \underset{\boldsymbol{x} \sim P}{\mathbb{E}} \underset{\begin{subarray}{c}
+									\boldsymbol{u} \sim \mathcal{N}(0, I) \\
+									\sigma_s \sim \mathcal{N}(0, s^2)
+									\end{subarray}}{\mathbb{E}} \parallel \boldsymbol{u} + \sigma_s \boldsymbol{r}_{\theta}(\boldsymbol{x} + \sigma_s \boldsymbol{u}, \sigma_s) \parallel_2^2$$ -->
+									$$\mathcal{L}(x, \sigma)=\parallel x - r_\theta(x^\prime, \sigma) \parallel_2^2$$
+									<!-- $\Longrightarrow$ direct estimator of the score $\nabla \log p_\sigma(x)$ -->
+								</li>
+									<div class="container" class="fragment fade-up" >
+										<div class="col">
+											$x' = x + n_\sigma$
+											<img data-src='assets/noisy-map.png' style="height:200px"/>
+										</div>
+	
+										<div class="col">
+											$\hat x = r_{\theta^*}(x', \sigma)$
+											<img data-src='assets/denoised.png' style="height:200px"/>
+										</div>
+									</div>
+								<li class="fragment fade-up" >
+									Neural network weights $\theta$ are optimized using gradient descent
+									$$\theta_{n+1} = \theta_{n} - \tau \color{orange}{\nabla_\theta \mathcal{L}(x, \sigma)}$$
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
 			</section>
 			
 
