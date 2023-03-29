@@ -264,6 +264,35 @@
 						</div>
 				</section>
 
+				<section>
+					<h3 class="slide-title">Efficient gradient-based MCMC sampling</h3>
+					<br>
+					<div align="left">
+					Recall that we aim to sample $p(\kappa | \gamma) \propto p(\gamma | \kappa) p(\kappa)$
+
+					<br><br>
+					<ul>
+						<li class="fragment"> 
+						Standards algorithm requires to evaluate $p(\gamma | \kappa) p(\kappa)$, e.g. Random Walk Metropolis-Hastings, <a href="https://github.com/dfm/emcee">emcee</a>, etc.
+						</li>
+						<br>
+						<li class="fragment"> 
+							Most effiecient existing samplers are based on the gradients $\color{orange}{\nabla_\kappa \log p(\gamma|\kappa) + \nabla_\kappa \log p(\kappa)}$, e.g. MALA, Hamiltonian Monte Carlo
+							</li>
+					</ul>
+
+					<br><br>
+					<div class="fragment">
+						Take a look at this <a href="https://chi-feng.github.io/mcmc-demo/app.html?algorithm=HamiltonianMC&target=banana">amazing website</a> comparing MCMC samplers
+
+						<br>
+						<div align="center">
+						<img src="assets/HMC_proposal.png" class="plain" height="300"></img>
+						</div>
+					</div>
+				</div>
+
+				</section>
 
 				<section>
 					<h3 class="slide-title">Automatic differentiation with JAX</h3>
@@ -304,36 +333,6 @@
 
 								grad_log_likelihood = jax.grad(log_likelihood)
 									</code></pre>
-
-				</section>
-
-				<section>
-					<h3 class="slide-title">Efficient gradient-based MCMC sampling</h3>
-					<br>
-					<div align="left">
-					Recall that we aim to sample $p(\kappa | \gamma) \propto p(\gamma | \kappa) p(\kappa)$
-
-					<br><br>
-					<ul>
-						<li class="fragment"> 
-						Standards algorithm requires to evaluate $p(\gamma | \kappa) p(\kappa)$, e.g. Random Walk Metropolis-Hastings, <a href="https://github.com/dfm/emcee">emcee</a>, etc.
-						</li>
-						<br>
-						<li class="fragment"> 
-							Most effiecient existing samplers are based on the gradients $\color{orange}{\nabla_\kappa \log p(\gamma|\kappa) + \nabla_\kappa \log p(\kappa)}$, e.g. MALA, Hamiltonian Monte Carlo
-							</li>
-					</ul>
-
-					<br><br>
-					<div class="fragment">
-						Take a look at this <a href="https://chi-feng.github.io/mcmc-demo/app.html?algorithm=HamiltonianMC&target=banana">amazing website</a> comparing MCMC samplers
-
-						<br>
-						<div align="center">
-						<img src="assets/HMC_proposal.png" class="plain" height="300"></img>
-						</div>
-					</div>
-				</div>
 
 				</section>
 
