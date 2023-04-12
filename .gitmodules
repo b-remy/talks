@@ -28,3 +28,6 @@
 [submodule "GPUDAY2023/reveal.js"]
 	path = GPUDAY2023/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "TOSCA2023/reveal.js"]
+	path = TOSCA2023/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
