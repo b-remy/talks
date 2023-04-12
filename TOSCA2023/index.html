@@ -90,16 +90,19 @@
 
 				<section>
 					<h3 class="slide-title">Measuring galaxies ellipticity</h3>
+					
+					<br>
+					<br>
+					
 					<div class="container">
 							
 						<div class="col" >
-							Image of 3x3 galaxies
+							<img src="assets/gaussian_fit_no_e.png" class="plain" width="500px"></img>
 						</div>
 
 						<div class="col fragment fade-up" align="left">
 							<!-- <div style="position:relative; width:500; margin:0 auto;"> -->
 
-								<div class="fragment current-visible plain fade-up" style="position:absolute;top:0;left:0;width:1000px;">
 							Moments-based method <br><br>
 							
 							$\begin{align}
@@ -113,9 +116,28 @@
 								S/N &= F / \sigma(F) \\
 							\end{align}$
 							<br>
-						</div>
 
-							<div class="fragment current-visible plain fade-up" style="position:absolute;top:0;left:0;width:1000px;">
+						</div>
+					</div>
+					
+					
+
+						<!-- <div class="fragment" style="position:relative; width:1000px; height:100px; margin:0 auto;">
+							<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+							The <b class="alert">ellipticity</b> is not necessarily a well defined quantity for arbitrary galaxyies,<br>leading to bias in cosmic shear estimation...
+						</div> -->
+				</section>
+
+				<section>
+					<h3 class="slide-title">Measuring galaxies ellipticity</h3>
+					
+						<div class="container">
+							<div class="col" >
+								<img src="assets/gaussian_fit.png" class="plain" width="500px"></img>
+							</div>
+
+							<div class="col" align="left">
+								<!-- <br><br> -->
 								Model fitting <br><br>
 								
 								$\begin{align}
@@ -124,19 +146,18 @@
 								\color{orange}{(e_1, e_2)} &\color{orange}{=} \color{orange}{f(\Sigma)}
 								\end{align}$
 
-								<br>
-							</div>
-						
-							<div class="fragment" style="position:absolute;top:0;left:0;width:1000px;">
+								<br><br>
+
+								<div class="fragment">
 								What about real galaxies? <br>
 								
 								<div class="container">
 									<div class="col">
 										<div align="left" style="margin-left: 0px">
-										<img data-src="assets/real_gal-inv-small.png" style='height:400px;'></img>
+										<img data-src="assets/real_gal-inv-small.png" style='width:500px;'></img>
 									</div>
 									</div>
-									<div class="col">
+									<div class="col fragment">
 										<div align="left" style="margin-left: -150px">
 										<img data-src="assets/real_gal-inv.png" style='height:300px;'></img>
 									</div>
@@ -144,11 +165,11 @@
 								</div>
 								<br>
 							</div>
+							
 						</div>
 					</div>
-
-						<div class="fragment" style="position:relative; width:1000px; height:100px; margin:0 auto;">
-							<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+					
+						<div class="fragment">
 							The <b class="alert">ellipticity</b> is not necessarily a well defined quantity for arbitrary galaxyies,<br>leading to bias in cosmic shear estimation...
 						</div>
 				</section>
@@ -184,7 +205,7 @@
 					<div class="fragment">
 					The likelihood $\color{orange}{p(\mathcal{D}|\gamma, z, \Pi)}$ is naturally built from the forward model <br>
 						<div align="center">
-					<img class="plain" data-src="assets/great.jpg" />
+					<img class="plain" style="height:300px" data-src="assets/great.jpg" />
 				</div>
 				</div>
 				</div>
@@ -220,7 +241,7 @@
 						<div class="col">
 							<img
 								class="plain fragment"
-								data-src="/assets/cosmos_gal.png"
+								data-src="/assets/cosmos_gal_shear.png"
 								style="width: 200px"
 								data-fragment-index="3"
 							/>
@@ -427,7 +448,7 @@
 					$$g(z) = F \times I_0 \exp \left( -b_n \left[\left( \frac{r}{r_\text{hlr}}\right)^{\frac{1}{n}} -1\right] \right)$$
 					
 					<div class="fragment">
-						The joint inference of $p(z, \gamma | \mathcal{D})$ leads to <b class="alert">biased contours</b>...
+						The joint inference of $p(z, \gamma | \mathcal{D})$ leads to a <b class="alert">biased posterior</b>...
 					
 						<div class="container">
 							<div class="col" align="center">
@@ -966,11 +987,24 @@
 
 						<section>
 							<h3 class="slide-title">Joint inference using a generative model for the morpholgy</h3>
+							<div class="container">
+								<div class="col">
+									<div style="float: right; font-size: 20px">
+										Remy, <b>Lanusse</b>, Starck (2022)
+										<a href="https://arxiv.org/abs/2210.16243"
+											><img
+												src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2210.16243-B31B1B.svg"
+												class="plain"
+												style="height: 25px; vertical-align: middle"
+										/></a>
+									</div>
+								</div>
+							</div>
 							<div align="left">
 							Let's use the leared $g_\theta(z)$ <br><br>
 							
 							<div class="fragment">
-								The joint inference of $p(z, \gamma | \mathcal{D})$ leads to <b class="alert">unbiased contours</b>!<br><br>
+								The joint inference of $p(z, \gamma | \mathcal{D})$ leads to a<b class="alert">unbiased posterior</b>!<br><br>
 							
 								<div class="container">
 									<div class="col" align="center">
