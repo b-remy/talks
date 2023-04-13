@@ -22,8 +22,8 @@
 			<section data-background-image="assets/lsst_stills_0009_crop.jpg">
 				<div class="container">
 					<div class="title" style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);">
-						<h1>Probabilistic cosmic shear measurement</h1>
-						<h2>Joint inference of galaxy morphologies and cosmic shear</h2>
+						<h1>Unbiased shear estimation with forward modeling</h1>
+						<h2>Joint bayesian inference of galaxy morphologies and cosmic shear</h2>
 					</div>
 				</div>
 				<!-- <hr> -->
@@ -175,12 +175,12 @@
 				</section>
 				
 				
-				<section>
+				<!-- <section>
 					<h3 class="slide-title">Calibrating shear estimator based on shape measurement</h3>
 						
 					Metacalibration, Metadetection	
 				
-				</section>
+				</section> -->
 			</section>
 
 
@@ -258,7 +258,7 @@
 						<div class="col">
 							<img
 								class="plain fragment"
-								data-src="assets/c                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     osmos_gal_psf.png"
+								data-src="assets/cosmos_gal_psf.png"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     osmos_gal_psf.png"
 								style="width: 200px"
 								data-fragment-index="1"
 							/>
@@ -990,7 +990,7 @@
 							<div class="container">
 								<div class="col">
 									<div style="float: right; font-size: 20px">
-										Remy, <b>Lanusse</b>, Starck (2022)
+										<b>Remy</b>, Lanusse, Starck (2022)
 										<a href="https://arxiv.org/abs/2210.16243"
 											><img
 												src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2210.16243-B31B1B.svg"
@@ -1004,7 +1004,7 @@
 							Let's use the leared $g_\theta(z)$ <br><br>
 							
 							<div class="fragment">
-								The joint inference of $p(z, \gamma | \mathcal{D})$ leads to a<b class="alert">unbiased posterior</b>!<br><br>
+								The joint inference of $p(z, \gamma | \mathcal{D})$ leads to an <b class="alert">unbiased posterior</b>!<br><br>
 							
 								<div class="container">
 									<div class="col" align="center">
@@ -1028,6 +1028,64 @@
 
 			<section>
 				<h3 class="slide-title">Takaways</h3>
+				<br>
+					<br>
+					<ul>
+						<li class="fragment"> 
+							The <b class="alert">ellipticity</b> is not a well defined quantity for arbitrary galaxies, leading to bias in shear estimation
+							
+						</li>
+
+						<br>
+
+						<li class="fragment">
+							<b class="alert">Foward modeling</b> allows to decouple the morphology from the observing condition
+							<ul>
+								<!-- <br> -->
+								<li> <b class="alert">Deep generative models</b> can be used to provide flexible light profile model</b>.
+								</li>
+								<!-- <br> -->
+								<li> <b class="alert">Explicit likelihood</b>, uses of all of our physical knowledge.<br>
+									$\Longrightarrow$ The method can be applied for varying PSF, noise, or even different instruments!
+								</li>
+	
+							</ul>
+						</li>
+
+						<br>
+						<li class="fragment">
+							Joint inference of morpholgy and shear leads to <b class="alert">unbiased</b> marginal shear posterior
+						</li>
+						<br>
+
+						<li class="fragment">
+							Future work
+							<ul>
+								<!-- <br> -->
+								<li> need probabilistic detection in the forward model
+								</li>
+								<!-- <br> -->
+								<li> joint inference of PSF, morophology and cosmic shear (and comsology...)
+								</li>
+	
+							</ul>
+						</li>
+						
+					</ul>
+					<div class="fragment">
+						<a href="https://arxiv.org/abs/2210.16243"
+											><img
+												src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2210.16243-B31B1B.svg"
+												class="plain"
+												style="height: 35px; vertical-align: middle"
+										/></a>
+						<br>
+					
+					</div>
+					<br>
+					<p class="fragment"> Thank you!</p>
+					<br>
+					<br>
 				
 			</section>
 		</section>
