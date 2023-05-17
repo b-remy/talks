@@ -215,7 +215,8 @@
 
 				<section>
 					<h3 class="slide-title">
-						Writing the likelihood
+						Let us build a probabilistic model of galaxy images
+
 					</h3>
 					<!-- <div class="container">
 						<div class="col">
@@ -379,7 +380,7 @@
 											data-fragment-index="1"
 										>
 											$$ x \sim \mathcal{N}(z, \Sigma) \quad z \sim ? $$<br />latent
-											$z$ is a denoised galaxy image
+											$z$ is a denoised galaxy image <br>
 										</div>
 										<div
 											class="plain fragment current-visible"
@@ -405,8 +406,12 @@
 											"
 											data-fragment-index="3"
 										>
-										$$ x \sim \mathcal{N}(\Pi \ast (z \otimes \gamma), \Sigma)
-										\quad z \sim ? $$<br />latent $z$ is a unsheared deconvolved,
+										$\begin{align}
+										x \sim \mathcal{N}(\Pi \ast (z \otimes \gamma), \Sigma) \quad &  z \sim ? \\
+										 & \gamma \sim \mathcal{N}(0, .05)
+										\end{align}$
+
+										<br />latent $z$ is a unsheared deconvolved,
 										and denoised galaxy image
 										</div>
 										<div
@@ -419,9 +424,17 @@
 											"
 											data-fragment-index="4"
 										>
-											$$ x \sim \mathcal{N}(\Pi \ast
+										$\begin{align}
+										x \sim \mathcal{N}(\Pi \ast
+											(g_\theta(z) \otimes \gamma), \Sigma) \quad & z \sim \mathcal{N}(0,
+											\mathbf{I}) \\
+										& \gamma \sim \mathcal{N}(0, .05)
+										\end{align}$
+
+											<!-- $$ x \sim \mathcal{N}(\Pi \ast
 											(g_\theta(z) \otimes \gamma), \Sigma) \quad z \sim \mathcal{N}(0,
-											\mathbf{I}) $$ <br />latent $z$ are morphological parameters<br />
+											\mathbf{I}) $$ <br />latent $z$ are morphological parameters<br /> -->
+											<br />latent $z$ are morphological parameters<br />
 											<b class="alert">
 												$\theta$ are global parameters of the model</b
 											>
