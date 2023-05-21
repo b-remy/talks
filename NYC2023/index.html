@@ -60,8 +60,14 @@
 						<img src="assets/universite_paris_saclay.png" class="plain" height="100"></img>
 					</div>
 				</div>
-				<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);"> slides at <a style="color:#B1CB11" href="https://b-remy.github.io/talks/NYC2023">b-remy.github.io/talks/NYC2023</a> </div>
+				<!-- <div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);">  -->
+				<div class="container">
+					<div style="position:relative; left:200px; width:900px; border-radius: 20px; background-color:rgba(228, 240, 160, 0.055);">
+					slides at <a style="color:#B1CB11" href="https://b-remy.github.io/talks/NYC2023">b-remy.github.io/talks/NYC2023</a> 
+				</div>
+			</div>
 
+	
 			</section>
 
 			<section>
@@ -1392,61 +1398,66 @@
 			
 			<section>
 				<h3 class="slide-title">Takeaway message</h3>
-				<br>
+				
+				<div class="fragment" style="position:relative; left:150px; width:1000px; border-radius: 20px; background-color:rgba(228, 240, 160, 0.055);">
 					<br>
-					<ul>
-						<li class="fragment"> 
-							The <b class="alert">ellipticity</b> is not a well defined quantity for arbitrary galaxies, leading to bias in shear estimation
+						<ul>
+							<!-- <li class="fragment">  -->
+							<li>
+								<b class="alert">Ellipticity</b> is not a well defined quantity for arbitrary galaxies $\rightarrow$ bias in shear estimation
+								
+							</li>
+
+							<br>
+
+							<li class="fragment">
+								<b class="alert">Foward modeling</b> allows to decouple morphology from observing conditions
+								<ul>
+									<br>
+									<li> <b class="alert">Deep generative models</b> can be used to provide flexible light profile model</b>
+									</li>
+									<br>
+									<li> <b class="alert">Explicit likelihood</b>, uses of all of our physical knowledge<br>
+										$ + $ Our method can be applied for varying PSF, noise, or even different instruments!
+									</li>
+		
+								</ul>
+							</li>
+
+							<br>
 							
-						</li>
+							<!-- <br> -->
+						</ul>
+						<div class="fragment">
+							<strong> $\Longrightarrow$ Joint inference of morpholgy and shear leads to <b class="alert">unbiased</b> marginal shear posterior</strong>
 
+						</div>
 						<br>
-
-						<li class="fragment">
-							<b class="alert">Foward modeling</b> allows to decouple the morphology from the observing condition
-							<ul>
-								<br>
-								<li> <b class="alert">Deep generative models</b> can be used to provide flexible light profile model</b>.
-								</li>
-								<br>
-								<li> <b class="alert">Explicit likelihood</b>, uses of all of our physical knowledge.<br>
-									$\Longrightarrow$ The method can be applied for varying PSF, noise, or even different instruments!
-								</li>
-	
-							</ul>
-						</li>
-
-						<br>
-						<li class="fragment">
-							Joint inference of morpholgy and shear leads to <b class="alert">unbiased</b> marginal shear posterior
-						</li>
-						<br>
-
-						<li class="fragment">
-							Future work
-							<ul>
-								<!-- <br> -->
-								<li> need probabilistic detection in the forward model
-								</li>
-								<!-- <br> -->
-								<li> joint inference of PSF, morophology and cosmic shear (and comsology...)
-								</li>
-	
-							</ul>
+					</div>
+							
+				<div class="fragment">
+					<a href="https://arxiv.org/abs/2210.16243"
+										><img
+											src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2210.16243-B31B1B.svg"
+											class="plain"
+											style="height: 35px; vertical-align: middle"
+									/></a>
+					<br>
+				
+				</div>
+				
+				<p class="fragment" align="left" style="position:relative; left:100px">Opening remarks</p>
+			<div class="fragment" style="position:relative; left:150px; width:1000px; border-radius: 20px; background-color:rgba(228, 240, 160, 0.055);">
+					<ul>
+						<li>
+							Latent Variable Models are no longer SOTA <b class="fragment">$\longrightarrow$ <b class="alert">diffusion models</b></b>
 						</li>
 						
+						<li class="fragment">
+							Training a score-based / diffusion model <b>from corrupted data</b> remains a challenge!
+						</li>	
 					</ul>
-					<div class="fragment">
-						<a href="https://arxiv.org/abs/2210.16243"
-											><img
-												src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2210.16243-B31B1B.svg"
-												class="plain"
-												style="height: 35px; vertical-align: middle"
-										/></a>
-						<br>
-					
-					</div>
-					<br>
+				</div>
 					<p class="fragment"> Thank you!</p>
 					<br>
 					<br>
