@@ -21,10 +21,10 @@
 		<div class="slides">
 			<section>
 				
-			<!-- </section> data-background-image="assets/lsst_stills_0009_crop.jpg"> -->
+			<!-- </section> data-background-image="asseots/lsst_stills_0009_crop.jpg"> -->
 			
 				<div class="container">
-					<div class="title" style="position:relative; left:250px; border-radius: 20px; background-color:rgba(228, 240, 160, 0.055);">
+					<div class="title" style="position:relative; left:200px; border-radius: 20px; background-color:rgba(228, 240, 160, 0.055);">
 						<br>
 						<h2> Hierarchical Bayesian Models    <br> with generative physical components <br> for inference with corrupted data</h2>
 						<!-- <h2>Joint Bayesian inference of galaxy morphologies and cosmic shear</h2> -->
@@ -43,32 +43,21 @@
 					<a href="https://arxiv.org/abs/2201.05561"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2201.05561-B31B1B.svg" class="plain" style="height:25px;" /></a>
 					<a href="https://arxiv.org/abs/2011.08698"><img src="https://img.shields.io/badge/stat.ML-arXiv%3A2011.08698-B31B1B.svg" class="plain" style="height:25px;" /></a>
 				</div> -->
-				<div class="container">
+				<p><strong>Benjamin Remy </strong>with Francois Lanusse and Jean-Luc Starck</p>
+				<div class="container" style="width: 1000px; position:relative; left:150px">
 					<div class="col">
-						<div align="left" style="margin-left: 20px">
-							<!-- <div style="color:#511e00"> -->
-							<h3>
-								<!-- <div style="color:#511e00"> -->
-									Benjamin Remy
-								<!-- </div> -->
-							</h3>
-							with Francois Lanusse and Jean-Luc Starck
-						<!-- </div> -->
-							<img src="assets/CosmoStatDarkBK.png" class="plain"></img>
-							<br>
-						</div>
+						<br>
+					    <img src="assets/CosmoStatDarkBK.png" class="plain" height="30"></img>
 					</div>
 
 					<div class="col">
 						<br>
-						<br>
-						<img src="assets/logo_cnes.png" class="plain" height="150"></img>
+						<img src="assets/logo_cnes_transparent.png" class="plain" height="100"></img>
 					</div>
 
 					<div class="col">
 						<br>
-						<br>
-						<img src="assets/universite_paris_saclay.jpg" class="plain" height="150"></img>
+						<img src="assets/universite_paris_saclay.png" class="plain" height="100"></img>
 					</div>
 				</div>
 				<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);"> slides at <a style="color:#E1F9B7" href="https://b-remy.github.io/talks/NYC2023">b-remy.github.io/talks/NYC2023</a> </div>
@@ -122,8 +111,8 @@
 								T &= \sum G(x, y)I(x, y)(x^2 + y^2) \\
 								M_1 &= \sum G(x, y)I(x, y)(x^2 - y^2) \\
 								M_2 &= \sum G(x, y)I(x, y)2xy \\
-								\color{orange}{e_1} &\color{orange}{=} \color{orange}{M_1 / T}\\
-								\color{orange}{e_2} &\color{orange}{=} \color{orange}{M_2 / T} \\
+								\color{#B1CB11}{e_1} &\color{#B1CB11}{=} \color{#B1CB11}{M_1 / T}\\
+								\color{#B1CB11}{e_2} &\color{#B1CB11}{=} \color{#B1CB11}{M_2 / T} \\
 								S/N &= F / \sigma(F) \\
 							\end{align}$
 							<br>
@@ -152,9 +141,9 @@
 								Model fitting <br><br>
 								
 								$\begin{align}
-								I(x, y) &= F \cdot \mathcal{N}\left( 0, \color{orange}{\Sigma} \right)\\
+								I(x, y) &= F \cdot \mathcal{N}\left( 0, \color{#B1CB11}{\Sigma} \right)\\
 
-								\color{orange}{(e_1, e_2)} &\color{orange}{=} \color{orange}{f(\Sigma)}
+								\color{#B1CB11}{(e_1, e_2)} &\color{#B1CB11}{=} \color{#B1CB11}{f(\Sigma)}
 								\end{align}$
 
 								<br><br>
@@ -208,13 +197,13 @@
 				</div>
 				<div class="fragment">
 					$\begin{align}
-					~~~~~~~~~~~&= \int \color{orange}{\underbrace{p(\mathcal{D}|\gamma, z, \Pi)}_{\text{likelihood}}} \underbrace{p(\gamma)p(z)p(\Pi)}_{\text{priors}} ~dz~d\Pi
+					~~~~~~~~~~~&= \int \color{#B1CB11}{\underbrace{p(\mathcal{D}|\gamma, z, \Pi)}_{\text{likelihood}}} \underbrace{p(\gamma)p(z)p(\Pi)}_{\text{priors}} ~dz~d\Pi
 					\end{align}$
 				</div>
 					<br>
 					
 					<div class="fragment">
-					The likelihood $\color{orange}{p(\mathcal{D}|\gamma, z, \Pi)}$ is naturally built from the forward model <br>
+					The likelihood $\color{#B1CB11}{p(\mathcal{D}|\gamma, z, \Pi)}$ is naturally built from the forward model <br>
 						<div align="center">
 					<img class="plain" style="height:300px" data-src="assets/great.jpg" />
 				</div>
@@ -662,10 +651,10 @@
 
 						<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
 
-						<div data-id="9" style="background: blue; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
+						<div data-id="9" style="background: #B1CB11; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
 						<div data-id="22" style="position: absolute; top: 400px; left: 590px; width: 100px; height: 200px; font-size: 80%;" > $g_\theta(z)$ </div>
 
-						<div data-id="99" style="background: red; position: absolute; top: 150px; left: 691px; width: 15px; height: 0px;"></div>
+						<div data-id="99" style="background: #6495ED; position: absolute; top: 150px; left: 691px; width: 15px; height: 0px;"></div>
 
 						<div data-id="24" style="position: absolute; top: 150px; left: 770px; width: 100px; height: 200px; font-size: 80%;" > $x' \sim p_\theta(x|z)$ </div>
 
@@ -723,12 +712,12 @@
 
 						<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
 
-						<div data-id="9" style="background: blue; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
+						<div data-id="9" style="background: #B1CB11; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
 						<div data-id="22" style="position: absolute; top: 400px; left: 590px; width: 100px; height: 200px; font-size: 80%;" > $g_\theta(z)$ </div>
 
 						<div data-id="119" style="position: absolute; top: 250px; left: 665px; width: 15px; height: 200px;">$\ast$</div>
 
-						<div data-id="99" style="background: red; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
+						<div data-id="99" style="background: #6495ED; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
 
 						<div data-id="27" style="position: absolute; top: 400px; left: 653px; width: 100px; height: 200px; font-size: 80%;" > $\Pi$ </div>
 
@@ -789,12 +778,12 @@
 
 						<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
 
-						<div data-id="9" style="background: blue; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
+						<div data-id="9" style="background: #B1CB11; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
 						<div data-id="22" style="position: absolute; top: 400px; left: 590px; width: 100px; height: 200px; font-size: 80%;" > $g_\theta(z)$ </div>
 
 						<div data-id="119" style="position: absolute; top: 250px; left: 665px; width: 15px; height: 200px;">$\ast$</div>
 
-						<div data-id="99" style="background: red; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
+						<div data-id="99" style="background: #6495ED; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
 
 						<div data-id="27" style="position: absolute; top: 400px; left: 653px; width: 100px; height: 200px; font-size: 80%;" > $\Pi$ </div>
 
@@ -863,12 +852,12 @@
 
 						<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
 
-						<div data-id="9" style="background: blue; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
+						<div data-id="9" style="background: #B1CB11; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
 						<div data-id="22" style="position: absolute; top: 400px; left: 590px; width: 100px; height: 200px; font-size: 80%;" > $g_\theta(z)$ </div>
 
 						<div data-id="119" style="position: absolute; top: 250px; left: 665px; width: 15px; height: 200px;">$\ast$</div>
 
-						<div data-id="99" style="background: red; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
+						<div data-id="99" style="background: #6495ED; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
 
 						<div data-id="27" style="position: absolute; top: 400px; left: 653px; width: 100px; height: 200px; font-size: 80%;" > $\Pi$ </div>
 
