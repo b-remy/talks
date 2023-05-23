@@ -1,4 +1,8 @@
-## Set of slides for the following talks
+# Set of slides for the following talks
+
+[Cosmic Connections: A ML X Astrophysics Symposium at Simons Foundation](https://indico.flatironinstitute.org/event/3624/timetable/?view=standard), May 23rd, NYC. [Slides](https://b-remy.github.io/talks/NYC2023/)
+
+[Likelihood-free in Paris](https://indico.in2p3.fr/event/25496/), April 21st, Paris. [Slides](https://b-remy.github.io/talks/Paris2022/)
 
 [IN2P3/IRFU Machine Learning Workshop](https://indico.in2p3.fr/event/22938/), March 17th, online. [Slides](https://b-remy.github.io/talks/in2p3_2021)
 
@@ -12,4 +16,5 @@ InTheArt seminars, October 12th, CEA Paris-Saclay. [Slides](https://b-remy.githu
 
 ETH Zurich Cosmo Club, remote, Febuary 7th 2022, [Slides](https://b-remy.github.io/talks/ETHCosmoClub2022)
 
+---
 [Create a new presentation](https://github.com/b-remy/talks/blob/main/new_talk.md) :pencil2:
