@@ -93,26 +93,38 @@
 	
 			</section>
 
-			<section data-background="#000 "
-			data-background-image="assets/WMAP_timeline_large.jpg " >
-				<h3 class='slide-title' style="position:absolute;top:0;"> the
-				$\Lambda$CDM cosmological model of the Universe </h3>
+			<section data-background="#000000">
+			<!-- <section> -->
+				<h3>The
+					$\Lambda$CDM cosmological model of the Universe</h3>
+				<!-- <h3 class='slide-title' style="position:absolute;top:0;"> the
+				$\Lambda$CDM cosmological model of the Universe </h3> -->
+				<!-- <h3 class='fragment slide-title'
+				style="position:absolute;top:0;" data-fragment-index="0"> the -->
+					<!-- $\Lambda$CDM cosmological model of the Universe </h3>
+					-->
+					<div class="fragment" style="position:absolute; top:-40px" data-fragment-index="1">
+						<img class="plain" data-src="assets/WMAP_timeline_large.jpg"
+						/>
+					</div>
 				<br> <br>
-				<div class="fragment" data-fragment-index="2">
+
+				<div class="fragment" style="position:absolute; top:200px;
+				left:700px" data-fragment-index="2">
+					<img class="plain" data-src="assets/pie_chart.png" style="width: 400px" />
+				</div>
+
+				<div class="fragment" data-fragment-index="3">
 					<!-- <div class="col" style="flex: 0 0 40em;">
 					</div> -->
 					<div style="position:relative; left:450px; top:-50px" class="col">
-						<img class="plain" data-src="assets/Euclid.png" style="width: 250px" />
+						<img class="plain" data-src="assets/euclid.jpg" style="width: 150px" />
 						<br>
-						<img class="plain" data-src="assets/verarubinobs.png"
-						style="width: 250px" />
+						<img class="plain" data-src="assets/rubin.jpg"
+						style="width: 150px" />
 						<br>
-						<img class="plain" data-src="assets/roman_logo_black_w200px.png" style="width: 150px" />
+						<img class="plain" data-src="assets/roman.jpg" style="width: 150px" />
 					</div>
-				</div>
-				<div class="fragment" style="position:absolute; top:200px;
-				left:500px" data-fragment-index="1">
-					<img class="plain" data-src="assets/pie_chart.jpg" style="width: 500px" />
 				</div>
 			</section>
 
@@ -141,7 +153,7 @@
 				<center>
 
 					<br><br><br>
-					<div align="left"> <u>HST/ACS COSMOS field</u>
+					<!-- <div align="left"> <u>HST/ACS COSMOS field</u>
 						<br>
 						<ul>
 							<li>
@@ -154,11 +166,10 @@
 								Redshift from $0$ up to $\sim 5$
 							</li>
 						</ul>
-					</div>
+					</div> -->
 
-					<br>
-					<div class="fragment" data-fragment-index="5"
-					style="position:absolute; top:610px; left:-10px; width:520px;height:160px;
+					<div class="fragment" data-fragment-index="8"
+					style="position:absolute; top:105px; left:-10px; width:520px;height:160px;
 					border-radius:20px; background-color:rgba(228, 240, 160,
 					0.1);">
 					</div>
@@ -166,49 +177,55 @@
 					<!-- <div align="left"><font color="6e93d6">Outline of contributions</font>
 					</div> -->
 
+					<br>
 					<div class="fragment" align="left" data-fragment-index="2">
-						<br>
-						&nbsp How to measure the <b class="alert">lensing
-						effect</b> on these<br>
-						&nbsp galaxies?
-						<br>
-						<font color="6e93d6">
-						$\longrightarrow$ New cosmic probabilistic shear
-						estimator <br>
-						solving model bias</font>
+						&nbsp How to accurately quantify the <b
+						class="alert">uncertainty</b> <br>
+						&nbsp of our estimations?
 					</div>
-
+						<!-- <br> -->
+						<div class="fragment" align="left" data-fragment-index="3">
+						<font color="6e93d6">
+						$\longrightarrow$ First time sampling
+						posterior of inverse <br> problems in high dimension
+						</font>
+						</div>
 
 					<br>
-					<div class="fragment" align="left" data-fragment-index="3">
+
+					<div class="fragment" align="left" data-fragment-index="4">
 						&nbsp How to map the distribution of <br>
 						&nbsp <b class="alert">dark matter</b>?
-						<br>
+						</div>
+						<!-- <br> -->
+						<div class="fragment" align="left" data-fragment-index="5">
 						<font color="6e93d6">
 						$\longrightarrow$ Novel mass-mapping algorithm, highest <br>
 						 resolved to date and with uncertainty<br> quantification
 						</font>
 					</div>
 
-					<br>
-					<div class="fragment" align="left" data-fragment-index="4">
-						&nbsp How to accurately quantify the <b
-						class="alert">uncertainty</b> <br>
-						&nbsp of our estimations?
+					<div class="fragment" align="left" data-fragment-index="6">
 						<br>
+						&nbsp How to measure the <b class="alert">lensing
+						effect</b> on these<br>
+						&nbsp galaxies?
+						<!-- <br> -->
+						<div class="fragment" align="left" data-fragment-index="7">
 						<font color="6e93d6">
-						$\longrightarrow$ Solve high dimensional inverse
-						problems <br> with diffusion
-						</font>
+						$\longrightarrow$ New probabilistic cosmic shear
+						estimator <br>
+						solving model bias</font>
 					</div>
+
 					<br>
 				<!-- </div>  -->
 
 					<div style="position:absolute;left:500px;top:10px">
-						<div class="plain current-visible" style="position:absolute;top:0;left:0;width:800px;" data-fragment-index="0">
+						<div class="plain current-visible" style="position:absolute;top:0;left:100px;width:700px;" data-fragment-index="0">
 							<img data-src='assets/HSTCOSMOScontours.png' style="width:800px;" />
 						</div>
-						<div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:800px;" data-fragment-index="3">
+						<div class="plain fragment current-visible " style="position:absolute;top:0;left:100px;width:700px;" data-fragment-index="3">
 							<img data-src='assets/MassMapHSTCOSMOScontours.png' style="width:800px;" />
 						</div>
 					</div>
@@ -504,20 +521,26 @@
 							<div class="container">
 								<div class="col">
 									<ul>
-										<li> To sample new data from a distribution, you
+										<li>Our aim is to sample new data from a
+										distribution $x \sim p(x)$</li> <br>
+										<li class="fragment "> You
 											<b class="alert">only need access to the score</b> of the distribution:
 											<b class="alert">$$\frac{ \partial \log p(x )}{
 											\partial
 											x}$$</b>
-											<ul>
-												<li>Gradient descent: $x_{t+1} = x_t + \tau \nabla_x \log p(x_t) $</li>
-												<li>Langevin algorithm: $x_{t+1} = x_t + \tau \nabla_x \log p(x_t) + \sqrt{2\tau} n_t$ </li>
-											</ul>
+											<!-- <ul> -->
+												<!-- <li>Gradient descent: $x_{t+1} = x_t + \tau \nabla_x \log p(x_t) $</li> -->
+												<!-- <li> -->
+													e.g. Langevin algorithm: $x_{t+1}
+													= x_t + \tau \nabla_x \log
+													p(x_t) + \sqrt{2\tau} n_t$
+												 <!-- </li> -->
+											<!-- </ul> -->
 										</li>
 										<br>
 									</ul>
 								</div>
-								<div class="col">
+								<div class="col fragment">
 									<img data-src="assets/score_two_moons.png"></img>
 								</div>
 							</div>
@@ -538,32 +561,45 @@
 				<ul>
 					<li><b>Denoising Score Matching</b>: An optimal <b class="alert">Gaussian denoiser learns the score</b> of a given distribution.
 						<ul>
-							<li class="fragment fade-up"> If $x \sim \mathbb{P}$ is corrupted by additional Gaussian noise $u \in \mathcal{N}(0, \sigma^2)$ to yield
-								$$x^\prime = x + u$$
+							<li class="fragment fade-up" data-fragment-index="1"> If $x \sim \mathbb{P}$ is corrupted by additional Gaussian noise $u \in \mathcal{N}(0, \sigma^2)$ to yield
+								<span class="fragment"data-fragment-index="2">
+									$$x^\prime = x + u$$
+								</span>
 							</li>
-							<li class="fragment fade-up"> Let's consider a denoiser $r_\theta$ trained under an $\ell_2$ loss:
-								$$\mathcal{L}=\parallel x - r_\theta(x^\prime, \sigma) \parallel_2^2$$
+							<li class="fragment fade-up" data-fragment-index="3"> Let's consider a denoiser $r_\theta$ trained under an $\ell_2$ loss:
+								
+									$$\mathcal{L}=\parallel x -
+									r_\theta(x^\prime, \sigma) \parallel_2^2$$
 							</li>
-							<li class="fragment fade-up"> The optimal denoiser $r_{\theta^\star}$ verifies:
+							<li class="fragment fade-up" data-fragment-index="4"> The optimal denoiser $r_{\theta^\star}$ verifies:
 								$$\boxed{\boldsymbol{r}_{\theta^\star}(\boldsymbol{x}', \sigma) = \boldsymbol{x}' + \sigma^2 \color{orange}{\nabla_{\boldsymbol{x}} \log p_{\sigma^2}(\boldsymbol{x}')}}$$
 							</li>
 						</ul>
 					</li>
 				</ul>
 
-				<div class="fragment fade-up">
+				<!-- <div class="fragment fade-up"> -->
 					<div class="container">
-						<div class="col">$\boldsymbol{x}'$
+						<div class="fragment col" data-fragment-index="1">$\boldsymbol{x}$
+							
+							<img data-src="/assets/cat_denoised.png" style='width:1200px;'></img>
 						</div>
-						<div class="col">$\boldsymbol{x}$
+
+						<div class="fragment col" data-fragment-index="2">$\boldsymbol{x}'$							
+							<vbr></vbr>
+							<img data-src="/assets/cat_noise.png" style='width:1200px;'></img>
 						</div>
-						<div class="col">$\boldsymbol{x}'- \boldsymbol{r}^\star(\boldsymbol{x}', \sigma)$
+
+						<div class="fragment col" data-fragment-index="3" >$\boldsymbol{r}^\star(\boldsymbol{x}', \sigma)$
+							<img data-src="/assets/cat_denoised.png" style='width:1200px;'></img>
 						</div>
-						<div class="col">$\boldsymbol{r}^\star(\boldsymbol{x}', \sigma)$
+
+						<div class="fragment col" data-fragment-index="4">$\color{orange}{\nabla_{\boldsymbol{x}} \log p_{\sigma^2}(\boldsymbol{x}')}$
+							<img data-src="/assets/noise_cat.png" style='width:1200px;'></img>
 						</div>
 					</div>
-					<img data-src="/assets/denoised_mnist.png" style='width:1200px;'></img>
-				</div>
+					<!-- <img data-src="/assets/denoised_mnist.png" style='width:1200px;'></img> -->
+				<!-- </div> -->
 			</section>
 
 
@@ -583,23 +619,27 @@
 				</div>
 				<br>
 
+				<div class="fragment">
 				<div align="left">
 					<ul>
 						<!-- <li class="fragment"><b class="alert">Metropolis-Hastings:</b> correction step, acceptance probability (garanties to sample the right posterior distribution)</li> -->
 						<br>
-						<li class="fragment"><b class="alert">Hamiltonial Monte Carlo</b> proposal for a step size $\alpha$:
-
+						<li><b class="alert">Hamiltonial Monte Carlo</b> proposal for a step size $\alpha$:
+						</li>
+				</div>
 						$$\begin{array}{lcl} \boldsymbol{m}_{t+\frac{\alpha}{2}} & = & \boldsymbol{m}_t + \dfrac{\alpha}{2} \color{orange}{\nabla_{\kappa}\log p(\boldsymbol{\kappa}_t|\gamma)} \\ 
 						\boldsymbol{\kappa}_{t+\alpha} & = & \boldsymbol{\kappa}_t + \alpha \boldsymbol{\mathrm{M}}^{-1} \boldsymbol{\kappa}_{t+\frac{\alpha}{2}} \\
-						\boldsymbol{m}_{t+\alpha} & = & \boldsymbol{m}_{t+\frac{\alpha}{2}} + \dfrac{\alpha}{2} \color{orange}{\nabla_\kappa \log p (\boldsymbol{\kappa}_{t+\alpha}|\gamma)}
-						\end{array}$$</li>
-						
+ 						\boldsymbol{m}_{t+\alpha} & = & \boldsymbol{m}_{t+\frac{\alpha}{2}} + \dfrac{\alpha}{2} \color{orange}{\nabla_\kappa \log p (\boldsymbol{\kappa}_{t+\alpha}|\gamma)}
+						\end{array}$$
+ 					
+<!-- 						
 						<li class="fragment"><b class="alert">Annealing:</b> convolve the posterior with a wide gaussian to always remain on high probability density.
 							$$p_\sigma(x) = \int p_{\mathrm{data}}(x')\mathcal{N}(x|x', \sigma^2)dx', ~~~~~~~~\sigma_1 > \sigma_2 > \sigma_3 > \sigma_4 $$
 						</li>
-						
+						 -->
 					</ul>
 				</div>
+				
 			</section>
 
 			<section>
@@ -648,19 +688,23 @@
 				</div> -->
 				<div class="block-content">
 					<div style="position:relative; height:570px; top:0px; left:0px;">
-						<!-- <div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:1200px;" data-fragment-index="0">
-							Target $\sigma_0 \approx 0$
-							<img data-src='assets/annealing_target.png' style="width:1100px;" />
+						<div class="plain current-visible" data-fragment-index="1" style="position:absolute;top:0;left:0;width:1200px;" data-fragment-index="2">
+							$\nabla_{x_t} \log p_\sigma({x_t} |y)$
+							<span class="fragment"data-fragment-index="2">
+							$\quad=\quad  \underset{\text{known}}{\underbrace{\nabla_{x_t} \log p_\sigma(y
+							|{x_t})}}\quad$
+							</span>
+							<span class="fragment" data-fragment-index="3">
+							$+\quad  \underset{\text{learned}}{\underbrace{\color{orange}{\nabla_{x_t} \log p_\sigma({x_t})}}}$
+							<div class="fragment" data-fragment-index="2" style="position:relative; top:50px">
+								<img data-src='assets/knees.png'
+								style="width:600px;" />
+							</div>
+							<div class="fragment" data-fragment-index="4" style="position:relative; top:-400px">
+							<img data-src='assets/mri_annealing.gif'
+							style="width:1100px;" />
 						</div>
-
-						<div class="plain fragment current-visible " style="position:absolute;top:0;left:0;width:1200px;" data-fragment-index="1">
-							Initialization $\sigma_T$ is high
-							<img data-src='assets/annealing_begin.png' style="width:1100px;" />
-						</div> -->
-
-						<div class="plain current-visible " style="position:absolute;top:0;left:0;width:1200px;" data-fragment-index="2">
-							$$\nabla_{x_t} \log p_\sigma({x_t} |y) = \nabla_{x_t} \log p_\sigma(y |{x_t}) \quad + \quad  \color{orange}{\nabla_{x_t} \log p_\sigma({x_t})}$$
-							<img class="fragment"  data-src='assets/mri_annealing.gif' style="width:1100px;" />
+						</span>
 						</div>
 					</div>
 				</div>
@@ -828,7 +872,7 @@
 
 					</section>
 
-					<section data-background-image="assets/gravitational-lensing-diagram.jpg">
+					<section  >
 						<h3 class="slide-title"> Weak gravitational lensing</h3>
 						<div class="fragment fade-up">
 							<img class="plain" data-src="assets/great.jpg" />
@@ -838,7 +882,12 @@
 								Galaxy shapes as estimators for gravitational shear
 							</div>
 							<div class="block-content">
-								$$ e = \gamma + e_i \qquad \mbox{ with } \qquad e_i \sim \mathcal{N}(0, I)$$
+								$$ e = \gamma + e_i \qquad \mbox{ with } \qquad
+								e_i \sim \mathcal{N}(0, I)$$
+								
+								$$\left< e_i \right> = 0 \qquad \left< e \right> = \gamma$$
+
+								<!-- $$ $$ -->
 								<ul>
 									<li> Standard methods are trying the measure the <b class="alert"> ellipticity $e$</b> of
 										galaxies as an estimator for the <b class="alert">gravitational shear $\gamma$ </b>
