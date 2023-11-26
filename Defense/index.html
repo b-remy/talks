@@ -283,7 +283,7 @@
 						f^{}(x)}$ where $f$ is known
 						<br><br>
 						<div class="fragment">
-						Potentially <b class="alert">multiple</b> solutions $\boxed{x = f^{-1}(y)}$ but $f$ <b class="alert">non-injective</b>
+						Potentially <b class="alert">multiple</b> solutions $\boxed{x = f^{-1}(y)}$ but $f$ <b class="alert">non-bijective</b>
 					</div>
 						<!-- $\mathbf{A}$ is known and encodes our physical understanding of the problem.
 						<span class="fragment"><br>$\Longrightarrow$ When non-invertible or ill-conditioned, the inverse problem is ill-posed <b class="alert">with no unique solution $x$</b></span> -->
@@ -328,7 +328,7 @@
 							</div>
 							<div class="col">
 								<div class="fragment fade-up">
-									Or <b class="alert">estimate from the full
+									Or <b class="alert">estimate the full
 									posterior $p(x|y)$</b> with 
 									<br>
 									<br>
@@ -1160,7 +1160,7 @@
 									</ul>
 								</li>
 							</ul>
-							<div class="fragment">$\Longrightarrow$ Our strategy: <b class="alert">Learn the prior from simulation</b>,
+							<div class="fragment">$\Longrightarrow$ Our strategy: <b class="alert">Learn the prior from simulations</b>,
 								and then <b class="alert">sample the full posterior</b>.</div>
 					</section>
 		
@@ -1365,7 +1365,7 @@
 									<li> Deep generative models can be used to provide <b class="alert">data driven (simulation based) priors</b>.
 									</li>
 									<br>
-									<li> <b class="alert">Explicit likelihood</b>, uses of all of our physical knowledge.<br>
+									<li> <b class="alert">Explicit likelihood</b>: uses of all of our physical knowledge.<br>
 										$\Longrightarrow$ The method can be applied for varying PSF, noise, or even different instruments!
 									</li>
 		
@@ -1373,7 +1373,7 @@
 							</li>
 							<br>
 							<li>
-								Demonstrated the efficiency of annealing Hamiltoninan Monte Carlo for high dimensional posterior sampling.
+								Demonstrated the efficiency of annealing Hamiltonian Monte Carlo for high dimensional posterior sampling.
 							</li>
 							<br>
 							<!-- <li class="fragment"> Neural Score Estimation is a <b class="alert">scalable approach</b> to learn a prior score.
@@ -2536,7 +2536,7 @@
 
 					<section>
 						<h3 class="slide-title">
-							A generative model for galaxy morpgologies
+							A generative model for galaxy morphologies
 						</h3>
 						<div class="container">
 							<div class="col">
@@ -2757,7 +2757,7 @@
 					</section>
 
 					<section>
-						<h3 class="slide-title">Joint inference using a generative model for the morpholgy</h3>
+						<h3 class="slide-title">Joint inference using a generative model for the morphology</h3>
 						<div class="container">
 							<div class="col">
 								<div style="float: right; font-size: 20px">
@@ -2772,7 +2772,7 @@
 							</div>
 						</div>
 						<div align="left">
-						Let's use the leared $g_\theta(z)$ <br><br>
+						Let's use the learned $g_\theta(z)$ <br><br>
 						
 						<div class="fragment">
 							The joint inference of $p(z, \gamma | \mathcal{D})$ leads to an <b class="alert">unbiased posterior</b>!<br><br>
@@ -2812,13 +2812,13 @@
 									<br>
 		
 									<li class="fragment">
-										<b class="alert">Foward modeling</b> allows to decouple morphology from observing conditions
+										<b class="alert">Forward modeling</b> allows to decouple morphology from observing conditions
 										<ul>
 											<br>
 											<li> <b class="alert">Deep generative models</b> can be used to provide flexible light profile model</b>
 											</li>
 											<br>
-											<li> <b class="alert">Explicit likelihood</b>, uses of all of our physical knowledge<br>
+											<li> <b class="alert">Explicit likelihood</b>: uses of all of our physical knowledge<br>
 												$ + $ Our method can be applied for varying PSF, noise, or even different instruments!
 											</li>
 				
@@ -2853,7 +2853,7 @@
 								<li>
 									Shear estimators are known to <b
 									class="alert">respond to galaxy selection</b>,
-									how to model include galaxy detection and selection
+									how to include galaxy detection and selection
 									in the bayesian framework?
 								</li>
 								
@@ -2879,8 +2879,8 @@
 			
 
 		<section data-background-image="assets/lsst_stills_0009_crop.jpg">
-			<div class="container">
-				<div class="title" style="position:relative; left:30px; border-radius: 20px; background-color:rgba(0, 0, 0, 0.8);">
+			<!-- <div class="container"> -->
+				<div class="title" style="position:relative; top:0px; left:30px; border-radius: 20px; background-color:rgba(0, 0, 0, 0.8);">
 					<br>
 					<h2> 
 						Final takeaways
@@ -2895,56 +2895,107 @@
 				<div align="left" style="position:relative; left:50px">
 					<span class="fragment">
 					We have seen <b class="alert">Bayesian modeling</b> is a
-					natural framwork to solve inverse problem and quantify the <br>
+					natural framework to solve inverse problem and quantify the <br>
 					<b class="alert">uncertainties</b> of the solution through
 					the posterior distribution $p(x|y)$
-				</span>
+				
+				<br>
+				<font color="6e93d6">
+				
+					<span class="fragment">
+				$\longrightarrow$ Combining the score learned from simulations with analytical
+				forward model<br>
+			</span>
+			<span class="fragment">
 
-				<br><br>
+				$\longrightarrow$ Annealed HMC sampler<br>
+			</span>
 
 				<span class="fragment">
-				Our physical understanding of the problem enables us to build
-				<b class="alert">accurate</b> and potentially <b
-				class="alert">differentiable</b> 
-				<br> foward models, and therefore likeihood distributions $p(y|x)$
+
+				$\longrightarrow$ First time sampling posterior of
+							inverse problems in high dimension
+						</span>
+
+				</font>
+			</span>
+				<br>
+				<br>
+				<span class="fragment">
+				Novel proabilistic mass-mapping algorithm, highly resolved with
+				<b class="alert">uncertainty quantification</b>
+				<br>
+				<font color="6e93d6">
+				<span class="fragment">
+					$\longrightarrow$ Hybrid physical/deep learning
+				</span>
+				<br>
+				<span class="fragment">
+					$\longrightarrow$ Explicit likelihood: data fidelity not
+					learned by the newtork
+				</span>
+				</font>
 			</span>
 				
 				<br>
 				<br>
 				
-				<span class="fragment">
-				When we lack analytical physical forward models, we can rely on
-				flexible <b class="alert">generative models</b> $p(x)$ with 
-				<br> <b class="alert">physicaly motivated</b> training
-				procedures. They can be trained from
-				<br>
-					<ul style="position:absolute;left:100px">
-						<li>Physical simulators</li>
-						<li>Corrupted data</li>
-					</ul>
-				</span>
-				<br>
-				<br>
-				<br>
-
-				<span class="fragment">
-				Infering a posterior in <b class="alert">high dimension</b> may
-				be computationaly intractable with standard MCMC algorithms
-				<br>
-				We can instead rely on <br>
-				<ul style="position:absolute;left:100px">
-					<li><b class="alert">Variational inference </b></li>
-					<li><b class="alert">Annealed sampling</b></li>
-				</ul>
 			</span>
-				<br>
-				<br>
-				<br>
+			
+			<span class="fragment">
+			Novel cosmic shear estimator
+			<br>
+			<font color="6e93d6">
+			<span class="fragment">
+				$\longrightarrow$ Self-calibrated using a Physical Auto Encoder,
+				solving the model bias
+			</span>
+			<br>
+			<span class="fragment">
+				$\longrightarrow$ Probabilistic estimator, with efficient
+				inference techniques
+			</span>
+			</font>
+		</span>
+		
+<br><br>
+	</div>
 
-				
+	<div class="fragment title" style="position:absolute; top:650px; left:0px; border-radius: 20px; background-color:rgba(0, 0, 0, 0.8);">
+		<span >
+	Reproducable research
+	<br>
+	<font color="6e93d6">
+	<span >
+		&nbsp $\longrightarrow$ Open-source and reproducable code (github) &nbsp
+	</span>
+	<br>
+	<span>
+		$\longrightarrow$ Data and results availability
+	</span>
+	</font>
+</span>
+</div>
 
-			</div>
-			</div>
+<div class="fragment title" style="position:absolute; top:650px; left:680px; border-radius: 20px; background-color:rgba(0, 0, 0, 0.8);">
+	<span>
+Ph.D. activities
+<br>
+<font color="6e93d6">
+<span>
+	&nbsp $\longrightarrow$ Teaching undergrads (L3) &nbsp
+</span>
+<br>
+<span>
+	&nbsp $\longrightarrow$ Co-chair Machine Learning topical team in DESC &nbsp
+</span>
+</font>
+</span>
+</div>
+
+<!-- </div> -->
+
+			
 		
 		<!-- <div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);">  -->
 		
