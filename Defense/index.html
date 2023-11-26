@@ -270,6 +270,7 @@
 						</div>
 					</div>
 				
+					
 				<!-- <div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);">  -->
 				
 				</section>
@@ -471,7 +472,7 @@
 							<br> 
 							<div class='container'>
 								<div class='col'>
-									<div style="position:relative; width:500px; height:600px; margin:0 auto;">
+									<div style="position:relative; width:600px; height:600px; margin:0 auto;">
 										<img class="fragment current-visible plain" data-src="assets/DBN.png"
 											style="position:absolute;top:0;left:0;width:500px;" data-fragment-index="0" />
 										<img class="fragment current-visible plain" data-src="assets/vae_faces.jpg"
@@ -480,8 +481,8 @@
 											style="position:absolute;top:0;left:0;width:500px;" data-fragment-index="2" />
 										<img class="fragment plain" data-src="assets/karras2017.png"
 											style="position:absolute;top:0;left:0;width:500px;" data-fragment-index="3" />
-										<img class="fragment plain" data-src="https://preview.redd.it/de6cf3omoqpa1.jpg?width=960&format=pjpg&auto=webp&v=enabled&s=0f4641ba72ad4c7ef106efafc539804cf7247410"
-										style="position:absolute;top:0;left:0;width:500px;" data-fragment-index="4" />
+										<img class="fragment plain" data-src="assets/1670591463156314057.jpg"
+										style="position:absolute;top:0;left:0;width:600px;" data-fragment-index="4" />
 									</div>
 								</div>
 				
@@ -499,7 +500,9 @@
 										<li class="fragment" data-fragment-index="3"> Wasserstein GAN <br> (Arjovsky et al. 2017)
 										</li>
 										<br>
-										<li class="fragment" data-fragment-index="4"> Midjourney v5 Guided Diffusion (2023)
+										<li class="fragment"
+										data-fragment-index="4"> Midjourney v5
+										Guided <b class="alert">Diffusion</b> (2023)
 										</li>
 									</ul>
 								</div>
@@ -722,11 +725,57 @@
 
 				<p class="fragment">$\Longrightarrow$ We can see which parts of the image are well constrained by data, and which regions are <b class="alert">uncertain</b>.</p>
 				<!-- <br> -->
-				<p class="fragment"><b class="alert">First time</b> sampling the full posterior of 
-				high dimensional
-				inverse problems in 2020! <br>(Remy et al. 2020, Ramzi et al. 2020)</p>
 			</section>
 
+			<section>
+				<!-- <section> -->
+					<h3 class="slide-title"> Takeaways</h3>
+					
+					<ul>
+						<li class="fragment">
+							<p><b class="alert">First time</b> sampling the full posterior of 
+								high dimensional
+								inverse problems in 2020! <br>(Remy et al. 2020, Ramzi et al. 2020)</p>
+						<!-- <br> -->
+						<div><video data-autoplay loop="loop" data-src="assets/knee.mp4" type="video/mp4" style="width: 1000px;" />
+							</li>
+						<br>
+							<li class="fragment"> Hybrid physical/deep learning modeling:
+							<ul>
+								<li> Deep generative models can be used to provide <b class="alert">data driven (simulation based) priors</b>.
+								</li>
+								<br>
+								<li> <b class="alert">Explicit likelihood</b>, uses of all of our physical knowledge.<br>
+									$\Longrightarrow$ No need to re-train the
+									network for different kinds of measurement!
+								</li>
+							</ul>
+						</li>
+						<br>
+						<li class="fragment">
+							Demonstrated the efficiency of annealing Hamiltoninan Monte Carlo for high dimensional posterior sampling.
+						</li>
+						<br>
+						<!-- <li class="fragment"> Neural Score Estimation is a <b class="alert">scalable approach</b> to learn a prior score.
+						</li>
+						<br>
+						<li class="fragment"> Knowledge of the posterior score is all we need for Bayesian inference aka uncertain quantification.
+						</li>
+						<br> -->
+						<li class="fragment">Applies to a large class of inverse
+						problems, astrophysical and beyond <br>
+						<a href="https://arxiv.org/abs/2011.08271"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2011.08271-B31B1B.svg" class="plain" style="height:35px;" /></a>
+					<a href="https://arxiv.org/abs/2011.08698" style='vertical-align:middle; display:inline;'><img
+						src="https://img.shields.io/badge/stat.ML-arXiv%3A2011.08698-B31B1B.svg" class="plain" style="height:35px;" /></a>
+			
+					<br>
+					<!-- <p class="fragment"> Thank you!</p> -->
+					<br>
+					<br>
+			
+				<!-- </section> -->
+			</section>
+				
 			</section>
 
 			<section>
@@ -824,13 +873,8 @@
 									Astronomy & Astrophysics, January 2022
 								</p>
 							
-							<a href="https://arxiv.org/abs/2210.16243"
-											><img
-												src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2210.16243-B31B1B.svg"
-												class="plain"
-												style="height: 35px; vertical-align: middle"
-										/></a>
-		<br>
+								<a href="https://arxiv.org/abs/2201.05561"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2201.05561-B31B1B.svg" class="plain" style="height:35px;" /></a> 
+							<br>
 										<!-- <font size=4>B. Remy, Z. Ramzi, F. Lanusse, J. Liu, J.-L.
 										Starck </font><br>
 										<a href="https://arxiv.org/abs/2011.08271"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2011.08271-B31B1B.svg" class="plain" style="height:25px;" /></a>
@@ -1581,7 +1625,7 @@
 					</div>
 					
 						<div class="fragment">
-							The <b class="alert">ellipticity</b> is not necessarily a well defined quantity for arbitrary galaxyies,<br>
+							The <b class="alert">ellipticity</b> is not necessarily a well defined quantity for arbitrary galaxies,<br>
 							<b class="alert">leading to bias</b> in cosmic shear
 							estimation... Requires post measurement calibration,
 							<br>
