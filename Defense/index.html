@@ -95,7 +95,7 @@
 
 			<section data-background="#000000">
 			<!-- <section> -->
-				<h3>The
+				<h3 >The
 					$\Lambda$CDM cosmological model of the Universe</h3>
 				<!-- <h3 class='slide-title' style="position:absolute;top:0;"> the
 				$\Lambda$CDM cosmological model of the Universe </h3> -->
@@ -103,29 +103,44 @@
 				style="position:absolute;top:0;" data-fragment-index="0"> the -->
 					<!-- $\Lambda$CDM cosmological model of the Universe </h3>
 					-->
-					<div class="fragment" style="position:absolute; top:-40px" data-fragment-index="1">
-						<img class="plain" data-src="assets/WMAP_timeline_large.jpg"
+					<div class="fragment current-visible" style="position:absolute; top:-40px" data-fragment-index="1">
+						<img
+						data-src="assets/WMAP_timeline_large.jpg" style="width:3500px"
+						
 						/>
 					</div>
+				
 				<br> <br>
 
-				<div class="fragment" style="position:absolute; top:200px;
-				left:700px" data-fragment-index="2">
-					<img class="plain" data-src="assets/pie_chart.png" style="width: 400px" />
+				<div class="fragment current-visible" style="position:absolute; top:100px;
+				left:300px" data-fragment-index="2">
+					<img class="plain" data-src="assets/pie_chart.png" style="width: 800px" />
 				</div>
 
 				<div class="fragment" data-fragment-index="3">
 					<!-- <div class="col" style="flex: 0 0 40em;">
-					</div> -->
-					<div style="position:relative; left:450px; top:-50px" class="col">
-						<img class="plain" data-src="assets/euclid.jpg" style="width: 150px" />
+					</div> --> 
+					<div class="container ">
+					<!-- <div style="position:relative; left:450px; top:-50px" class="col"> -->
+						<div class="col">
+						<img class="plain" data-src="assets/euclid.jpg"
+						style="width: 300px" />
 						<br>
+						Euclid
+						</div>
+						<div class="col">
 						<img class="plain" data-src="assets/rubin.jpg"
-						style="width: 150px" />
-						<br>
-						<img class="plain" data-src="assets/roman.jpg" style="width: 150px" />
+						style="width: 300px" />
+						<br> Vera C. Rubin <br> Observatory
 					</div>
-				</div>
+					<div class="col">
+						<img class="plain" data-src="assets/roman.jpg" style="width: 300px" />
+					<br> Nancy Grace Roman <br> Space Telescope
+					</div>
+					
+					</div>
+				<!-- </div> -->
+			</div>
 			</section>
 
 			
@@ -611,7 +626,7 @@
 				<br>
 
 				<div class="fragment">
-					We need to design an efficient sampler. $~~~~\kappa_1, \kappa_2, ..., \kappa_N \sim p(\kappa|  \gamma)$
+					We need to design an efficient sampler. $~~~~x_1, x_2, ..., x_N \sim p(x|  y)$
 				</div>
 				<br>
 
@@ -620,12 +635,12 @@
 					<ul>
 						<!-- <li class="fragment"><b class="alert">Metropolis-Hastings:</b> correction step, acceptance probability (garanties to sample the right posterior distribution)</li> -->
 						<br>
-						<li><b class="alert">Hamiltonial Monte Carlo</b> proposal for a step size $\alpha$:
+						<li><b class="alert">Hamiltonian Monte Carlo</b> proposal for a step size $\alpha$:
 						</li>
 				</div>
-						$$\begin{array}{lcl} \boldsymbol{m}_{t+\frac{\alpha}{2}} & = & \boldsymbol{m}_t + \dfrac{\alpha}{2} \color{orange}{\nabla_{\kappa}\log p(\boldsymbol{\kappa}_t|\gamma)} \\ 
-						\boldsymbol{\kappa}_{t+\alpha} & = & \boldsymbol{\kappa}_t + \alpha \boldsymbol{\mathrm{M}}^{-1} \boldsymbol{\kappa}_{t+\frac{\alpha}{2}} \\
- 						\boldsymbol{m}_{t+\alpha} & = & \boldsymbol{m}_{t+\frac{\alpha}{2}} + \dfrac{\alpha}{2} \color{orange}{\nabla_\kappa \log p (\boldsymbol{\kappa}_{t+\alpha}|\gamma)}
+						$$\begin{array}{lcl} \boldsymbol{m}_{t+\frac{\alpha}{2}} & = & \boldsymbol{m}_t + \dfrac{\alpha}{2} \color{orange}{\nabla_{x}\log p(\boldsymbol{x}_t|y)} \\ 
+						\boldsymbol{x}_{t+\alpha} & = & \boldsymbol{x}_t + \alpha \boldsymbol{\mathrm{M}}^{-1} \boldsymbol{x}_{t+\frac{\alpha}{2}} \\
+ 						\boldsymbol{m}_{t+\alpha} & = & \boldsymbol{m}_{t+\frac{\alpha}{2}} + \dfrac{\alpha}{2} \color{orange}{\nabla_x \log p (\boldsymbol{x}_{t+\alpha}|y)}
 						\end{array}$$
  					
 <!-- 						
@@ -2967,7 +2982,7 @@
 	<br>
 	<font color="6e93d6">
 	<span >
-		&nbsp $\longrightarrow$ Open-source and reproducable code (github) &nbsp
+		&nbsp $\longrightarrow$ Open-source and reproducable (github) &nbsp
 	</span>
 	<br>
 	<span>
