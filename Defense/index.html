@@ -174,7 +174,7 @@
 					<center>
 	
 						<br><br><br>
-						<div class="fragment" data-fragment-index="8"
+						<div class="fragment" data-fragment-index="9"
 						style="position:absolute; top:110px; left:-10px; width:520px;height:160px;
 						border-radius:20px; background-color:rgba(228, 240, 160,
 						0.1);">
@@ -213,15 +213,15 @@
 						<!-- <div align="left"><font color="6e93d6">Outline of contributions</font>
 						</div> -->
 	
-						<div class="fragment" align="left" data-fragment-index="6">
+						<div class="fragment" align="left" data-fragment-index="7">
 							
 							&nbsp How to measure the <b class="alert">lensing
 							effect</b> on these<br>
 							&nbsp galaxies?
 							<br>
-							<span class="fragment"data-fragment-index="7">
+							<span class="fragment"data-fragment-index="8">
 							<font color="6e93d6">
-							$\longrightarrow$ New cosmic probabilistic shear
+							$\longrightarrow$ New probabilistic cosmic shear
 							estimator <br>
 							solving model bias</font>
 						</span>
@@ -234,10 +234,10 @@
 							<div class="plain current-visible" style="position:absolute;top:0;left:50px;width:700px;" data-fragment-index="0">
 								<img data-src='assets/HSTCOSMOScontours.png' style="width:800px;" />
 							</div>
-							<div class="fragment" style="position:absolute;top:0;left:50px;width:700px;" data-fragment-index="4">
+							<div class="fragment" style="position:absolute;top:0;left:50px;width:700px;" data-fragment-index="6">
 								<img data-src='assets/MassMapHSTCOSMOScontours.png' style="width:800px;" />
 							</div>
-							<div class="fragment" style="position:absolute;top:0;left:50px;width:700px;" data-fragment-index="6">
+							<div class="fragment" style="position:absolute;top:0;left:50px;width:700px;" data-fragment-index="7">
 								<img data-src='assets/HSTCOSMOScontours.png' style="width:800px;" />
 							</div>
 						</div>
@@ -336,9 +336,11 @@
 							<div class="col">
 								<div class="fragment fade-up">
 									We can estimate for instance the <b class="alert">Maximum A Posteriori</b> solution:
+									<!-- <br>
 									<br>
-									$$\hat{x} = \arg\max\limits_x \ \log p(y \ | \ x) + \log p(x)$$
-									$\hat x = \arg\max\limits_x \ - \frac{1}{2} \parallel y - f(x) \parallel_{\mathbf{\Sigma}}^2 + \log p(x)$
+									<br> -->
+									<!-- $$\hat{x} = \arg\max\limits_x \ \log p(y \ | \ x) + \log p(x)$$
+									$\hat x = \arg\max\limits_x \ - \frac{1}{2} \parallel y - f(x) \parallel_{\mathbf{\Sigma}}^2 + \log p(x)$ -->
 								</div>
 							</div>
 							<div class="col">
@@ -567,10 +569,10 @@
 
 
 			<section>
-				<h3 class="slide-title">Neural Score Estimation by Denoising Score Matching</h3>
+				<h3 class="slide-title">Neural Score Estimation by <b class="alert">Denoising Score Matching</b></h3>
 
-				<ul>
-					<li><b>Denoising Score Matching</b>: An optimal <b class="alert">Gaussian denoiser learns the score</b> of a given distribution.
+				<!-- <ul> -->
+					<!-- <li><b>Denoising Score Matching</b>: An optimal <b class="alert">Gaussian denoiser learns the score</b> of a given distribution. -->
 						<ul>
 							<li class="fragment fade-up" data-fragment-index="1"> If $x \sim \mathbb{P}$ is corrupted by additional Gaussian noise $u \in \mathcal{N}(0, \sigma^2)$ to yield
 								<span class="fragment"data-fragment-index="2">
@@ -583,11 +585,15 @@
 									r_\theta(x^\prime, \sigma) \parallel_2^2$$
 							</li>
 							<li class="fragment fade-up" data-fragment-index="4"> The optimal denoiser $r_{\theta^\star}$ verifies:
-								$$\boxed{\boldsymbol{r}_{\theta^\star}(\boldsymbol{x}', \sigma) = \boldsymbol{x}' + \sigma^2 \color{orange}{\nabla_{\boldsymbol{x}} \log p_{\sigma^2}(\boldsymbol{x}')}}$$
+							$$ \boxed{\color{orange}{\nabla_{\boldsymbol{x}} \log
+							p_{\sigma^2}(\boldsymbol{x}')} = \dfrac{
+							\boldsymbol{r}_{\theta^\star}(\boldsymbol{x}',
+							\sigma) - \boldsymbol{x}'}{\sigma^2}
+							}$$
 							</li>
 						</ul>
-					</li>
-				</ul>
+					<!-- </li>
+				</ul> -->
 
 				<!-- <div class="fragment fade-up"> -->
 					<div class="container">
@@ -845,7 +851,7 @@
 							&nbsp galaxies?
 							<br>
 							<font color="6e93d6">
-							$\longrightarrow$ New cosmic probabilistic shear
+							$\longrightarrow$ New probabilistic cosmic shear
 							estimator <br>
 							solving model bias</font>
 						</div>
@@ -1486,7 +1492,7 @@
 								&nbsp galaxies?
 								<br>
 								<font color="6e93d6">
-								$\longrightarrow$ New cosmic probabilistic shear
+								$\longrightarrow$ New probabilistic cosmic shear
 								estimator <br>
 								solving model bias</font>
 							</div>
@@ -1608,6 +1614,7 @@
 
 							<div class="col" align="left">
 								<!-- <br><br> -->
+								<div class="plain fragment current-visible" style="position:absolute">
 								Model fitting <br><br>
 								
 								$\begin{align}
@@ -1615,10 +1622,10 @@
 
 								\color{#B1CB11}{(e_1, e_2)} &\color{#B1CB11}{=} \color{#B1CB11}{f(\Sigma)}
 								\end{align}$
-
-								<br><br>
-
-								<div class="fragment">
+							</div>
+								<!-- <br><br> -->
+							
+								<div class="fragment" sytle="position:relative">
 								What about real galaxies? <br>
 								
 								<div class="container">
@@ -1631,9 +1638,18 @@
 										<div align="left" style="margin-left: -150px">
 										<img data-src="assets/real_gal-inv.png" style='height:300px;'></img>
 									</div>
+									
 									</div>
+
+									<br>
+								
 								</div>
+
 								<br>
+								<span class="fragment">
+								$\hat \gamma = c +
+								(1+\color{orange}{m})\gamma_\text{true}, \quad |m|<10^{-3}$
+							</span>
 							</div>
 							
 						</div>
