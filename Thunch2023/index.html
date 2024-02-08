@@ -41,7 +41,7 @@
 						<!-- <br> -->
 						<h2>Benjamin Remy</h2>
 						<p style="color:#6e93d6"><em>Thunch Talk<br> at
-						the Departement of Astrophysical Sciences, Princeton University</em>  </p>
+						the Department of Astrophysical Sciences, Princeton University</em>  </p>
 					<br>
 					<p>Ph.D. under the supervision of Jean-Luc Starck and François
 						Lanusse</p>
@@ -1019,6 +1019,51 @@
 							<br>
 							<b class="alert">degrading data</b>
 						</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Calibrating the multiplicative bias</h3>
+					<div class="container">
+						<div class="col">
+							$\hat \gamma = c +
+							(1+\color{orange}{m})\gamma_\text{true}, \quad
+							|m|<10^{-3}$
+							
+							<br>
+							<br>
+							<br>
+
+							<div align="left">
+							Metacalibration: Taylor expansion, assuming $\gamma \ll 1$
+							<br><br>
+							$e = e|_{\gamma=0} + \underset{R = 1 +
+							m}{\underbrace{\dfrac{\partial e}{\partial
+							\gamma}\Big|_{\gamma = 0}}} \gamma + \mathcal{O}(\gamma^2)$
+							
+							<br><br>
+							
+							Response matrix by finite differentiation:
+							<br><br>
+							$R_{ij} = \dfrac{e^+_i - e^+_i}{\Delta \gamma_{j}}$
+
+							<br><br>
+							<b class="alert">Requires to add anticorrelated noise to the data,
+							due to artificial shear.</b>
+						</div>
+						</div>
+
+						<div class=" fragment col" >
+							$\gamma \ll 1$ no longer true close to a cluster
+							<img
+							data-src="assets/gravitation_lensing_cluster.jpg"'></img>
+							Requires to compute $\dfrac{\partial^2 e}{\partial
+								\gamma^2}\Big|_{\gamma = 0}$, $\dfrac{\partial^3 e}{\partial
+									\gamma^3}\Big|_{\gamma = 0}$, ...
+						</div>
+					</div>
+					<div class="fragment">
+					Let's do <b class="alert">forward modeling</b> instead
+				</div>
 				</section>
 				
 				<section>
