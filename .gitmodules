@@ -38,5 +38,5 @@
 	path = Defense/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
 [submodule "Thunch2023/reveal.js"]
-	path = Thunch2023/reveal.js
+	path = Thunch2024/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
