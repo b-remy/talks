@@ -1,42 +1,1673 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Template Presentation</title>
-		<meta name="description" content="A basic template to start a new talk">
-		<meta name="author" content="YOUR NAME HERE">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="reveal.js/dist/reset.css">
-		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
-		<link rel="stylesheet" href="reveal.js/dist/theme/darkenergy.css">
+	<title>ISSC talk 2024</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<meta name="description" content="April 2024">
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="reveal.js/dist/theme/darkenergy.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<!-- Colors
+#B1CB11 - yellow-green
+# 6e93d6 - blue
+-->
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background-image="assets/1-Perseus-cluster_1oEasJg.jpg">
+			<!-- <section> -->
+					<!-- </section> data-background-image="asseots/lsst_stills_0009_crop.jpg"> -->
+			
+				<div class="container">
+					<div class="title" style="position:relative; left:200px; border-radius: 20px; background-color:rgba(0, 0, 0, .6);">
+						<br>
+						<h2>Probabilistic cosmic shear inference <br> without calibration
+							<!-- Generative modeling for   <br> weak Lensing inverse problems -->
+						<!-- <br> for inference with corrupted data -->
+					</h2>
+						<!-- <h2>Joint Bayesian inference of galaxy morphologies and cosmic shear</h2> -->
+						<center><hr size="100" width="600"></center>
+						<!-- <center><hr size="100" width="400"></center> -->
+						<center><hr size="100" width="900", style="opacity:0%"></center>
+						<!-- <br> -->
+						<h2>Benjamin Remy</h2>
+						Princeton University
+						<br>
+						<p style="color:#6e93d6"><em>ISSC collaboration meeting,
+						Cambridge, MA</p></em>  </p>
+					<!-- <br> -->
+					<p>Ph.D. under the supervision of Jean-Luc Starck and François
+						Lanusse</p>
+					</div>
+				</div>
+			
+				
+				<!-- <hr> -->
+				<!-- <div>
+					<a href="https://arxiv.org/abs/2201.05561"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2201.05561-B31B1B.svg" class="plain" style="height:25px;" /></a>
+					<a href="https://arxiv.org/abs/2011.08698"><img src="https://img.shields.io/badge/stat.ML-arXiv%3A2011.08698-B31B1B.svg" class="plain" style="height:25px;" /></a>
+				</div> -->
+				<!-- <div style="position:relative; left:0px; border-radius: 20px; background-color:rgba(0, 0, 0, .6)">
+				<p>under the supervision of Jean-Luc Starck and François
+				Lanusse</p>
+			
+				<p><small>CosmoStat, CEA Paris-Saclay, IRFU/DAp-AIM <br>
+					Université Paris Saclay, ED Astronomie et Astrophysique d’Ile-de-France</small></p>
+					
+				</div> -->
+				<br>
+				<div class="container" style="width: 1000px; position:relative; left:150px">
+					<div class="col">
+						<br>
+					    <img src="assets/CosmoStatDarkBK.png" class="plain" height="30"></img>
+					</div>
+
+					<div class="col">
+						<br>
+						<img src="assets/cea.png" class="plain" height="100"></img>
+					</div>
+
+					<div class="col">
+						<br>
+						<img src="assets/Logotype_UPSaclay_BLANC.png" class="plain" height="100"></img>
+					</div>
+
+					<div class="col">
+						<br>
+						<img src="assets/logo_cnes_transparent.png" class="plain" height="100"></img>
+					</div>
+				</div>
+				<!-- <div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);">  -->
+				<div class="container">
+					<div style="position:relative; left:200px; width:900px; border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);">
+					slides at <a style="color:#6e93d6" href="https://b-remy.github.io/talks/ISSC2024">b-remy.github.io/talks/ISSC2024</a> 
+				</div>
+				<!-- </div> -->
+
+				
+			</section>
+
+			<section data-background-image="assets/Euclid-1-Perseus-cluster_1oEasJg.jpg">
+				<div style="position:relative; top:750px; float:right; font-size: 15px">
+					ESA/Euclid/Euclid Consortium/NASA, image processing by J.-C. Cuillandre (CEA Paris-Saclay), G. Anselmi, CC BY-SA 3.0 IGO
+				</div>
+			</section>
+
+			<section>
+
+					<section>
+						<h3 class="slide-title"> Weak gravitational lensing</h3>
+						<div class="fragment fade-up">
+							<img class="plain" data-src="assets/great.jpg" />
+	
+						<div class="block fragment">
+							<div class="block-title">
+								Galaxy shapes as estimators for gravitational shear
+							</div>
+							<div class="block-content">
+								$$ e = \gamma + e_i \qquad \mbox{ with } \qquad
+								e_i \sim \mathcal{N}(0, I)$$
+								
+								<!-- $$\left< e_i \right> = 0 \qquad \left< e \right> = \gamma$$ -->
+
+								<!-- $$ $$ -->
+								<ul>
+									<li> Standard methods are trying the measure the <b class="alert"> ellipticity $e$</b> of
+										galaxies as an estimator for the <b class="alert">gravitational shear $\gamma$ </b>
+									</li>
+								</ul>
+							</div>
+						</div>
+	
+						</div>
+					</section>
+
+				
+			</section>
+
+				<section>
+
+
+				<section>
+					<h3 class="slide-title">Measuring galaxies ellipticity</h3>
+					
+					<br>
+					<br>
+					
+					<div class="container">
+							
+						<div class="col" >
+							<img src="assets/gaussian_fit_no_e.png" class="plain" width="500px"></img>
+						</div>
+
+						<div class="col fragment fade-up" align="left">
+							<!-- <div style="position:relative; width:500; margin:0 auto;"> -->
+
+							Moments-based method <br><br>
+							
+							$\begin{align}
+								F &=  \sum G(x, y)I(x, y)\\
+								\sigma^2 &= \sum G(x, y)^2 \sigma^2(I(x, y)) \\
+								T &= \sum G(x, y)I(x, y)(x^2 + y^2) \\
+								M_1 &= \sum G(x, y)I(x, y)(x^2 - y^2) \\
+								M_2 &= \sum G(x, y)I(x, y)2xy \\
+								\color{#B1CB11}{e_1} &\color{#B1CB11}{=} \color{#B1CB11}{M_1 / T}\\
+								\color{#B1CB11}{e_2} &\color{#B1CB11}{=} \color{#B1CB11}{M_2 / T} \\
+								S/N &= F / \sigma(F) \\
+							\end{align}$
+							<br>
+
+						</div>
+					</div>
+					
+					
+
+						<!-- <div class="fragment" style="position:relative; width:1000px; height:100px; margin:0 auto;">
+							<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+							The <b class="alert">ellipticity</b> is not necessarily a well defined quantity for arbitrary galaxyies,<br>leading to bias in cosmic shear estimation...
+						</div> -->
+				</section>
+
+				<section>
+					<h3 class="slide-title">Measuring galaxies ellipticity</h3>
+					
+						<div class="container">
+							<div class="col" >
+								<img src="assets/model_fitting.png" class="plain" width="500px"></img>
+							</div>
+
+							<div class="col" align="left">
+								<!-- <br><br> -->
+								<div class="plain fragment current-visible" style="position:absolute">
+								Model fitting <br><br>
+								
+								$\begin{align}
+								I(x, y) &= F \cdot \mathcal{N}\left( 0, \color{#B1CB11}{\Sigma} \right)\\
+
+								\color{#B1CB11}{(e_1, e_2)} &\color{#B1CB11}{=} \color{#B1CB11}{f(\Sigma)}
+								\end{align}$
+							</div>
+								<!-- <br><br> -->
+							
+								<div class="fragment" sytle="position:relative">
+								What about real galaxies? <br>
+								
+								<div class="container">
+									<div class="col">
+										<div align="left" style="margin-left: 0px">
+										<img data-src="assets/real_gal-inv-small.png" style='width:500px;'></img>
+									</div>
+									</div>
+									<div class="col fragment">
+										<div align="left" style="margin-left: -150px">
+										<img data-src="assets/real_gal-inv.png" style='height:300px;'></img>
+									</div>
+									
+									</div>
+
+									<br>
+								
+								</div>
+
+								<br>
+								<span class="fragment">
+								$\hat \gamma = c +
+								(1+\color{orange}{m})\gamma_\text{true}, \quad |m|<10^{-3}$
+							</span>
+							</div>
+							
+						</div>
+					</div>
+					
+						<div class="fragment">
+							The <b class="alert">ellipticity</b> is not necessarily a well defined quantity for arbitrary galaxies,<br>
+							<b class="alert">leading to bias</b> in cosmic shear
+							estimation... Requires post measurement calibration,
+							<br>
+							<b class="alert">degrading data</b>
+						</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Calibrating the multiplicative bias</h3>
+					<div class="container">
+						<div class="col">
+							$\hat \gamma = c +
+							(1+\color{orange}{m})\gamma_\text{true}, \quad
+							|m|<10^{-3}$
+							
+							<br>
+							<br>
+							<br>
+
+							<div align="left">
+							Metacalibration: Taylor expansion, assuming $\gamma \ll 1$
+							<br><br>
+							$e = e|_{\gamma=0} + \underset{R = 1 +
+							m}{\underbrace{\dfrac{\partial e}{\partial
+							\gamma}\Big|_{\gamma = 0}}} \gamma + \mathcal{O}(\gamma^2)$
+							
+							<br><br>
+							
+							Response matrix by finite differentiation:
+							<br><br>
+							$R_{ij} = \dfrac{e^+_i - e^+_i}{\Delta \gamma_{j}}$
+
+							<br><br>
+							<b class="alert">Requires to add anticorrelated noise to the data,
+							due to artificial shear.</b>
+						</div>
+						</div>
+
+						<div class=" fragment col" >
+							$\gamma \ll 1$ no longer true close to a cluster
+							<img
+							data-src="assets/gravitation_lensing_cluster.jpg"'></img>
+							Requires to compute $\dfrac{\partial^2 e}{\partial
+								\gamma^2}\Big|_{\gamma = 0}$, $\dfrac{\partial^3 e}{\partial
+									\gamma^3}\Big|_{\gamma = 0}$, ...
+						</div>
+					</div>
+					<div class="fragment">
+					Let's do <b class="alert">forward modeling</b> instead
+				</div>
+				</section>
+				
+				<section>
+					<h3 class="slide-title">
+						Let us build a probabilistic model of galaxy images
+
+					</h3>
+					<!-- <div class="container">
+						<div class="col">
+							<div style="float: right; font-size: 20px">
+								<b>Lanusse</b> et al. (2020)
+								<a href="https://arxiv.org/abs/2008.03833"
+									><img
+										src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2008.03833-B31B1B.svg"
+										class="plain"
+										style="height: 25px; vertical-align: middle"
+								/></a>
+							</div>
+						</div>
+					</div> -->
+					<div class="container">
+						<div class="col">
+							<img
+								class="plain fragment"
+								data-src="assets/rand_z_square.png"
+								style="height: 150px"
+								data-fragment-index="4"
+							/>
+						</div>
+						<div class="col">
+							<img
+								class="plain fragment"
+								data-src="assets/cosmos_gal_shear.png"
+								style="width: 200px"
+								data-fragment-index="3"
+							/>
+						</div>
+						<div class="col">
+							<img
+								class="plain fragment"
+								data-src="assets/cosmos_gal.png"
+								style="width: 200px"
+								data-fragment-index="2"
+							/>
+						</div>
+
+						<div class="col">
+							<img
+								class="plain fragment"
+								data-src="assets/cosmos_gal_psf.png"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     osmos_gal_psf.png"
+								style="width: 200px"
+								data-fragment-index="1"
+							/>
+						</div>
+
+						<div class="col">
+							<img
+								class="plain fragment"
+								data-src="assets/cosmos_gal_ground.png"
+								style="width: 200px"
+								data-fragment-index="0"
+							/>
+						</div>
+					</div>
+
+					<div
+						class="container"
+						style="
+							position: relative;
+							width: 1000px;
+							height: 50px;
+							margin: 0 auto;
+						"
+					>
+						<div class="col fragment" data-fragment-index="4">
+							<font size="10"> $\longrightarrow$ </font> <br />
+							$g_\theta$
+						</div>
+						<div class="col fragment" data-fragment-index="3">
+							<font size="10"> $\longrightarrow$ </font> <br />
+							shear $\gamma$
+						</div>
+						<div class="col fragment" data-fragment-index="2">
+							<font size="10"> $\longrightarrow$ </font> <br />
+							PSF
+						</div>
+						<div class="col fragment" data-fragment-index="1">
+							<font size="10"> $\longrightarrow$ </font> <br />
+							Noise
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="col">
+							<div
+								style="
+									position: relative;
+									width: 400px;
+									height: 300px;
+									margin: 0 auto;
+								"
+							>
+								<img
+									data-src="assets/pgm_x.png"
+									class="plain fragment current-visible"
+									style="position: absolute; top: 0; left: 0; height: 300px"
+									data-fragment-index="0"
+								/>
+								<img
+									data-src="assets/pgm_xzs.png"
+									class="plain fragment current-visible"
+									style="position: absolute; top: 0; left: 0; height: 300px"
+									data-fragment-index="1"
+								/>
+								<img
+									data-src="assets/pgm_xzsp.png"
+									class="plain fragment current-visible"
+									style="position: absolute; top: 0; left: 0; height: 350px"
+									data-fragment-index="2"
+								/>
+								<img
+									data-src="assets/pgm_xzsp_shear.png"
+									class="plain fragment current-visible"
+									style="position: absolute; top: 0; left: 0; height: 350px"
+									data-fragment-index="3"
+								/>
+								<img
+									data-src="assets/pgm_full.png"
+									class="plain fragment"
+									style="position: absolute; top: 0; left: 0; height: 300px"
+									data-fragment-index="4"
+								/>
+							</div>
+						</div>
+						<div class="col">
+							<div class="block fragment" data-fragment-index="0">
+								<div class="block-title">Probabilistic model</div>
+								<div class="block-content">
+									<div
+										style="
+											position: relative;
+											width: 400px;
+											height: 100px;
+											margin: 0 auto;
+										"
+									>
+										<div
+											class="plain fragment current-visible"
+											style="
+												position: absolute;
+												top: 0;
+												left: 0;
+												width: 400px;
+											"
+											data-fragment-index="0"
+										>
+											$$ x \sim ? $$
+										</div>
+										<div
+											class="plain fragment current-visible"
+											style="
+												position: absolute;
+												top: 0;
+												left: 0;
+												width: 400px;
+											"
+											data-fragment-index="1"
+										>
+											$$ x \sim \mathcal{N}(z, \Sigma) \quad z \sim ? $$<br />latent
+											$z$ is a denoised galaxy image <br>
+										</div>
+										<div
+											class="plain fragment current-visible"
+											style="
+												position: absolute;
+												top: 0;
+												left: 0;
+												width: 400px;
+											"
+											data-fragment-index="2"
+										>
+										$$ x \sim \mathcal{N}(\Pi \ast z, \Sigma)
+										\quad z \sim ? $$<br />latent $z$ is a deconvolved,
+										and denoised galaxy image
+										</div>
+										<div
+											class="plain fragment current-visible"
+											style="
+												position: absolute;
+												top: 0;
+												left: 0;
+												width: 450px;
+											"
+											data-fragment-index="3"
+										>
+										$\begin{align}
+										x \sim \mathcal{N}(\Pi \ast (z \otimes \gamma), \Sigma) \quad &  z \sim ? \\
+										 & \gamma \sim \mathcal{N}(0, .05)
+										\end{align}$
+
+										<br />latent $z$ is a unsheared deconvolved,
+										and denoised galaxy image
+										</div>
+										<div
+											class="plain fragment"
+											style="
+												position: absolute;
+												top: 0;
+												left: 0;
+												width: 500px;
+											"
+											data-fragment-index="4"
+										>
+										$\begin{align}
+										x \sim \mathcal{N}(\Pi \ast
+											(g_\theta(z) \otimes \gamma), \Sigma) \quad & z \sim \mathcal{N}(0,
+											\mathbf{I}) \\
+										& \gamma \sim \mathcal{N}(0, .05)
+										\end{align}$
+
+											<!-- $$ x \sim \mathcal{N}(\Pi \ast
+											(g_\theta(z) \otimes \gamma), \Sigma) \quad z \sim \mathcal{N}(0,
+											\mathbf{I}) $$ <br />latent $z$ are morphological parameters<br /> -->
+											<br />latent $z$ are morphological parameters<br />
+											<b class="alert">
+												$\theta$ are global parameters of the model</b
+											>
+										</div>
+									</div>
+									<br />
+									<br />
+									<br />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="fragment">
+						$\Longrightarrow$
+						<b class="alert">
+							Decouples the morphology model from the observing conditions</b
+						>.
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title">Bayesian modeling of cosmic shear</h3>
+					<div align="left">
+					We aim to model the posterior distribution $p(\gamma|\mathcal{D})$ <br><br>
+
+					<div class="fragment">
+					$\begin{align}
+					p(\gamma|\mathcal{D}) &= \int p(\gamma, z, \Pi|\mathcal{D}) ~dz~d\Pi \\
+					\end{align}$
+				</div>
+				<div class="fragment">
+					$\begin{align}
+					~~~~~~~~~~~&= \int \color{#B1CB11}{\underbrace{p(\mathcal{D}|\gamma, z, \Pi)}_{\text{likelihood}}} \underbrace{p(\gamma)p(z)p(\Pi)}_{\text{priors}} ~dz~d\Pi
+					\end{align}$
+				</div>
+					<br>
+					
+					<div class="fragment">
+					The likelihood $\color{#B1CB11}{p(\mathcal{D}|\gamma, z, \Pi)}$ is naturally built from the forward model <br>
+						<div align="center">
+					<img class="plain" style="height:300px" data-src="assets/great.jpg" />
+				</div>
+				</div>
+				</div>
+
+				</section>
+
+				<section>
+					<h3 class="slide-title">Joint inference using a parametric model for the morphology</h3>
+					<div align="left">
+					Let's assume that $g(z)$ is a <b class="alert">sersic model</b>, i.e. $z = \{n, r_\text{hlr}, F, e_1, e_2, s_x, s_y\}$ and 
+					$$g(z) = F \times I_0 \exp \left( -b_n \left[\left( \frac{r}{r_\text{hlr}}\right)^{\frac{1}{n}} -1\right] \right)$$
+					
+					<div class="fragment">
+						The joint inference of $p(z, \gamma | \mathcal{D})$ leads to a <b class="alert">biased posterior</b>...
+					
+						<div class="container">
+							<div class="col" align="center">
+								<img src="assets/shear_estimate_bias.png" class="plain" height="300"></img>
+								<br>
+								Marginal shear posterior $p(\gamma|\mathcal{D})$
+							</div>
+
+							<div class="col fragment">
+								<img src="assets/sersic_fit.png" class="plain" height="300"></img>
+								<br>
+								Maximum a posteriori fit and residuals
+							</div>
+						</div>
+					</div>
+
+					<div class="fragment" align="center"> <br>
+						...due to model misspecification <b class="fragment">$\longrightarrow$ <b class="alert">Let's learn a more flexible $g_\theta$</b></b>
+					</div>
+				</section>
+
+<!-- 
+				<section>
+					<h3 class="slide-title">Joint inference using a parametric model for the morphology</h3>
+				</section> -->
+
+				<section data-auto-animate style="height: 2100px; width:3500px">
+					<h3 class="slide-title">
+						Learning from corrupted data
+					</h3>
+					<!-- <h3 style="opacity: 0.3; font-size: 18px;">SLIDE 1</h2>
+					<h2 data-id="title" style="margin-top: 260px;">Animate Anything</h2> -->
+
+					<div style="position: absolute; top: 40px; left: 800px; font-size: 20px">Lanusse et al. 2020 <a href="https://arxiv.org/abs/2008.03833" style='vertical-align:middle; display:inline;'><img
+						src="https://img.shields.io/badge/astro--ph-arXiv%3A2008.03833-B31B1B.svg" class="plain" style="height:25px;" /></a>
+					</div>
+
+					<div data-id="111" style="position: absolute; top: 250px; left: 176px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 0; width: 200px"
+					/>
+
+					<div data-id="21" style="position: absolute; top: 370px; left: 210px; width: 100px; height: 200px; font-size: 80%;" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Inference network}$ </div>
+					<div data-id="22" style="position: absolute; top: 370px; left: 450px; width: 100px; height: 200px; font-size: 80%;" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Generator network}$ </div>
+					<div data-id="23" style="position: absolute; top: 100px; left: 250px; width: 100px; height: 200px; font-size: 80%;" > $q_\phi(z|x)$ </div>
+					<div data-id="24" style="position: absolute; top: 100px; left: 475px; width: 100px; height: 200px; font-size: 80%;" > $p_\theta(x|z)$ </div>
+
+					<div data-id="26" style="position: absolute; top: 190px; left: 355px; width: 100px; height: 200px; font-size: 50%;" > $z \sim q_\phi(z|x)$ </div>
+
+					<div data-id="1" style="background: white; position: absolute; top: 150px; left: 220px; width: 15px; height: 230px;"></div>
+					<div data-id="2" style="background: white; position: absolute; top: 150px; left: 260px; width: 15px; height: 230px;"></div>
+					<div data-id="3" style="background: white; position: absolute; top: 150px; left: 300px; width: 15px; height: 230px;"></div>
+					<div data-id="4" style="background: white; position: absolute; top: 150px; left: 340px; width: 15px; height: 230px;"></div>
+
+					<div data-id="11" style="position: absolute; top: 250px; left: 233px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="12" style="position: absolute; top: 250px; left: 273px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="13" style="position: absolute; top: 250px; left: 313px; width: 15px; height: 200px;">$\rightarrow$</div>
+					
+					<div data-id="14" style="position: absolute; top: 250px; left: 353px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="3" style="background: white; position: absolute; top:220px; left: 397px; width: 15px; height: 100px;"></div>
+
+					<div data-id="15" style="position: absolute; top: 250px; left: 410px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="5" style="background: white; position: absolute; top: 150px; left: 455px; width: 15px; height: 230px;"></div>
+					<div data-id="6" style="background: white; position: absolute; top: 150px; left: 495px; width: 15px; height: 230px;"></div>
+					<div data-id="7" style="background: white; position: absolute; top: 150px; left: 535px; width: 15px; height: 230px;"></div>
+					<div data-id="8" style="background: white; position: absolute; top: 150px; left: 575px; width: 15px; height: 230px;"></div>
+					
+					<div data-id="16" style="position: absolute; top: 250px; left: 468px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="17" style="position: absolute; top: 250px; left: 508px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="18" style="position: absolute; top: 250px; left: 548px; width: 15px; height: 200px;">$\rightarrow$</div>
+
+					<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="9" style="background: white; position: absolute; top: 150px; left: 631px; width: 15px; height: 0;"></div>
+
+					<img data-id="33"
+					data-src="assets/noisy_gal.png"
+					style="position: absolute; top: 145px; left: 605px; width: 200px"
+					/>
+
+					<div data-id="24" style="position: absolute; top: 150px; left: 650px; width: 100px; height: 200px; font-size: 80%;" > $x' \sim p_\theta(x|z)$ </div>
+
+				</section>
+
+
+				<section data-auto-animate style="height: 1000px; width:1390px">
+					<h3 class="slide-title">
+						Learning from corrupted data
+					</h3>
+
+					<div style="position: absolute; top: 40px; left: 800px; font-size: 20px">Lanusse et al. 2020 <a href="https://arxiv.org/abs/2008.03833" style='vertical-align:middle; display:inline;'><img
+						src="https://img.shields.io/badge/astro--ph-arXiv%3A2008.03833-B31B1B.svg" class="plain" style="height:25px;" /></a>
+					</div>
+
+					<div data-id="111" style="position: absolute; top: 250px; left: 176px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 0; width: 200px"
+					/>
+
+					<div data-id="21" style="position: absolute; top: 370px; left: 210px; width: 100px; height: 200px; font-size: 80%; opacity:0.3" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Inference network}$ </div>
+					<div data-id="22" style="position: absolute; top: 370px; left: 450px; width: 100px; height: 200px; font-size: 80%; opacity:0.3" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Generator network}$ </div>
+					<div data-id="23" style="position: absolute; top: 100px; left: 250px; width: 100px; height: 200px; font-size: 80%;" > $q_\phi(z|x)$ </div>
+					<div data-id="24" style="position: absolute; top: 100px; left: 475px; width: 100px; height: 200px; font-size: 80%;" > $p_\theta(x|z)$ </div>
+
+					<div data-id="26" style="position: absolute; top: 190px; left: 355px; width: 100px; height: 200px; font-size: 50%;" > $z \sim q_\phi(z|x)$ </div>
+
+					<div data-id="1" style="background: white; position: absolute; top: 150px; left: 220px; width: 15px; height: 230px;"></div>
+					<div data-id="2" style="background: white; position: absolute; top: 150px; left: 260px; width: 15px; height: 230px;"></div>
+					<div data-id="3" style="background: white; position: absolute; top: 150px; left: 300px; width: 15px; height: 230px;"></div>
+					<div data-id="4" style="background: white; position: absolute; top: 150px; left: 340px; width: 15px; height: 230px;"></div>
+
+					<div data-id="11" style="position: absolute; top: 250px; left: 233px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="12" style="position: absolute; top: 250px; left: 273px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="13" style="position: absolute; top: 250px; left: 313px; width: 15px; height: 200px;">$\rightarrow$</div>
+					
+					<div data-id="14" style="position: absolute; top: 250px; left: 353px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="3" style="background: white; position: absolute; top:220px; left: 397px; width: 15px; height: 100px;"></div>
+
+					<div data-id="15" style="position: absolute; top: 250px; left: 410px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="5" style="background: white; position: absolute; top: 150px; left: 455px; width: 15px; height: 230px;"></div>
+					<div data-id="6" style="background: white; position: absolute; top: 150px; left: 495px; width: 15px; height: 230px;"></div>
+					<div data-id="7" style="background: white; position: absolute; top: 150px; left: 535px; width: 15px; height: 230px;"></div>
+					<div data-id="8" style="background: white; position: absolute; top: 150px; left: 575px; width: 15px; height: 230px;"></div>
+					
+					<div data-id="16" style="position: absolute; top: 250px; left: 468px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="17" style="position: absolute; top: 250px; left: 508px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="18" style="position: absolute; top: 250px; left: 548px; width: 15px; height: 200px;">$\rightarrow$</div>
+
+					<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="9" style="background: #B1CB11; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
+					<div data-id="22" style="position: absolute; top: 400px; left: 590px; width: 100px; height: 200px; font-size: 80%;" > $g_\theta(z)$ </div>
+
+					<div data-id="99" style="background: #6495ED; position: absolute; top: 150px; left: 691px; width: 15px; height: 0px;"></div>
+
+					<div data-id="24" style="position: absolute; top: 150px; left: 770px; width: 100px; height: 200px; font-size: 80%;" > $x' \sim p_\theta(x|z)$ </div>
+
+					<img data-id="33"
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 726px; width: 200px"
+					/>
+
+				</section>
+
+
+				<!-- <section data-auto-animate style="height: 800px; width:900px"> -->
+					<section data-auto-animate style="height: 1000px; width:1300px">
+						<h3 class="slide-title">
+							Learning from corrupted data
+						</h3>
+
+						<div style="position: absolute; top: 40px; left: 800px; font-size: 20px">Lanusse et al. 2020 <a href="https://arxiv.org/abs/2008.03833" style='vertical-align:middle; display:inline;'><img
+							src="https://img.shields.io/badge/astro--ph-arXiv%3A2008.03833-B31B1B.svg" class="plain" style="height:25px;" /></a>
+						</div>
+
+					<div data-id="111" style="position: absolute; top: 250px; left: 176px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 0; width: 200px"
+					/>
+
+					<div data-id="21" style="position: absolute; top: 370px; left: 210px; width: 100px; height: 200px; font-size: 80%; opacity:0.3" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Inference network}$ </div>
+					<div data-id="22" style="position: absolute; top: 370px; left: 450px; width: 100px; height: 200px; font-size: 80%; opacity:0.3" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Generator network}$ </div>
+					<div data-id="23" style="position: absolute; top: 100px; left: 250px; width: 100px; height: 200px; font-size: 80%;" > $q_\phi(z|x)$ </div>
+					<div data-id="24" style="position: absolute; top: 100px; left: 475px; width: 100px; height: 200px; font-size: 80%;" > $p_\theta(x|z)$ </div>
+
+					<div data-id="26" style="position: absolute; top: 190px; left: 355px; width: 100px; height: 200px; font-size: 50%;" > $z \sim q_\phi(z|x)$ </div>
+
+					<div data-id="1" style="background: white; position: absolute; top: 150px; left: 220px; width: 15px; height: 230px;"></div>
+					<div data-id="2" style="background: white; position: absolute; top: 150px; left: 260px; width: 15px; height: 230px;"></div>
+					<div data-id="3" style="background: white; position: absolute; top: 150px; left: 300px; width: 15px; height: 230px;"></div>
+					<div data-id="4" style="background: white; position: absolute; top: 150px; left: 340px; width: 15px; height: 230px;"></div>
+
+					<div data-id="11" style="position: absolute; top: 250px; left: 233px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="12" style="position: absolute; top: 250px; left: 273px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="13" style="position: absolute; top: 250px; left: 313px; width: 15px; height: 200px;">$\rightarrow$</div>
+					
+					<div data-id="14" style="position: absolute; top: 250px; left: 353px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="3" style="background: white; position: absolute; top:220px; left: 397px; width: 15px; height: 100px;"></div>
+
+					<div data-id="15" style="position: absolute; top: 250px; left: 410px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="5" style="background: white; position: absolute; top: 150px; left: 455px; width: 15px; height: 230px;"></div>
+					<div data-id="6" style="background: white; position: absolute; top: 150px; left: 495px; width: 15px; height: 230px;"></div>
+					<div data-id="7" style="background: white; position: absolute; top: 150px; left: 535px; width: 15px; height: 230px;"></div>
+					<div data-id="8" style="background: white; position: absolute; top: 150px; left: 575px; width: 15px; height: 230px;"></div>
+					
+					<div data-id="16" style="position: absolute; top: 250px; left: 468px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="17" style="position: absolute; top: 250px; left: 508px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="18" style="position: absolute; top: 250px; left: 548px; width: 15px; height: 200px;">$\rightarrow$</div>
+
+					<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="9" style="background: #B1CB11; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
+					<div data-id="22" style="position: absolute; top: 400px; left: 590px; width: 100px; height: 200px; font-size: 80%;" > $g_\theta(z)$ </div>
+
+					<div data-id="119" style="position: absolute; top: 250px; left: 665px; width: 15px; height: 200px;">$\ast$</div>
+
+					<div data-id="99" style="background: #6495ED; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
+
+					<div data-id="27" style="position: absolute; top: 400px; left: 653px; width: 100px; height: 200px; font-size: 80%;" > $\Pi$ </div>
+
+					<div data-id="24" style="position: absolute; top: 150px; left: 770px; width: 100px; height: 200px; font-size: 80%;" > $x' \sim p_\theta(x|z, \Pi, \Sigma)$ </div>
+
+					<div data-id="55" style="position: absolute; top: 250px; left: 709px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<img data-id="33"
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 726px; width: 200px"
+					/>
+
+				</section>
+
+
+				<section data-auto-animate style="height: 1000px; width:1300px">
+					<h3 class="slide-title">
+						Learning from corrupted data
+					</h3>
+
+					<div style="position: absolute; top: 40px; left: 800px; font-size: 20px">Lanusse et al. 2020 <a href="https://arxiv.org/abs/2008.03833" style='vertical-align:middle; display:inline;'><img
+						src="https://img.shields.io/badge/astro--ph-arXiv%3A2008.03833-B31B1B.svg" class="plain" style="height:25px;" /></a>
+					</div>
+
+					<div data-id="111" style="position: absolute; top: 250px; left: 176px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 0; width: 200px"
+					/>
+
+					<div data-id="21" style="position: absolute; top: 370px; left: 210px; width: 100px; height: 200px; font-size: 80%; opacity:0.3" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Inference network}$ </div>
+					<div data-id="22" style="position: absolute; top: 370px; left: 450px; width: 100px; height: 200px; font-size: 80%; opacity:0.3" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Generator network}$ </div>
+					<div data-id="23" style="position: absolute; top: 100px; left: 250px; width: 100px; height: 200px; font-size: 80%;" > $q_\phi(z|x)$ </div>
+					<div data-id="24" style="position: absolute; top: 100px; left: 475px; width: 100px; height: 200px; font-size: 80%;" > $p_\theta(x|z)$ </div>
+
+					<div data-id="26" style="position: absolute; top: 190px; left: 355px; width: 100px; height: 200px; font-size: 50%;" > $z \sim q_\phi(z|x)$ </div>
+
+					<div data-id="1" style="background: white; position: absolute; top: 150px; left: 220px; width: 15px; height: 230px;"></div>
+					<div data-id="2" style="background: white; position: absolute; top: 150px; left: 260px; width: 15px; height: 230px;"></div>
+					<div data-id="3" style="background: white; position: absolute; top: 150px; left: 300px; width: 15px; height: 230px;"></div>
+					<div data-id="4" style="background: white; position: absolute; top: 150px; left: 340px; width: 15px; height: 230px;"></div>
+
+					<div data-id="11" style="position: absolute; top: 250px; left: 233px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="12" style="position: absolute; top: 250px; left: 273px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="13" style="position: absolute; top: 250px; left: 313px; width: 15px; height: 200px;">$\rightarrow$</div>
+					
+					<div data-id="14" style="position: absolute; top: 250px; left: 353px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="3" style="background: white; position: absolute; top:220px; left: 397px; width: 15px; height: 100px;"></div>
+
+					<div data-id="15" style="position: absolute; top: 250px; left: 410px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="5" style="background: white; position: absolute; top: 150px; left: 455px; width: 15px; height: 230px;"></div>
+					<div data-id="6" style="background: white; position: absolute; top: 150px; left: 495px; width: 15px; height: 230px;"></div>
+					<div data-id="7" style="background: white; position: absolute; top: 150px; left: 535px; width: 15px; height: 230px;"></div>
+					<div data-id="8" style="background: white; position: absolute; top: 150px; left: 575px; width: 15px; height: 230px;"></div>
+					
+					<div data-id="16" style="position: absolute; top: 250px; left: 468px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="17" style="position: absolute; top: 250px; left: 508px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="18" style="position: absolute; top: 250px; left: 548px; width: 15px; height: 200px;">$\rightarrow$</div>
+
+					<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="9" style="background: #B1CB11; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
+					<div data-id="22" style="position: absolute; top: 400px; left: 590px; width: 100px; height: 200px; font-size: 80%;" > $g_\theta(z)$ </div>
+
+					<div data-id="119" style="position: absolute; top: 250px; left: 665px; width: 15px; height: 200px;">$\ast$</div>
+
+					<div data-id="99" style="background: #6495ED; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
+
+					<div data-id="27" style="position: absolute; top: 400px; left: 653px; width: 100px; height: 200px; font-size: 80%;" > $\Pi$ </div>
+
+					<div data-id="24" style="position: absolute; top: 150px; left: 770px; width: 100px; height: 200px; font-size: 80%;" > $x' \sim p_\theta(x|z, \Pi, \Sigma)$ </div>
+
+					<div data-id="55" style="position: absolute; top: 250px; left: 709px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img data-id="33"
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 726px; width: 200px"
+					/>
+
+					<div data-id="32" style="position: absolute; top: 410px; left: 612px; width: 100px; height: 200px; font-size: 100%;" > $\underbrace{\quad \quad \quad}_{g_\theta(z) \ast \Pi}$ </div>
+					<div data-id="31" style="position: absolute; top: 456px; left: 709px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img data-id="66"
+							data-src="assets/autoencoded_gal.png"
+							style="position: absolute; top: 350px; left: 726px; width: 200px"
+					/>
+
+				</section>
+
+
+				<section data-auto-animate style="height: 1000px; width:1300px">
+					<h3 class="slide-title">
+						Learning from corrupted data
+					</h3>
+
+					<div style="position: absolute; top: 40px; left: 800px; font-size: 20px">Lanusse et al. 2020 <a href="https://arxiv.org/abs/2008.03833" style='vertical-align:middle; display:inline;'><img
+						src="https://img.shields.io/badge/astro--ph-arXiv%3A2008.03833-B31B1B.svg" class="plain" style="height:25px;" /></a>
+					</div>
+
+					<div data-id="111" style="position: absolute; top: 250px; left: 176px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 0; width: 200px"
+					/>
+
+					<div data-id="21" style="position: absolute; top: 370px; left: 210px; width: 100px; height: 200px; font-size: 80%; opacity:0.3" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Inference network}$ </div>
+					<div data-id="22" style="position: absolute; top: 370px; left: 450px; width: 100px; height: 200px; font-size: 80%; opacity:0.3" > $\underbrace{\quad \quad \quad \quad \quad \quad}_\textrm{Generator network}$ </div>
+					<div data-id="23" style="position: absolute; top: 100px; left: 250px; width: 100px; height: 200px; font-size: 80%;" > $q_\phi(z|x)$ </div>
+					<div data-id="24" style="position: absolute; top: 100px; left: 475px; width: 100px; height: 200px; font-size: 80%;" > $p_\theta(x|z)$ </div>
+
+					<div data-id="26" style="position: absolute; top: 190px; left: 355px; width: 100px; height: 200px; font-size: 50%;" > $z \sim q_\phi(z|x)$ </div>
+
+					<div data-id="1" style="background: white; position: absolute; top: 150px; left: 220px; width: 15px; height: 230px;"></div>
+					<div data-id="2" style="background: white; position: absolute; top: 150px; left: 260px; width: 15px; height: 230px;"></div>
+					<div data-id="3" style="background: white; position: absolute; top: 150px; left: 300px; width: 15px; height: 230px;"></div>
+					<div data-id="4" style="background: white; position: absolute; top: 150px; left: 340px; width: 15px; height: 230px;"></div>
+
+					<div data-id="11" style="position: absolute; top: 250px; left: 233px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="12" style="position: absolute; top: 250px; left: 273px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="13" style="position: absolute; top: 250px; left: 313px; width: 15px; height: 200px;">$\rightarrow$</div>
+					
+					<div data-id="14" style="position: absolute; top: 250px; left: 353px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="3" style="background: white; position: absolute; top:220px; left: 397px; width: 15px; height: 100px;"></div>
+
+					<div data-id="15" style="position: absolute; top: 250px; left: 410px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="5" style="background: white; position: absolute; top: 150px; left: 455px; width: 15px; height: 230px;"></div>
+					<div data-id="6" style="background: white; position: absolute; top: 150px; left: 495px; width: 15px; height: 230px;"></div>
+					<div data-id="7" style="background: white; position: absolute; top: 150px; left: 535px; width: 15px; height: 230px;"></div>
+					<div data-id="8" style="background: white; position: absolute; top: 150px; left: 575px; width: 15px; height: 230px;"></div>
+					
+					<div data-id="16" style="position: absolute; top: 250px; left: 468px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="17" style="position: absolute; top: 250px; left: 508px; width: 15px; height: 200px;">$\rightarrow$</div>
+					<div data-id="18" style="position: absolute; top: 250px; left: 548px; width: 15px; height: 200px;">$\rightarrow$</div>
+
+					<div data-id="19" style="position: absolute; top: 250px; left: 587px; width: 15px; height: 200px;">$\longrightarrow$</div>
+
+					<div data-id="9" style="background: #B1CB11; position: absolute; top: 150px; left: 631px; width: 15px; height: 230px;"></div>
+					<div data-id="22" style="position: absolute; top: 400px; left: 590px; width: 100px; height: 200px; font-size: 80%;" > $g_\theta(z)$ </div>
+
+					<div data-id="119" style="position: absolute; top: 250px; left: 665px; width: 15px; height: 200px;">$\ast$</div>
+
+					<div data-id="99" style="background: #6495ED; position: absolute; top: 150px; left: 695px; width: 15px; height: 230px;"></div>
+
+					<div data-id="27" style="position: absolute; top: 400px; left: 653px; width: 100px; height: 200px; font-size: 80%;" > $\Pi$ </div>
+
+					<div data-id="24" style="position: absolute; top: 150px; left: 770px; width: 100px; height: 200px; font-size: 80%;" > $x' \sim p_\theta(x|z, \Pi, \Sigma)$ </div>
+
+					<div data-id="55" style="position: absolute; top: 250px; left: 709px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img data-id="33"
+							data-src="assets/noisy_gal.png"
+							style="position: absolute; top: 145px; left: 726px; width: 200px"
+					/>
+
+					<div data-id="32" style="position: absolute; top: 410px; left: 612px; width: 100px; height: 200px; font-size: 100%;" > $\underbrace{\quad \quad \quad}_{g_\theta(z) \ast \Pi}$ </div>
+					<div data-id="31" style="position: absolute; top: 456px; left: 709px; width: 15px; height: 200px;">$\longrightarrow$</div>
+					
+					<img data-id="66"
+							data-src="assets/autoencoded_gal.png"
+							style="position: absolute; top: 350px; left: 726px; width: 200px"
+					/>
+
+					<div align="left" style="position: absolute; top: 510px; left: 0px;"> Optimized maximizing the <b class="alert">ELBO</b> 
+					<br>
+					<br>
+					$\log p(x) \geq \mathbb{E}_{z\sim q_\phi(z|x)} \left[ \log p_\theta(x|z, \Pi, \Sigma) + \mathbb{D}_\text{KL}(q_\phi \| p(z)) \right]$
+					</div>
+
+				</section>
+				
+
+				<!-- <section data-auto-animate style="height: 600px">
+					<h3 style="opacity: 0.3; font-size: 18px;">SLIDE 2</h2>
+					<h2 data-id="title" style="margin-top: 500px">With Auto Animate</h2>
+					<div data-id="1" style="background: cyan; position: absolute; bottom: 190px; left: 16%; width: 60px; height: 60px;"></div>
+					<div data-id="2" style="background: magenta; position: absolute; bottom: 190px; left: 36%; width: 60px; height: 160px;"></div>
+					<div data-id="3" style="background: yellow; position: absolute; bottom: 190px; left: 56%; width: 60px; height: 260px;"></div>
+					<div data-id="4" style="background: red; position: absolute; bottom: 190px; left: 76%; width: 60px; height: 360px;"></div>
+				</section>
+				 -->
+					<!-- <section>
+						<h3 class="slide-title" style="position: absolute; top: 0">
+							A Physicist's approach to deconvolution
+						</h3>
+						<div class="container">
+							<div class="col">
+								<div style="float: right; font-size: 20px">
+									<b>Lanusse</b> et al. (2020)
+									<a href="https://arxiv.org/abs/2008.03833"
+										><img
+											src="https://img.shields.io/badge/astro--ph.IM-arXiv%3A2008.03833-B31B1B.svg"
+											class="plain"
+											style="height: 25px; vertical-align: middle"
+									/></a>
+								</div>
+							</div>
+						</div>
+						<div class="container">
+							<div class="col">
+								<img
+									class="plain fragment"
+									data-src="assets/rand_z_square.png"
+									style="height: 150px"
+									data-fragment-index="4"
+								/>
+							</div>
+							<div class="col">
+								<img
+									class="plain fragment"
+									data-src="assets/cosmos_gal.png"
+									style="width: 200px"
+									data-fragment-index="3"
+								/>
+							</div>
+							<div class="col">
+								<img
+									class="plain fragment"
+									data-src="assets/cosmos_gal_psf.png"
+									style="width: 200px"
+									data-fragment-index="2"
+								/>
+							</div>
+
+							<div class="col">
+								<img
+									class="plain fragment"
+									data-src="assets/cosmos_gal_pix.png"
+									style="width: 200px"
+									data-fragment-index="1"
+								/>
+							</div>
+
+							<div class="col">
+								<img
+									class="plain fragment"
+									data-src="assets/cosmos_gal_ground.png"
+									style="width: 200px"
+									data-fragment-index="0"
+								/>
+							</div>
+						</div>
+
+						<div
+							class="container"
+							style="
+								position: relative;
+								width: 1000px;
+								height: 50px;
+								margin: 0 auto;
+							"
+						>
+							<div class="col fragment" data-fragment-index="4">
+								<font size="10"> $\longrightarrow$ </font> <br />
+								$g_\theta$
+							</div>
+							<div class="col fragment" data-fragment-index="3">
+								<font size="10"> $\longrightarrow$ </font> <br />
+								PSF
+							</div>
+							<div class="col fragment" data-fragment-index="2">
+								<font size="10"> $\longrightarrow$ </font> <br />
+								Pixelation
+							</div>
+							<div class="col fragment" data-fragment-index="1">
+								<font size="10"> $\longrightarrow$ </font> <br />
+								Noise
+							</div>
+						</div>
+
+						<div class="container">
+							<div class="col">
+								<div
+									style="
+										position: relative;
+										width: 400px;
+										height: 300px;
+										margin: 0 auto;
+									"
+								>
+									<img
+										data-src="assets/pgm_0.png"
+										class="plain fragment current-visible"
+										style="position: absolute; top: 0; left: 0; height: 300px"
+										data-fragment-index="0"
+									/>
+									<img
+										data-src="assets/pgm_1.png"
+										class="plain fragment current-visible"
+										style="position: absolute; top: 0; left: 0; height: 300px"
+										data-fragment-index="1"
+									/>
+									<img
+										data-src="assets/pgm_1.png"
+										class="plain fragment current-visible"
+										style="position: absolute; top: 0; left: 0; height: 350px"
+										data-fragment-index="2"
+									/>
+									<img
+										data-src="assets/pgm_2.png"
+										class="plain fragment current-visible"
+										style="position: absolute; top: 0; left: 0; height: 350px"
+										data-fragment-index="3"
+									/>
+									<img
+										data-src="assets/pgm_3.png"
+										class="plain fragment"
+										style="position: absolute; top: 0; left: 0; height: 300px"
+										data-fragment-index="4"
+									/>
+								</div>
+							</div>
+							<div class="col">
+								<div class="block fragment" data-fragment-index="0">
+									<div class="block-title">Probabilistic model</div>
+									<div class="block-content">
+										<div
+											style="
+												position: relative;
+												width: 400px;
+												height: 100px;
+												margin: 0 auto;
+											"
+										>
+											<div
+												class="plain fragment current-visible"
+												style="
+													position: absolute;
+													top: 0;
+													left: 0;
+													width: 400px;
+												"
+												data-fragment-index="0"
+											>
+												$$ x \sim ? $$
+											</div>
+											<div
+												class="plain fragment current-visible"
+												style="
+													position: absolute;
+													top: 0;
+													left: 0;
+													width: 400px;
+												"
+												data-fragment-index="1"
+											>
+												$$ x \sim \mathcal{N}(z, \Sigma) \quad z \sim ? $$<br />latent
+												$z$ is a denoised galaxy image
+											</div>
+											<div
+												class="plain fragment current-visible"
+												style="
+													position: absolute;
+													top: 0;
+													left: 0;
+													width: 400px;
+												"
+												data-fragment-index="2"
+											>
+												$$ x \sim \mathcal{N}( \mathbf{P} z, \Sigma) \quad z
+												\sim ?$$<br />latent $z$ is a super-resolved and
+												denoised galaxy image
+											</div>
+											<div
+												class="plain fragment current-visible"
+												style="
+													position: absolute;
+													top: 0;
+													left: 0;
+													width: 400px;
+												"
+												data-fragment-index="3"
+											>
+												$$ x \sim \mathcal{N}( \mathbf{P} (\Pi \ast z), \Sigma)
+												\quad z \sim ? $$<br />latent $z$ is a deconvolved,
+												super-resolved, and denoised galaxy image
+											</div>
+											<div
+												class="plain fragment"
+												style="
+													position: absolute;
+													top: 0;
+													left: 0;
+													width: 400px;
+												"
+												data-fragment-index="4"
+											>
+												$$ x \sim \mathcal{N}( \mathbf{P} (\Pi \ast
+												g_\theta(z)), \Sigma) \quad z \sim \mathcal{N}(0,
+												\mathbf{I}) $$ <br />latent $z$ is a Gaussian sample<br />
+												<b class="alert">
+													$\theta$ are parameters of the model</b
+												>
+											</div>
+										</div>
+										<br />
+										<br />
+										<br />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="fragment">
+							$\Longrightarrow$
+							<b class="alert">
+								Decouples the morphology model from the observing conditions</b
+							>.
+						</div>
+					</section> -->
+
+					<section>
+						<h3 class="slide-title">
+							A generative model for galaxy morphologies
+						</h3>
+						<div class="container">
+							<div class="col">
+								<img
+									data-src="assets/pgm.png"
+									class="plain"
+									style="height: 250px"
+								/>
+							</div>
+							<div class="col">
+								The Bayesian view of the problem: $$ p(z | x ) \propto
+								p_\theta(x | z, \Sigma, \mathbf{\Pi}) p(z)$$ where:
+								<br />
+								<ul>
+									<li>$p( z | x )$ is the <b class="alert">posterior</b></li>
+									<li>
+										$p( x | z )$ is the data likelihood,
+										<b class="alert">contains the physics</b>
+									</li>
+									<li>$p( z )$ is the <b>prior</b></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="container">
+							<div class="col">
+								<div
+									style="
+										position: relative;
+										width: 200px;
+										height: 200px;
+										margin: 0 auto;
+									"
+								>
+									<img
+										class="plain fragment current-visible"
+										data-src="assets/cosmos_gal_ground.png"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+										data-fragment-index="0"
+									/>
+									<img
+										class="plain fragment"
+										data-src="assets/cosmos_gal.png"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+										data-fragment-index="1"
+									/>
+								</div>
+								<div
+									class="container"
+									style="
+										position: relative;
+										width: 200px;
+										height: 50px;
+										margin: 0 auto;
+									"
+								>
+									<div
+										class="col fragment current-visible"
+										data-fragment-index="0"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+									>
+										Data<br />
+										$x_n$
+									</div>
+									<div
+										class="col fragment"
+										data-fragment-index="1"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+									>
+										Truth<br />
+										$x_0$
+									</div>
+								</div>
+								<br />
+							</div>
+
+							<div class="col fragment" data-fragment-index="0">
+								<div
+									style="
+										position: relative;
+										width: 200px;
+										height: 200px;
+										margin: 0 auto;
+									"
+								>
+									<div>
+										<video
+											data-autoplay
+											data-loop
+											data-src="assets/rec_samples.mp4"
+											type="video/mp4"
+											style="height: 200px"
+										/>
+									</div>
+								</div>
+								<div>
+									Posterior samples<br />
+									$g_\theta(z)$
+								</div>
+							</div>
+
+							<div class="col">
+								<div
+									style="
+										position: relative;
+										width: 200px;
+										height: 200px;
+										margin: 0 auto;
+									"
+								>
+									<div>
+										<video
+											class="fragment current-visible"
+											data-autoplay
+											data-loop
+											data-src="assets/rec_lsst.mp4"
+											type="video/mp4"
+											style="position: absolute; top: 0; left: 0; width: 200px"
+											data-fragment-index="0"
+										/>
+									</div>
+									<img
+										class="plain fragment"
+										data-src="assets/rec_median.png"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+										data-fragment-index="1"
+									/>
+								</div>
+
+								<div
+									class="container"
+									style="
+										position: relative;
+										width: 200px;
+										height: 50px;
+										margin: 0 auto;
+									"
+								>
+									<div
+										class="col fragment current-visible"
+										data-fragment-index="0"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+									>
+										<br />
+										$\mathbf{P} (\Pi \ast g_\theta(z))$
+									</div>
+									<div
+										class="col fragment"
+										data-fragment-index="1"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+									>
+										Median
+									</div>
+								</div>
+							</div>
+
+							<div class="col">
+								<div
+									style="
+										position: relative;
+										width: 200px;
+										height: 200px;
+										margin: 0 auto;
+									"
+								>
+									<div>
+										<video
+											class="fragment current-visible"
+											data-autoplay
+											data-loop
+											data-src="assets/res_lsst.mp4"
+											type="video/mp4"
+											style="position: absolute; top: 0; left: 0; width: 200px"
+											data-fragment-index="0"
+										/>
+									</div>
+									<img
+										class="plain fragment"
+										data-src="assets/rec_std.png"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+										data-fragment-index="1"
+									/>
+								</div>
+
+								<div
+									class="container"
+									style="
+										position: relative;
+										width: 200px;
+										height: 50px;
+										margin: 0 auto;
+									"
+								>
+									<div
+										class="col fragment current-visible"
+										data-fragment-index="0"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+									>
+										Data residuals <br />
+										$x_n - \mathbf{P} (\Pi \ast g_\theta(z))$
+									</div>
+									<div
+										class="col fragment"
+										data-fragment-index="1"
+										style="position: absolute; top: 0; left: 0; width: 200px"
+									>
+										Standard Deviation
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="fragment">
+							$\Longrightarrow$
+							<b class="alert"
+								>Uncertainties are fully captured by the posterior</b
+							>.
+						</div>
+					</section>
+
+					<section>
+						<h3 class="slide-title">Joint inference using a generative model for the morphology</h3>
+						<div class="container">
+							<div class="col">
+								<div style="float: right; font-size: 20px">
+									<b>Remy</b>, Lanusse, Starck (2022)
+									<a href="https://arxiv.org/abs/2210.16243"
+										><img
+											src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2210.16243-B31B1B.svg"
+											class="plain"
+											style="height: 25px; vertical-align: middle"
+									/></a>
+								</div>
+							</div>
+						</div>
+						<div align="left">
+						Let's use the learned $g_\theta(z)$ <br><br>
+						
+						<div class="fragment">
+							The joint inference of $p(z, \gamma | \mathcal{D})$ leads to an <b class="alert">unbiased posterior</b>!<br><br>
+						
+							<div class="container">
+								<div class="col" align="center">
+									<img src="assets/shear_estimate_nobias.png" class="plain" height="300"></img>
+									<br>
+									Marginal shear posterior $p(\gamma|\mathcal{D})$
+								</div>
+	
+								<div class="col fragment">
+									<img src="assets/deepgal1.png" class="plain" height="300"></img>
+									<br>
+									Maximum a posteriori fit and residuals
+								</div>
+							</div>
+						</div>
+	
+						<!-- <div class="fragment" align="center"> <br>
+							<b class="alert">Using the ge</b>
+						</div> -->
+					</section>
+
+					<section>
+						<h3 class="slide-title">Takeaway message</h3>
+						
+						<div class="fragment" style="position:relative; left:150px; width:1000px; border-radius: 20px; background-color:rgba(228, 240, 160, 0.055);">
+							<br>
+								<ul>
+									<!-- <li class="fragment">  -->
+									<li>
+										<b class="alert">Ellipticity</b> is not a well defined quantity for arbitrary galaxies $\rightarrow$ bias in shear estimation
+										
+									</li>
+		
+									<br>
+		
+									<li class="fragment">
+										<b class="alert">Forward modeling</b> allows to decouple morphology from observing conditions
+										<ul>
+											<br>
+											<li> <b class="alert">Deep generative models</b> can be used to provide flexible light profile model</b>
+											</li>
+											<br>
+											<li> <b class="alert">Explicit likelihood</b>: uses of all of our physical knowledge<br>
+												$ + $ Our method can be applied for varying PSF, noise, or even different instruments!
+											</li>
+				
+										</ul>
+									</li>
+		
+									<br>
+									
+									<!-- <br> -->
+								</ul>
+								<div class="fragment">
+									<strong> $\Longrightarrow$ Joint inference of morphology and shear leads to <b class="alert">unbiased</b> marginal shear posterior</strong>
+		
+								</div>
+								<br>
+							</div>
+									
+						<div class="fragment">
+							<a href="https://arxiv.org/abs/2210.16243"
+												><img
+													src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2210.16243-B31B1B.svg"
+													class="plain"
+													style="height: 35px; vertical-align: middle"
+											/></a>
+							<br>
+						
+						</div>
+						
+						<p class="fragment" align="left" style="position:relative; left:100px">Opening remarks</p>
+					<div class="fragment" style="position:relative; left:150px; width:1000px; border-radius: 20px; background-color:rgba(228, 240, 160, 0.055);">
+							<ul>
+								<li>
+									Shear estimators are known to <b
+									class="alert">respond to galaxy selection</b>,
+									how to include galaxy detection and selection
+									in the bayesian framework?
+								</li>
+								
+								<li class="fragment">
+									Galaxy that are observed <b
+									class="alert">blended</b> may be affected by a
+									different amount of shear. How to handle blended objects?
+								</li>	
+							</ul>
+						</div>
+						
+					</section>
+				</section>
+
+			
+			
+		<!-- </section> -->
+
+
+
+				
+		
 		</div>
+	</div>
 
-		<script src="reveal.js/dist/reveal.js"></script>
-		<script src="reveal.js/plugin/notes/notes.js"></script>
-		<script src="reveal.js/plugin/markdown/markdown.js"></script>
-		<script src="reveal.js/plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<style>
+		/* .reveal .slides {
+			border: 5px solid red;
+			min-height: 100%;
+			width: 128mm;
+			height: 96mm;
+		} */
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+		.reveal .block {
+			background-color: #191919;
+			margin-left: 20px;
+			margin-right: 20px;
+			text-align: left;
+			padding-bottom: 0.1em;
+		}
+
+		.reveal .block-title {
+			background-color: #333333;
+			padding: 8px 35px 8px 14px;
+			color: #E1F9B7
+;
+			font-weight: bold;
+		}
+
+		.reveal .block-content {
+			padding: 8px 35px 8px 14px;
+		}
+
+		.reveal .slide-title {
+			border-left: 5px solid white;
+			text-align: left;
+			margin-left: 20px;
+			padding-left: 20px;
+		}
+
+		.reveal .alert {
+			/*color: #FFAA7F; */
+			color: #B1CB11;
+			font-weight: bold;
+		}
+
+		.reveal .inverted {
+			filter: invert(100%);
+		}
+
+		/*
+	/* .reveal .alert {
+	padding:8px 35px 8px 14px; margin-bottom:18px;
+	text-shadow:0 1px 0 rgba(255,255,255,1);
+	border:5px solid #FFAA7F;
+	-webkit-border-radius: 14px; -moz-border-radius: 14px;
+	border-radius:14px
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	background-size: 38px;
+	padding-left: 30px; /* 55px; if icon
+	}
+	.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+	.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+	/*.reveal .alert li {margin-top: 1em}
+	.reveal .alert-block p+p {margin-top:5px} */
+	</style>
+
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script src="reveal.js/plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			controls: false,
+
+			//center: false,
+			hash: true,
+
+			// Visibility rule for backwards navigation arrows; "faded", "hidden"
+			// or "visible"
+			controlsBackArrows: 'hidden',
+
+			// Display a presentation progress bar
+			progress: true,
+
+			// Display the page number of the current slide
+			slideNumber: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// The "normal" size of the presentation, aspect ratio will be preserved
+			// when the presentation is scaled to fit different resolutions. Can be
+			// specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+
+			// Bounds for smallest/largest possible scale to apply to content
+			minScale: 0.2,
+			maxScale: 1.5,
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+
+			dependencies: [{
+					src: 'reveal.js/plugin/markdown/marked.js'
+				},
+				{
+					src: 'reveal.js/plugin/markdown/markdown.js'
+				},
+				{
+					src: 'reveal.js/plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/math/math.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-d3/reveald3.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/Chart.min.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/csv2chart.js'
+				},
+				{
+					src: 'reveal.js/plugin/highlight/highlight.js',
+					async: true
+				},
+			]
+
+		});
+	</script>
+</body>
+
 </html>
