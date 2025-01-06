@@ -105,13 +105,17 @@
 					<!-- <br> -->
 					<!-- $\textit{Generative Modeling for Weak Lensing Inverse Problems}$ -->
 					<p style="color:#4789fa">Generative Modeling for Weak Lensing Inverse Problems</p>
-					<br><br>
+					
 					Under the supervision of Jean-Luc Starck and François Lanusse
 				</div>	
+				
+
+
 				<br>
 				<br>
-				<br>
-				<br>
+
+				<div>
+					Currently <b class="alert">Postdoctoral Research Associate</b> at the Department of Astrophysics, Princeton University</div>
 			</section>
 
 			<section>
@@ -1744,11 +1748,16 @@
 			
 									</ul>
 								</li>
-	
-								<br>
 								
-								<!-- <br> -->
+								<br>
+							<li class="fragment">
+								<b class="alert">Variational Inference</b> enables fast inference in a few minutes compared to hours with HMC ($\mathcal{O}(10^4)$ parameters)
+							</li>
+							
 							</ul>
+
+							<br><br>
+							
 							<div class="fragment">
 								<strong> $\Longrightarrow$ Joint inference of morpholgy and shear leads to <b class="alert">unbiased</b> marginal shear posterior</strong>
 	
@@ -1767,7 +1776,7 @@
 					
 					</div>
 					
-					<p class="fragment" align="left" style="position:relative; left:100px">Opening remarks</p>
+					<!-- <p class="fragment" align="left" style="position:relative; left:100px">Opening remarks</p>
 				<div class="fragment" style="position:relative; left:150px; width:1000px; border-radius: 20px; background-color:rgba(228, 240, 160, 0.055);">
 						<ul>
 							<li>
@@ -1783,12 +1792,236 @@
 								different amount of shear. How to handle blended objects?
 							</li>	
 						</ul>
-					</div>
+					</div> -->
 					
 				</section>
-				
+
+			</section>
+			<section>			
+			<section>
+				<h3 class="slide-title" style="position:relative;top:0;">
+					Other works
+				</h3>
+
+				<b class="alert">Neural Posterior Estimation with Differentiable Simulators</b>
+				<br>
+				<small>
+				Justine Zeghal, François Lanusse, Alexandre Boucaud, <u>Benjamin Remy</u>, Eric Aubourg
+				<br>
+				(ICML 2022 Workshop on Machine Learning for Astrophysics)
+			</small>
+				<br>
+				<br>
+				$\mathcal{L} = \mathbb{E}_{p(\text{x}, z, \theta)} \left[ - \log p_{\varphi} (\theta | \text{x})  \right] + \color{orange}{\mathbb{E}_{p(\text{x},z,\theta)} \left[ \parallel \nabla_{\theta} \log p(\theta | \text{x}, z)  - \nabla_\theta \log p_\varphi(\theta | \text{x}) \parallel_2^2 \right]}$
+				<br>
+				<br>
+				<div class="container">
+					<div class="col">
+					    <img src="assets/2moons_truth.png" class="plain" height="350"></img>
+					</div>
+					<div class="col">
+						
+					    <img src="assets/tight_prior_lotkavolterra_c2st_2.png" class="plain" height="350"></img>
+					</div>
+				</div>
 			</section>
 
+			<section>
+				<h3 class="slide-title" style="position:relative;top:0;">
+					Other works
+				</h3>
+
+				<b class="alert">Deblending & Training diffusion models from corrupted data</b>
+				<div class="container">
+					<div class="col">
+						<img src="assets/deblending_sampson.png" class="plain" height="550"></img>
+						<div align="left">
+							<small><a style="color:#6e93d6" href="https://arxiv.org/abs/2401.07313">Sampson et al. 2023</a></small>
+						</div>
+					</div>
+
+					<div class="col">
+						<div align="left">
+							<small>
+						$\texttt{Scarlet2}$: Differentiable forward model in JAX and Equinox
+						<ul>
+							<li>
+								Galaxy spectrum and morphology
+							</li>
+							<li>
+								Convolution/deconvolution
+							</li>
+							<li>
+								2D interpolation (Bilinear, Lancsoz, Cubic, Quintic)
+							</li>
+						</ul>
+						<br>
+						<br>
+
+						
+						Application to Time Domain Astrophysics <br>	
+
+						<b class="alert">Disentangling transients and their host galaxies with scarlet2: A framework to forward model multi-epoch imaging
+						</b><br>
+						C. Ward, P. Melchior, M. L. Sampson, C. J. Burke, J. Siegel, <u>B. Remy</u>, S. Birmingham, E. Ramey, S. van Velzen, Astronomy & Astrophysics 2024
+						<br><br>
+						<b class="alert">Learning diffusion models from observations</b>
+						<br>
+						(inspired from <a style="color:#6e93d6" href="https://arxiv.org/abs/2405.13712">Rozet et al. 2024</a>)
+						<img src="assets/diffusion-prior.png" class="plain" height="350"></img>
+					</small>	
+					</div>
+
+					</div>
+
+
+				</div>
+
+			</section>
+			</section>
+
+			<section>
+
+				<section>
+					<h3 class="slide-title" style="position:relative;top:0;">
+						Research Plans: Equivariant Deep Learning on the Sphere
+					</h3>
+
+
+					<div class="container">
+						<div class="col">
+							<div align="left">Upcomming cosmological surveys will be on a spherical manifold
+							</div>
+							<img src="assets/skymap-2016.jpg" class="plain" height="350"></img>
+							<br>
+							<a style="color:#6e93d6" href="https://www.lsst.org/scientists/simulations/opsim">Vera C. Rubin strategy</a>
+						</div>
+
+						<div class="col">
+							We need <b class="alert">equivariant deep leanring</b> for
+							<ul>
+								<br>
+								<li>
+									Optimal compression into summarry statistics with <b class="alert">information bottleneck</b> methods
+								</li>
+								<br>
+								<li>
+									Or invariant implicit inference
+								</li>
+								<br>
+								<li>
+									Diffusion/Generative models on the sphere for fast simulations generation and application beyond cosmology (e.g. Climate Science, weather forcasting, etc.)
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title" style="position:relative;top:0;">
+						Research Plans: Equivariant Deep Learning on the Sphere
+					</h3>
+
+
+					<div class="container">
+						<div class="col">
+							<!-- <div align="left">Upcomming cosmological surveys will be on a spherical manifold
+							</div> -->
+							<img src="assets/scattering-simbig.png" class="plain" height="450"></img>
+							<br>
+							<a style="color:#6e93d6" href="https://arxiv.org/abs/2310.15250">Régaldo-Saint Blancard et al. 2023</a>
+						</div>
+
+						<div class="col">
+							Combining wavelet scattering transform and deep learning for <b class="alert">simulation efficient</b>
+							 and <b class="alert">robust</b> simulation-based inference
+							<br>
+							<br>
+							<br>
+							 <ul>
+								<li>
+									<b class="alert">Scattering transform</b> have natural extension to the sphere
+								</li>
+								<br>
+								<li>
+									If scattering transforms not optimal, neural networks can be trained to <b class="alert">learn the residual information</b>
+								</li>
+								
+							 </ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title" style="position:relative;top:0;">
+						Research Plans: Scalable Variational Inference
+					</h3>
+
+
+				<div class="container">
+					<div class="col" align="center">
+						<img src="assets/shear_estimate_nobias.png" class="plain" height="300"></img>
+						<br>
+						Marginal shear posterior $p(\gamma|\mathcal{D})$
+					</div>
+
+						<div class="col">
+							In this example:
+							<br>
+							<ul>
+								<li>
+									<b class="alert">Mean-field</b> approximation does not give the correct correlations/uncertainties
+								</li>
+								<br>
+								<li>
+									<b class="alert">Normalizing Flows</b> are over paramatrized or hard to optimize
+								</li>
+								<br>
+								<li>
+									I am interested in <b class="alert">EigenVI</b> approach with flexible surrogate distribution, 
+									and see how these approches <b class="alert">scale with dimension</b>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h3 class="slide-title" style="position:relative;top:0;">
+						Research Plans: Optimal Compression with Minimal Simulations: Leveraging Foundation Models
+					</h3>
+
+
+				<div class="container">
+					<div class="col" align="center">
+						<img src="assets/shear_estimate_nobias.png" class="plain" height="300"></img>
+						<br>
+						Marginal shear posterior $p(\gamma|\mathcal{D})$
+					</div>
+
+						<div class="col">
+							Most realistic cosmological simulations are very expensive, but required for SBI
+
+							<br>
+							<br>
+							<ul>
+								<li>
+								<b class="alert">Pretrain</b> encoders on large-scale, computationally inexpensive simulations (e.g. Particle Mesh simulations), with information bottleneck
+								</li>
+								<br>
+								<li>
+									<b class="alert">Fine-tune</b> on high-resolution hydrodynamical simulations, (e.g. CAMELS suite) with different stratigies (e.g. contrastive loss)
+								</li>
+							</ul>
+
+
+						</div>
+					</div>
+				</section>
+
+
+			</section>
 
 		</div>
 	</div>
