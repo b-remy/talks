@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Talk</title>
+
+	<meta name="description" content="January 2025">
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="reveal.js/dist/theme/darkenergy.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<!-- Colors
+#B1CB11 - yellow-green
+# 6e93d6 - blue
+-->
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-background-image="assets/1-Perseus-cluster_1oEasJg.jpg">
+			<!-- <section> -->
+					<!-- </section> data-background-image="asseots/lsst_stills_0009_crop.jpg"> -->
+			
+				<div class="container">
+					<div class="title" style="position:relative; left:200px; border-radius: 20px; background-color:rgba(0, 0, 0, .6);">
+						<br>
+						<h2> Generative Modeling for   <br> Astrophysical Inverse Problems
+						<!-- <br> for inference with corrupted data -->
+					</h2>
+						<!-- <h2>Joint Bayesian inference of galaxy morphologies and cosmic shear</h2> -->
+						<center><hr size="100" width="600"></center>
+						<!-- <center><hr size="100" width="400"></center> -->
+						<center><hr size="100" width="900", style="opacity:0%"></center>
+						<!-- <br> -->
+						<h2>Benjamin Remy</h2>
+						<p style="color:#6e93d6"><em>at the Computational Center for Mathematics, Flatiron Institutes <br> January 6, 2025 </em>  </p>
+					<br>
+					<!-- <p>under the supervision of Jean-Luc Starck and François
+						Lanusse</p> -->
+					</div>
+				</div>
+			
+				
+				<!-- <hr> -->
+				<!-- <div>
+					<a href="https://arxiv.org/abs/2201.05561"><img src="https://img.shields.io/badge/astro--ph.CO-arXiv%3A2201.05561-B31B1B.svg" class="plain" style="height:25px;" /></a>
+					<a href="https://arxiv.org/abs/2011.08698"><img src="https://img.shields.io/badge/stat.ML-arXiv%3A2011.08698-B31B1B.svg" class="plain" style="height:25px;" /></a>
+				</div> -->
+				<!-- <div style="position:relative; left:0px; border-radius: 20px; background-color:rgba(0, 0, 0, .6)">
+				<p>under the supervision of Jean-Luc Starck and François
+				Lanusse</p>
+			
+				<p><small>CosmoStat, CEA Paris-Saclay, IRFU/DAp-AIM <br>
+					Université Paris Saclay, ED Astronomie et Astrophysique d’Ile-de-France</small></p>
+					
+				</div> -->
+				<br>
+				<div class="container" style="width: 1000px; position:relative; left:150px">
+					<div class="col">
+						<br>
+					    <img src="assets/University_of_Princeton_Logo.png" class="plain" height="120"></img>
+					</div>
+
+					<div class="col">
+						<br>
+						<img src="assets/verarubinobs.png" class="plain" height="120"></img>
+					</div>
+
+				</div>
+				<!-- <div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);">  -->
+				<!-- <div class="container">
+					<div style="position:relative; left:200px; width:900px; border-radius: 20px; background-color:rgba(0, 0, 0, 0.6);">
+					slides at <a style="color:#6e93d6" href="https://b-remy.github.io/talks/Defense">b-remy.github.io/talks/Defense</a> 
+				</div>
+				</div> -->
+
+	
+			</section>
+		
+		</div>
+	</div>
+
+	<style>
+		/* .reveal .slides {
+			border: 5px solid red;
+			min-height: 100%;
+			width: 128mm;
+			height: 96mm;
+		} */
+
+		.reveal .block {
+			background-color: #191919;
+			margin-left: 20px;
+			margin-right: 20px;
+			text-align: left;
+			padding-bottom: 0.1em;
+		}
+
+		.reveal .block-title {
+			background-color: #333333;
+			padding: 8px 35px 8px 14px;
+			color: #E1F9B7
+;
+			font-weight: bold;
+		}
+
+		.reveal .block-content {
+			padding: 8px 35px 8px 14px;
+		}
+
+		.reveal .slide-title {
+			border-left: 5px solid white;
+			text-align: left;
+			margin-left: 20px;
+			padding-left: 20px;
+		}
+
+		.reveal .alert {
+			/*color: #FFAA7F; */
+			color: #B1CB11;
+			font-weight: bold;
+		}
+
+		.reveal .inverted {
+			filter: invert(100%);
+		}
+
+		/*
+	/* .reveal .alert {
+	padding:8px 35px 8px 14px; margin-bottom:18px;
+	text-shadow:0 1px 0 rgba(255,255,255,1);
+	border:5px solid #FFAA7F;
+	-webkit-border-radius: 14px; -moz-border-radius: 14px;
+	border-radius:14px
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	background-size: 38px;
+	padding-left: 30px; /* 55px; if icon
+	}
+	.reveal .alert-block {padding-top:14px; padding-bottom:14px}
+	.reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+	/*.reveal .alert li {margin-top: 1em}
+	.reveal .alert-block p+p {margin-top:5px} */
+	</style>
+
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script src="reveal.js/plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			controls: false,
+
+			//center: false,
+			hash: true,
+
+			// Visibility rule for backwards navigation arrows; "faded", "hidden"
+			// or "visible"
+			controlsBackArrows: 'hidden',
+
+			// Display a presentation progress bar
+			progress: true,
+
+			// Display the page number of the current slide
+			slideNumber: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			// The "normal" size of the presentation, aspect ratio will be preserved
+			// when the presentation is scaled to fit different resolutions. Can be
+			// specified using percentage units.
+			width: 1280,
+			height: 720,
+
+			// Factor of the display size that should remain empty around the content
+			margin: 0.1,
+
+			// Bounds for smallest/largest possible scale to apply to content
+			minScale: 0.2,
+			maxScale: 1.5,
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+
+			dependencies: [{
+					src: 'reveal.js/plugin/markdown/marked.js'
+				},
+				{
+					src: 'reveal.js/plugin/markdown/markdown.js'
+				},
+				{
+					src: 'reveal.js/plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/math/math.js',
+					async: true
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-d3/reveald3.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/Chart.min.js'
+				},
+				{
+					src: 'reveal.js/plugin/reveal.js-plugins/chart/csv2chart.js'
+				},
+				{
+					src: 'reveal.js/plugin/highlight/highlight.js',
+					async: true
+				},
+			]
+
+		});
+	</script>
+</body>
+
+</html>

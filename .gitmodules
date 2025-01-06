@@ -43,3 +43,6 @@
 [submodule "ISSC2024/reveal.js"]
 	path = ISSC2024/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "CCM/reveal.js"]
+	path = CCM/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
