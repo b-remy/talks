@@ -40,6 +40,9 @@
 [submodule "Thunch2023/reveal.js"]
 	path = Thunch2024/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
+[submodule "Chicago2025/reveal.js"]
+	path = Chicago2025/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
 [submodule "ISSC2024/reveal.js"]
 	path = ISSC2024/reveal.js
 	url = https://github.com/EiffL/reveal.js.git
